@@ -36,6 +36,9 @@
     "@wdio/mocha-framework": "^6.1.19",
     "@wdio/selenium-standalone-service": "^6.1.14",
     "@wdio/spec-reporter": "^6.1.23",
-    "@wdio/sync": "^6.1.14"
+    "@wdio/sync": "^6.1.14",
+    "eslint": "^7.4.0",
+    "eslint-config-google": "^0.14.0",
+    "eslint-plugin-wdio": "^6.0.12"
   }
 }

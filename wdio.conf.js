@@ -74,7 +74,7 @@ exports.config = {
         //         args: ['-headless']
         //     },
         // },
-            ],
+    ],
     //
     // ===================
     // Test Configurations
@@ -288,4 +288,4 @@ exports.config = {
     */
     //onReload: function(oldSessionId, newSessionId) {
     //}
-}
+};

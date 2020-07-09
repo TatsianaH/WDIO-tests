@@ -20,7 +20,7 @@ describe('Fill out register form on Amazon.com', () => {
     });
 
     it('should redirect user to registration page after the button `Create your Amazon account` on the Sign-In page is clicked', () => {
-       $('#createAccountSubmit').click();
+        $('#createAccountSubmit').click();
         const actualTitle = browser.getTitle();
         expect(actualTitle).eq('Amazon Registration');
     });
@@ -37,14 +37,14 @@ describe('Fill out register form on Amazon.com', () => {
         browser.back();
     });
 
-   it('should verify that the header on the register page is `Create account`', () => {
-       expect($('h1').getText()).eq('Create account');
-   });
+    it('should verify that the header on the register page is `Create account`', () => {
+        expect($('h1').getText()).eq('Create account');
+    });
 
-   // register page
-   it('should verify that the `Your name` label is present on the register page', () => {
-       expect($('label[for="ap_customer_name"]').isDisplayed()).true;
-   });
+    // register page
+    it('should verify that the `Your name` label is present on the register page', () => {
+        expect($('label[for="ap_customer_name"]').isDisplayed()).true;
+    });
 
     it('should verify that the `Email` label is present on the register page', () => {
         expect($('label[for="ap_email"]').isDisplayed()).true;
@@ -125,7 +125,7 @@ describe('Fill out register form on Amazon.com', () => {
     });
 
     it('should verify that no alerts present on the register page', () => {
-       expect($('.a-alert-content').isDisplayed()).false;
+        expect($('.a-alert-content').isDisplayed()).false;
     });
 
     it('should verify that the `Conditions of Use` link redirects to proper page', () => {
