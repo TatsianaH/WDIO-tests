@@ -127,4 +127,20 @@ describe('Fill out register form on Amazon.com', () => {
     it('should verify that no alerts present on the register page', () => {
        expect($('.a-alert-content').isDisplayed()).false;
     });
+
+    it('should verify that the `Conditions of Use` link redirects to proper page', () => {
+        const links = $$('#legalTextRow a');
+        links[0].click();
+        const actualTitle = browser.getTitle();
+        expect(actualTitle).eq('Amazon.com Help: Conditions of Use');
+        browser.back();
+    });
+
+    it('should verify that the `Privacy Notice` link redirects to proper page', () => {
+        const links = $$('#legalTextRow a');
+        links[1].click();
+        const actualTitle = browser.getTitle();
+        expect(actualTitle).eq('Amazon.com Help: Amazon.com Privacy Notice');
+        browser.back();
+    });
 });
