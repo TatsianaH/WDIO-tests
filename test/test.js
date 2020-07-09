@@ -1,4 +1,4 @@
-import assert from 'assert';
+import { assert } from 'assert';
 
 describe('Complex Counter App', function () { //define suite title by passing a string
 
@@ -9,7 +9,7 @@ describe('Complex Counter App', function () { //define suite title by passing a 
             let title = browser.getTitle(); //get page title and assign it to the "title" variable
             browser.pause(2000); //just pause to visually see that something is happening on the page
             assert.equal(title, 'Complex Counter App'); //compare {title} (actual) and "Complex Counter App" (expected)
-        })
+        });
 
     });
 

@@ -1,13 +1,12 @@
 {
     "env": {
         "browser": true,
-        "es6": true,
-        "node": true
+        "es2020": true,
+        "node": true,
+        "mocha": true
     },
-    "plugins": [
-        "wdio"
-    ],
-    "extends": "plugin:wdio/recommended",
+    "extends": ["eslint:recommended", "plugin:wdio/recommended"],
+    "plugins": ["wdio"],
     "parserOptions": {
         "ecmaVersion": 11,
         "sourceType": "module"
