@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 
-describe('Fill out register form on Amazon.com', () => {
+describe.skip('Fill out register form on Amazon.com (Positive)', () => {
     it('should redirect a user from main page to Sign-in page', () => {
         browser.url('https://www.amazon.com/');
         $('#nav-link-accountList').click();
@@ -142,5 +142,26 @@ describe('Fill out register form on Amazon.com', () => {
         const actualTitle = browser.getTitle();
         expect(actualTitle).eq('Amazon.com Help: Amazon.com Privacy Notice');
         browser.back();
+    });
+});
+
+describe('Work with account and list menu', () => {
+    before('', () => {
+        browser.setWindowSize(1400, 1440);
+        browser.url('https://www.amazon.com/')  ;
+    });
+
+    it('should open `My garage`', () => {
+        $('#nav-link-accountList').moveTo();
+        const links = $$('.nav-link.nav-item');
+
+        for(let i = 0; i < links.length; i++){
+            if(links[i].getText().includes('Garage')){
+                links[i].click();
+                break;
+            }
+
+        }
+        expect(browser.getTitle()).eq('Your Garage: Automotive: Amazon.com');
     });
 });
