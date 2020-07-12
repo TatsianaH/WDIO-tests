@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 
-describe.skip('Fill out register form on Amazon.com (Positive)', () => {
+describe('Fill out register form on Amazon.com (Positive)', () => {
     it('should redirect a user from main page to Sign-in page', () => {
         browser.url('https://www.amazon.com/');
         $('#nav-link-accountList').click();
@@ -145,13 +145,13 @@ describe.skip('Fill out register form on Amazon.com (Positive)', () => {
     });
 });
 
-describe('Work with account and list menu', () => {
+describe('Work list menu on Amazon', () => {
     before('', () => {
         browser.setWindowSize(1400, 1440);
         browser.url('https://www.amazon.com/')  ;
     });
 
-    it('should open `My garage`', () => {
+    it('should open `Your Garage` page', () => {
         $('#nav-link-accountList').moveTo();
         const links = $$('.nav-link.nav-item');
         for(let i = 0; i < links.length; i++){
@@ -161,5 +161,36 @@ describe('Work with account and list menu', () => {
             }
         }
         expect(browser.getTitle()).eq('Your Garage: Automotive: Amazon.com');
+    });
+});
+
+describe('Get access to Amazon Prime from main page', () => {
+    before('', () => {
+        browser.setWindowSize(1400, 1440);
+        browser.url('https://www.amazon.com/');
+    });
+
+    it('verify that user gets redirected to Amazom Prime page', () => {
+        $('#nav-link-prime').moveTo();
+        $('.prime-button-try').click();
+        expect(browser.getTitle()).eq('Amazon.com: Amazon Prime');
+    });
+
+    it('verify that user gets redirected to Sign-In page', () => {
+        const btn = $('#prime-hero-cta #prime-header-CTA');
+        browser.waitUntil(
+            () => btn.isClickable() === true,
+            {
+                timeout: 3000,
+                timeoutMsg: 'the button is not clickable after 3s'
+            });
+
+        btn.click();
+        browser.waitUntil(
+            () => $('h1').getText() === ('Sign-In'),
+            {
+                timeout: 2000,
+                timeoutMsg: 'expected text to be different after 2s'
+            });
     });
 });
