@@ -154,13 +154,11 @@ describe('Work with account and list menu', () => {
     it('should open `My garage`', () => {
         $('#nav-link-accountList').moveTo();
         const links = $$('.nav-link.nav-item');
-
         for(let i = 0; i < links.length; i++){
             if(links[i].getText().includes('Garage')){
                 links[i].click();
                 break;
             }
-
         }
         expect(browser.getTitle()).eq('Your Garage: Automotive: Amazon.com');
     });
