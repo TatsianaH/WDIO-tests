@@ -3,7 +3,8 @@
     "registerSignInLink": "#login-register-header"
   },
   "signInPage": {
-    "registerLink": ".navbar-right.smaller.hidden-xs"
+    "registerLink": ".navbar-right.smaller.hidden-xs",
+    "header": "h1"
   },
 "registerPage": {
   "header": "h1",
