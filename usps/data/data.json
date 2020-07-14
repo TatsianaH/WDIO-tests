@@ -2,5 +2,9 @@
     "homePageD": "https://www.usps.com/",
     "signInPageD": {
         "header": "Sign In To Your Account"
+    },
+    "registerPageD": {
+        "header": "Create Your USPS.com Account",
+        "title": "USPS.com® - Register for an online account"
     }
 }
