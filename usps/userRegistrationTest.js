@@ -106,19 +106,87 @@ describe('User Registration', () => {
         expect(actual).eq(registerPageE.answer2);
     });
 
-    it('should show up Steps 4, 5 after `Personal account` radio button was checked', () => {
+    it('should show up Steps 4, 5 and `Verify address` button is displayed after `Personal account` radio button was checked', () => {
         $(registerPage.personalAccountRadioBtn).click();
         const stepsList = $$(registerPage.steps);
         let stepsLength = 0;
         stepsList.forEach(step => {
             if(step.getText().includes('Step')) stepsLength++;
         });
+        const actualBtn = $(registerPage.verifyAddressBtn).isDisplayed();
+        const actualRadioBtn = $(registerPage.personalAccountRadioBtn).isSelected();
         expect(stepsLength).eq(5);
+        expect(actualBtn).true;
+        expect(actualRadioBtn).true;
     });
     
-    // it('should select `Mr` title', () => {
-    //     $(registerPage.titleSelectForm).selectByVisibleText(registerPageD.title);
-    //     const actual = $(registerPage.titleSelectForm).getText();
-    //     expect(actual).eq(registerPageD.title);
-    // });
+    it('should select `Mr` title', () => {
+        $(registerPage.titleSelectForm).selectByIndex(1);
+        browser.keys('Tab');
+        const actual = $(registerPage.titleSelectedOption).isSelected();
+        expect(actual).true;
+    });
+
+    it('should fill `First Name` field', () => {
+        $(registerPage.firstName).setValue(registerPageD.firstName);
+        const actual =  $(registerPage.firstName).getValue();
+        browser.keys('Tab');
+        expect(actual).eq(registerPageE.firstName);
+    });
+
+    it('should fill `M.I.` field', () => {
+        $(registerPage.middleInitial).setValue(registerPageD['M.I.']);
+        const actual =  $(registerPage.middleInitial).getValue();
+        browser.keys('Tab');
+        expect(actual).eq(registerPageE['M.I.']);
+    });
+
+    it('should fill `Last Name` field', () => {
+        $(registerPage.lastName).setValue(registerPageD.lastName);
+        const actual =  $(registerPage.lastName).getValue();
+        browser.keys('Tab');
+        expect(actual).eq(registerPageE.lastName);
+    });
+
+    it('should check `Js` suffix', () => {
+        $(registerPage.suffixSelectForm).selectByIndex(1);
+        browser.keys('Tab');
+        const actual = $(registerPage.suffixSelectedOption).isSelected();
+        expect(actual).true;
+    });
+
+    it('should fill `Email Address` field', () => {
+        $(registerPage.email).setValue(registerPageD.email);
+        const actual =  $(registerPage.email).getValue();
+        browser.keys('Tab');
+        expect(actual).eq(registerPageE.email);
+    });
+
+    it('should fill `Re-Type Email Address` field', () => {
+        $(registerPage.reTypeEmail).setValue(registerPageD.email);
+        const actual =  $(registerPage.reTypeEmail).getValue();
+        browser.keys('Tab');
+        expect(actual).eq(registerPageE.email);
+    });
+
+    it('should check `US` type', () => {
+        $(registerPage.phoneType).selectByIndex(0);
+        browser.keys('Tab');
+        const actual = $(registerPage.phoneTypeSelected).isSelected();
+        expect(actual).true;
+    });
+
+    it('should fill `Phone` field', () => {
+        $(registerPage.phone).setValue(registerPageD.phone);
+        const actual =  $(registerPage.phone).getValue();
+        browser.keys('Tab');
+        expect(actual).eq(registerPageE.phone);
+    });
+
+    it('should fill `Ext` field', () => {
+        $(registerPage.ext).setValue(registerPageD.ext);
+        const actual =  $(registerPage.ext).getValue();
+        browser.keys('Tab');
+        expect(actual).eq(registerPageE.ext);
+    });
 });

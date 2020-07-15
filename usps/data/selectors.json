@@ -39,12 +39,18 @@
   "personalAccountRadioBtn": "#rAccount1",
   "chooseAccountSign": ".radio p ",
   "titleSelectForm": "#stitle",
-  "titleSelectFormList": "#stitle option",
+  "titleSelectedOption": "[value='Mr']",
   "firstName": "#tfName",
   "middleInitial": "#tmI",
   "lastName": "#tlName",
   "suffixSelectForm": "#ssuffix",
-  "suffixSelectFormList": "#ssuffix option",
+  "suffixSelectedOption": "[value='Jr']",
+  "email": "#temail",
+  "reTypeEmail": "#temailRetype",
+  "phoneType": "#sphoneType",
+  "phoneTypeSelected": "[value='US']",
+  "phone": "#tphone",
+  "ext": "#text",
   "contactUSPS": "#cFrmUSPS"
 }
 }
