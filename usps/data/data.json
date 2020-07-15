@@ -1,10 +1,19 @@
 {
     "homePageD": "https://www.usps.com/",
-    "signInPageD": {
-        "header": "Sign In To Your Account"
-    },
     "registerPageD": {
-        "header": "Create Your USPS.com Account",
-        "title": "USPS.com® - Register for an online account"
+        "userName": "ab12-A",
+        "password": "Qq123456",
+        "answer1": "cat",
+        "answer2": "Miami",
+        "firstName": "John",
+        "M.I.": "J",
+        "lastName": "Doe",
+        "email": "test1_q.+-'@gmail.com",
+        "phone": "7008009000",
+        "ext": "1",
+        "address": "300 Elm st",
+        "apt": "1",
+        "city": "Miami",
+        "zipcode": "33000"
     }
 }
