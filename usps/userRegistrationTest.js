@@ -189,4 +189,10 @@ describe('User Registration', () => {
         browser.keys('Tab');
         expect(actual).eq(registerPageE.ext);
     });
+
+    it('should check `From USPS` checkbox', () => {
+        $(registerPage.contactUSPS).click();
+        const actual = $(registerPage.contactUSPS).isSelected();
+        expect(actual).true;
+    });
 });
