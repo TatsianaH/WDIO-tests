@@ -69,12 +69,14 @@ describe('User Registration', () => {
     it('should fill `Your answer` (First Question)', () => {
         $(registerPage.yourAnswerInput).setValue(registerPageD.answer1);
         const actual = $(registerPage.yourAnswerInput).getValue();
+        browser.keys('tab');
         expect(actual).eq(registerPageE.answer1);
     });
 
     it('should fill `Re-Type your answer` (First Question)', () => {
-        $(registerPage.yourAnswerInput).setValue(registerPageD.answer1);
-        const actual = $(registerPage.yourAnswerInput).getValue();
+        $(registerPage.reTypeYourAnswerInput).setValue(registerPageD.answer1);
+        const actual = $(registerPage.reTypeYourAnswerInput).getValue();
+        browser.keys('tab');
         expect(actual).eq(registerPageE.answer1);
     });
 
@@ -98,8 +100,25 @@ describe('User Registration', () => {
     });
 
     it('should fill `Re-Type your answer` (Second Question)', () => {
-        $(registerPage.yourAnswerInput2).setValue(registerPageD.answer2);
-        const actual = $(registerPage.yourAnswerInput2).getValue();
+        $(registerPage.reTypeYourAnswerInput2).setValue(registerPageD.answer2);
+        const actual = $(registerPage.reTypeYourAnswerInput2).getValue();
+        browser.keys('tab');
         expect(actual).eq(registerPageE.answer2);
     });
+
+    it('should show up Steps 4, 5 after `Personal account` radio button was checked', () => {
+        $(registerPage.personalAccountRadioBtn).click();
+        const stepsList = $$(registerPage.steps);
+        let stepsLength = 0;
+        stepsList.forEach(step => {
+            if(step.getText().includes('Step')) stepsLength++;
+        });
+        expect(stepsLength).eq(5);
+    });
+    
+    // it('should select `Mr` title', () => {
+    //     $(registerPage.titleSelectForm).selectByVisibleText(registerPageD.title);
+    //     const actual = $(registerPage.titleSelectForm).getText();
+    //     expect(actual).eq(registerPageD.title);
+    // });
 });

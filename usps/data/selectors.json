@@ -28,13 +28,23 @@
   "yourAnswerLabel": "#for-tsecAnswer1",
   "yourAnswerInput": "#tsecAnswer1",
   "reTypeYourAnswerLabel": "for-tsecAnswer1Match",
-  "reTypeYourAnswerInput": "tsecAnswer1Match",
+  "reTypeYourAnswerInput": "#tsecAnswer1Match",
   "question2Label": "#for-ssec2",
   "select2QSelectform": "#ssec2",
   "select2QSelectformList": "#ssec2 option",
   "yourAnswerLabel2": "#for-tsecAnswer2",
   "yourAnswerInput2": "#tsecAnswer2",
-  "reTypeYourAnswerLabel2": "for-tsecAnswer2Match",
-  "reTypeYourAnswerInput2": "tsecAnswer2Match"
+  "reTypeYourAnswerLabel2": "#for-tsecAnswer2Match",
+  "reTypeYourAnswerInput2": "#tsecAnswer2Match",
+  "personalAccountRadioBtn": "#rAccount1",
+  "chooseAccountSign": ".radio p ",
+  "titleSelectForm": "#stitle",
+  "titleSelectFormList": "#stitle option",
+  "firstName": "#tfName",
+  "middleInitial": "#tmI",
+  "lastName": "#tlName",
+  "suffixSelectForm": "#ssuffix",
+  "suffixSelectFormList": "#ssuffix option",
+  "contactUSPS": "#cFrmUSPS"
 }
 }
