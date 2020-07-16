@@ -5,6 +5,7 @@ import { registerPageE, signInPageD } from './data/expected.json';
 
 describe('User Registration', () => {
     before('open home page usps', () => {
+        browser.deleteAllCookies();
         browser.url(homePageD);
     });
 
@@ -38,8 +39,16 @@ describe('User Registration', () => {
 
     it('should fill the `UserName` input', () => {
         $(registerPage.userNameInput).setValue(registerPageD.userName);
-        const actual = $(registerPage.userNameInput).getValue();
-        expect(actual).eq(registerPageE.userName);
+        if($(registerPage.userNameErrorMsg).isDisplayed()){
+            $(registerPage.userNameSuggestedRadioBtn).click();
+            const actual = $(registerPage.userNameSuggestedRadioBtn).isSelected();
+            const actualAvailableMsg = $(registerPage.availableMsg).isDisplayed();
+            expect(actualAvailableMsg).true;
+            expect(actual).true;
+        } else {
+            const actual = $(registerPage.userNameInput).getValue();
+            expect(actual).eq(registerPageE.userName);   
+        }
     });
 
     it('should fill the `Password` input', () => {
@@ -193,6 +202,55 @@ describe('User Registration', () => {
     it('should check `From USPS` checkbox', () => {
         $(registerPage.contactUSPS).click();
         const actual = $(registerPage.contactUSPS).isSelected();
+        expect(actual).true;
+    });
+
+    it('should select `USA` in `Country` select form', () => {
+        $(registerPage.country).click();
+        $(registerPage.country).selectByVisibleText(registerPageD.country);
+        const actual = $(registerPage.countrySelectedOption).isSelected();
+        browser.keys('Tab');
+        expect(actual).true;
+    });
+
+    it('should fill `Street Address` field', () => {
+        $(registerPage.street).setValue(registerPageD.street);
+        const actual =  $(registerPage.street).getValue();
+        browser.keys('Tab');
+        expect(actual).eq(registerPageE.street);
+    });
+
+    it('should fill `Apt/Suite/Other` field', () => {
+        $(registerPage.apt).setValue(registerPageD.apt);
+        const actual =  $(registerPage.apt).getValue();
+        browser.keys('Tab');
+        expect(actual).eq(registerPageE.apt);
+    });
+
+    it('should fill `City` field', () => {
+        $(registerPage.city).setValue(registerPageD.city);
+        const actual =  $(registerPage.city).getValue();
+        browser.keys('Tab');
+        expect(actual).eq(registerPageE.city);
+    });
+
+    it('should select `FL` in `State` select form', () => {
+        $(registerPage.state).click();
+        $(registerPage.state).selectByVisibleText(registerPageD.state);
+        const actual = $(registerPage.stateSelectedOption).isSelected();
+        browser.keys('Tab');
+        expect(actual).true;
+    });
+
+    it('should fill `zipCode` field', () => {
+        $(registerPage.zipCode).setValue(registerPageD.zipcode);
+        const actual =  $(registerPage.zipCode).getValue();
+        browser.keys('Tab');
+        expect(actual).eq(registerPageE.zipcode);
+    });
+
+    it('should verify the `Verify address` button is clickable', () => {
+        const actual= $(registerPage.verifyAddressBtn).isClickable();
         expect(actual).true;
     });
 });
