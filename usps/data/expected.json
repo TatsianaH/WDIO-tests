@@ -23,6 +23,7 @@
     "firstQuestion": "What is the name of your pet?",
     "secondQuestion": "In what city were you born?",
     "titleName": "Mr",
-    "phoneType": "US"
+    "phoneType": "US",
+    "userNameInUseErrorMsg": "Looks like that name is already in use."
 }
 }

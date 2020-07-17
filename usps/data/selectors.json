@@ -60,8 +60,10 @@
     "state": "#sstate",
     "stateSelectedOption": "[value='FL']",
     "zipCode": "#tzip",
-    "userNameErrorMsg": "#error-tuserName",
-    "userNameSuggestedRadioBtn": "#roptUn1",
-    "availableMsg": ".glyphicon.glyphicon-check"
+    "userNameInUseErrorMsg": "#error-tuserName .error-txt-blk",
+    "userNameSuggestedRadioBtn1": "#roptUn1",
+    "availableMsg": ".glyphicon.glyphicon-check",
+    "userNameSuggestions": "#alternate-alias"
+
 }
 }

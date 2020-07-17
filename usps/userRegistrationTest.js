@@ -39,12 +39,22 @@ describe('User Registration', () => {
 
     it('should fill the `UserName` input', () => {
         $(registerPage.userNameInput).setValue(registerPageD.userName);
-        if($(registerPage.userNameErrorMsg).isDisplayed()){
-            $(registerPage.userNameSuggestedRadioBtn).click();
-            const actual = $(registerPage.userNameSuggestedRadioBtn).isSelected();
+        browser.keys('Tab');
+        browser.pause(1000);
+
+        if($(registerPage.userNameInUseErrorMsg).isDisplayed()){
+            const errorMsg = $(registerPage.userNameInUseErrorMsg);
+            const errorMsgText = errorMsg.getText();
+            console.log(errorMsgText, '///////////////////');
+            const userNameSuggested = $(registerPage.userNameSuggestedRadioBtn1).getValue();
+            expect($(registerPage.userNameSuggestions).isDisplayed()).true;
+            $(registerPage.userNameSuggestedRadioBtn1).click();
+            browser.pause(2000);
+            const actualUserName = $(registerPage.userNameInput).getValue();
             const actualAvailableMsg = $(registerPage.availableMsg).isDisplayed();
             expect(actualAvailableMsg).true;
-            expect(actual).true;
+            expect(actualUserName).eq(userNameSuggested);
+            expect(errorMsgText).eq(registerPageE.userNameInUseErrorMsg);
         } else {
             const actual = $(registerPage.userNameInput).getValue();
             expect(actual).eq(registerPageE.userName);   
@@ -58,8 +68,8 @@ describe('User Registration', () => {
     });
 
     it('should fill the `Re-Type Password` input', () => {
-        $(registerPage.passwordInput).setValue(registerPageD.password);
-        const actual = $(registerPage.passwordInput).getValue();
+        $(registerPage.reTypePasswordInput).setValue(registerPageD.password);
+        const actual = $(registerPage.reTypePasswordInput).getValue();
         expect(actual).eq(registerPageE.password);
     });
 
@@ -115,7 +125,7 @@ describe('User Registration', () => {
         expect(actual).eq(registerPageE.answer2);
     });
 
-    it('should show up Steps 4, 5 and `Verify address` button is displayed after `Personal account` radio button was checked', () => {
+    it('should show up Steps 4, 5 and `Verify address` button are displayed after `Personal account` radio button was checked', () => {
         $(registerPage.personalAccountRadioBtn).click();
         const stepsList = $$(registerPage.steps);
         let stepsLength = 0;
@@ -157,7 +167,7 @@ describe('User Registration', () => {
         expect(actual).eq(registerPageE.lastName);
     });
 
-    it('should check `Js` suffix', () => {
+    it('should check `Jr` suffix', () => {
         $(registerPage.suffixSelectForm).selectByIndex(1);
         browser.keys('Tab');
         const actual = $(registerPage.suffixSelectedOption).isSelected();
