@@ -62,7 +62,7 @@
     "zipCode": "#tzip",
     "userNameInUseErrorMsg": "#error-tuserName .error-txt-blk",
     "userNameSuggestedRadioBtn1": "#roptUn1",
-    "availableMsg": ".glyphicon.glyphicon-check",
+    "availableMsg": "#check-username-available strong",
     "userNameSuggestions": "#alternate-alias"
 
 }

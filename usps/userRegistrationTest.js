@@ -45,14 +45,19 @@ describe('User Registration', () => {
         if($(registerPage.userNameInUseErrorMsg).isDisplayed()){
             const errorMsg = $(registerPage.userNameInUseErrorMsg);
             const errorMsgText = errorMsg.getText();
-            console.log(errorMsgText, '///////////////////');
             const userNameSuggested = $(registerPage.userNameSuggestedRadioBtn1).getValue();
             expect($(registerPage.userNameSuggestions).isDisplayed()).true;
+
             $(registerPage.userNameSuggestedRadioBtn1).click();
-            browser.pause(2000);
             const actualUserName = $(registerPage.userNameInput).getValue();
-            const actualAvailableMsg = $(registerPage.availableMsg).isDisplayed();
-            expect(actualAvailableMsg).true;
+            browser.waitUntil(
+                () => $(registerPage.availableMsg).getText() === registerPageE.userNameAvailableMsg,
+                {
+                    timeout: 2000, 
+                    timeoutMsg: 'No text displayed'
+                },
+            );
+
             expect(actualUserName).eq(userNameSuggested);
             expect(errorMsgText).eq(registerPageE.userNameInUseErrorMsg);
         } else {
