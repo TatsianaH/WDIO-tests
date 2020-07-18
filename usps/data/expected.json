@@ -1,5 +1,6 @@
 {
-  "signInPageD": {
+  "homePageUrl": "https://www.usps.com/",
+  "signInPageE": {
     "header": "Sign In To Your Account"
   },
   "registerPageE": {
@@ -8,7 +9,7 @@
     "languageValue": "en",
     "userName": "ab12-A_",
     "password": "Qq1234567",
-    "answer1": "cat",
+    "answer1": "Ca1",
     "answer2": "Miami",
     "firstName": "John",
     "M.I.": "J",
@@ -25,6 +26,9 @@
     "titleName": "Mr",
     "phoneType": "US",
     "userNameInUseErrorMsg": "Looks like that name is already in use.",
-    "userNameAvailableMsg": "Available!"
-}
+    "userNameAvailableMsg": "Available!",
+    "suffix": "Jr",
+    "state": "FL - Florida",
+    "country": "UNITED STATES"
+  }
 }

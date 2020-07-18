@@ -1,18 +1,16 @@
 import { expect } from 'chai';
-import { homePageD, registerPageD } from './data/data.json';
 import { homePage, signInPage, registerPage } from './data/selectors.json';
-import { registerPageE, signInPageD } from './data/expected.json';
+import { homePageUrl, registerPageE, signInPageE } from './data/expected.json';
 
 describe('User Registration', () => {
     before('open home page usps', () => {
-        browser.deleteAllCookies();
-        browser.url(homePageD);
+        browser.url(homePageUrl);
     });
 
     it('user should be redirected to `SignIn` page after `Register/SignIn` button was clicked', () => {
         $(homePage.registerSignInLink).click();
         const actual = $(signInPage.header).getText();
-        expect(actual).eq(signInPageD.header);
+        expect(actual).eq(signInPageE.header);
     });
 
     it('user should be redirected to `Register` page after `Register` button was clicked', () => {
@@ -38,7 +36,7 @@ describe('User Registration', () => {
     });
 
     it('should fill the `UserName` input', () => {
-        $(registerPage.userNameInput).setValue(registerPageD.userName);
+        $(registerPage.userNameInput).setValue(registerPageE.userName);
         browser.keys('Tab');
         browser.pause(1000);
 
@@ -67,13 +65,13 @@ describe('User Registration', () => {
     });
 
     it('should fill the `Password` input', () => {
-        $(registerPage.passwordInput).setValue(registerPageD.password);
+        $(registerPage.passwordInput).setValue(registerPageE.password);
         const actual = $(registerPage.passwordInput).getValue();
         expect(actual).eq(registerPageE.password);
     });
 
     it('should fill the `Re-Type Password` input', () => {
-        $(registerPage.reTypePasswordInput).setValue(registerPageD.password);
+        $(registerPage.reTypePasswordInput).setValue(registerPageE.password);
         const actual = $(registerPage.reTypePasswordInput).getValue();
         expect(actual).eq(registerPageE.password);
     });
@@ -91,14 +89,14 @@ describe('User Registration', () => {
     });
 
     it('should fill `Your answer` (First Question)', () => {
-        $(registerPage.yourAnswerInput).setValue(registerPageD.answer1);
+        $(registerPage.yourAnswerInput).setValue(registerPageE.answer1);
         const actual = $(registerPage.yourAnswerInput).getValue();
         browser.keys('tab');
         expect(actual).eq(registerPageE.answer1);
     });
 
     it('should fill `Re-Type your answer` (First Question)', () => {
-        $(registerPage.reTypeYourAnswerInput).setValue(registerPageD.answer1);
+        $(registerPage.reTypeYourAnswerInput).setValue(registerPageE.answer1);
         const actual = $(registerPage.reTypeYourAnswerInput).getValue();
         browser.keys('tab');
         expect(actual).eq(registerPageE.answer1);
@@ -117,14 +115,14 @@ describe('User Registration', () => {
     });
 
     it('should fill `Your answer` (Second Question)', () => {
-        $(registerPage.yourAnswerInput2).setValue(registerPageD.answer2);
+        $(registerPage.yourAnswerInput2).setValue(registerPageE.answer2);
         const actual = $(registerPage.yourAnswerInput2).getValue();
         browser.keys('tab');
         expect(actual).eq(registerPageE.answer2);
     });
 
     it('should fill `Re-Type your answer` (Second Question)', () => {
-        $(registerPage.reTypeYourAnswerInput2).setValue(registerPageD.answer2);
+        $(registerPage.reTypeYourAnswerInput2).setValue(registerPageE.answer2);
         const actual = $(registerPage.reTypeYourAnswerInput2).getValue();
         browser.keys('tab');
         expect(actual).eq(registerPageE.answer2);
@@ -152,21 +150,21 @@ describe('User Registration', () => {
     });
 
     it('should fill `First Name` field', () => {
-        $(registerPage.firstName).setValue(registerPageD.firstName);
+        $(registerPage.firstName).setValue(registerPageE.firstName);
         const actual =  $(registerPage.firstName).getValue();
         browser.keys('Tab');
         expect(actual).eq(registerPageE.firstName);
     });
 
     it('should fill `M.I.` field', () => {
-        $(registerPage.middleInitial).setValue(registerPageD['M.I.']);
+        $(registerPage.middleInitial).setValue(registerPageE['M.I.']);
         const actual =  $(registerPage.middleInitial).getValue();
         browser.keys('Tab');
         expect(actual).eq(registerPageE['M.I.']);
     });
 
     it('should fill `Last Name` field', () => {
-        $(registerPage.lastName).setValue(registerPageD.lastName);
+        $(registerPage.lastName).setValue(registerPageE.lastName);
         const actual =  $(registerPage.lastName).getValue();
         browser.keys('Tab');
         expect(actual).eq(registerPageE.lastName);
@@ -180,14 +178,14 @@ describe('User Registration', () => {
     });
 
     it('should fill `Email Address` field', () => {
-        $(registerPage.email).setValue(registerPageD.email);
+        $(registerPage.email).setValue(registerPageE.email);
         const actual =  $(registerPage.email).getValue();
         browser.keys('Tab');
         expect(actual).eq(registerPageE.email);
     });
 
     it('should fill `Re-Type Email Address` field', () => {
-        $(registerPage.reTypeEmail).setValue(registerPageD.email);
+        $(registerPage.reTypeEmail).setValue(registerPageE.email);
         const actual =  $(registerPage.reTypeEmail).getValue();
         browser.keys('Tab');
         expect(actual).eq(registerPageE.email);
@@ -201,14 +199,14 @@ describe('User Registration', () => {
     });
 
     it('should fill `Phone` field', () => {
-        $(registerPage.phone).setValue(registerPageD.phone);
+        $(registerPage.phone).setValue(registerPageE.phone);
         const actual =  $(registerPage.phone).getValue();
         browser.keys('Tab');
         expect(actual).eq(registerPageE.phone);
     });
 
     it('should fill `Ext` field', () => {
-        $(registerPage.ext).setValue(registerPageD.ext);
+        $(registerPage.ext).setValue(registerPageE.ext);
         const actual =  $(registerPage.ext).getValue();
         browser.keys('Tab');
         expect(actual).eq(registerPageE.ext);
@@ -222,28 +220,28 @@ describe('User Registration', () => {
 
     it('should select `USA` in `Country` select form', () => {
         $(registerPage.country).click();
-        $(registerPage.country).selectByVisibleText(registerPageD.country);
+        $(registerPage.country).selectByVisibleText(registerPageE.country);
         const actual = $(registerPage.countrySelectedOption).isSelected();
         browser.keys('Tab');
         expect(actual).true;
     });
 
     it('should fill `Street Address` field', () => {
-        $(registerPage.street).setValue(registerPageD.street);
+        $(registerPage.street).setValue(registerPageE.street);
         const actual =  $(registerPage.street).getValue();
         browser.keys('Tab');
         expect(actual).eq(registerPageE.street);
     });
 
     it('should fill `Apt/Suite/Other` field', () => {
-        $(registerPage.apt).setValue(registerPageD.apt);
+        $(registerPage.apt).setValue(registerPageE.apt);
         const actual =  $(registerPage.apt).getValue();
         browser.keys('Tab');
         expect(actual).eq(registerPageE.apt);
     });
 
     it('should fill `City` field', () => {
-        $(registerPage.city).setValue(registerPageD.city);
+        $(registerPage.city).setValue(registerPageE.city);
         const actual =  $(registerPage.city).getValue();
         browser.keys('Tab');
         expect(actual).eq(registerPageE.city);
@@ -251,14 +249,14 @@ describe('User Registration', () => {
 
     it('should select `FL` in `State` select form', () => {
         $(registerPage.state).click();
-        $(registerPage.state).selectByVisibleText(registerPageD.state);
+        $(registerPage.state).selectByVisibleText(registerPageE.state);
         const actual = $(registerPage.stateSelectedOption).isSelected();
         browser.keys('Tab');
         expect(actual).true;
     });
 
     it('should fill `zipCode` field', () => {
-        $(registerPage.zipCode).setValue(registerPageD.zipcode);
+        $(registerPage.zipCode).setValue(registerPageE.zipcode);
         const actual =  $(registerPage.zipCode).getValue();
         browser.keys('Tab');
         expect(actual).eq(registerPageE.zipcode);
