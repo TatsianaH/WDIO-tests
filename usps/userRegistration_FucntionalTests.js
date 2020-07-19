@@ -25,7 +25,7 @@ describe('User Registration', () => {
     });
 
     it('should verify `Register` page header is `Create Your USPS.com Account`', () => {
-        const actual = $(registerPage.header);
+        const actual = $(registerPage.header).getText();
         expect(actual).eq(registerPageE.header);
     });
 
