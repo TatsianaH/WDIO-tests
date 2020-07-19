@@ -8,7 +8,8 @@
     "report": "allure generate --clean && allure open",
     "clean": "rm -rf allure-results",
     "amazon": "wdio wdio.conf.js --spec ./test/testAmazon.js",
-    "userRegisterTest": "wdio wdio.conf.js --spec usps/userRegistration_RegressionTest.js"
+    "userRegisterTest": "wdio wdio.conf.js --spec usps/userRegistration_RegressionTest.js",
+    "userRegFunctTests": "wdio wdio.conf.js --spec usps/userRegistration_FucntionalTests.js"
   },
   "repository": {
     "type": "git",
