@@ -60,6 +60,16 @@ describe('User Registration', () => {
         expect(actual).true;
     });
 
+    it('should verify the `A Username is a required entry.` message appears if `UserName` input stays empty', () => {
+        $(registerPage.userNameInput).click();
+        browser.keys('Tab');
+        browser.pause(1000);
+
+        const errorMsg = $(registerPage.userNameInUseErrorMsg);
+        const errorMsgText = errorMsg.getText();
+        expect(errorMsgText).eq(registerPageE.userNameEmptyInputMsg);
+    });
+
     it('should verify the `Available!` message appears if correct credentials were entered into `UserName` input', () => {
         $(registerPage.userNameInput).setValue(registerPageE.userName);
         browser.keys('Tab');
@@ -82,15 +92,5 @@ describe('User Registration', () => {
             expect(actual).eq(registerPageE.userName);
         }
         $(registerPage.userNameInput).clearValue();
-    });
-
-    it('should verify the `A Username is a required entry.` message appears if `UserName` input stays empty', () => {
-        $(registerPage.userNameInput).click();
-        browser.keys('Tab');
-        browser.pause(1000);
-
-        const errorMsg = $(registerPage.userNameInUseErrorMsg);
-        const errorMsgText = errorMsg.getText();
-        expect(errorMsgText).eq(registerPageE.userNameEmptyInputMsg);
     });
 });
