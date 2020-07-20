@@ -40,6 +40,7 @@ describe('User Registration', () => {
             const actual = stepsList[i].getText();
             if (actual.includes('Step 1')) {
                 expect(actual).eq(registerPageE.step1);
+                break;
             }
         }
     });
@@ -63,21 +64,18 @@ describe('User Registration', () => {
     it('should verify the `A Username is a required entry.` message appears if `UserName` input stays empty', () => {
         $(registerPage.userNameInput).click();
         browser.keys('Tab');
-        browser.pause(1000);
-
         const errorMsg = $(registerPage.userNameInUseErrorMsg);
         const errorMsgText = errorMsg.getText();
         expect(errorMsgText).eq(registerPageE.userNameEmptyInputMsg);
+        browser.refresh();
     });
 
     it('should verify the `Available!` message appears if correct credentials were entered into `UserName` input', () => {
         $(registerPage.userNameInput).setValue(registerPageE.userName);
         browser.keys('Tab');
-        browser.pause(1000);
 
         if($(registerPage.userNameInUseErrorMsg).isDisplayed()){
             $(registerPage.userNameSuggestedRadioBtn1).click();
-
             browser.waitUntil(
                 () => $(registerPage.availableMsg).isDisplayed() === true,
                 {
@@ -92,5 +90,36 @@ describe('User Registration', () => {
             expect(actual).eq(registerPageE.userName);
         }
         $(registerPage.userNameInput).clearValue();
+        browser.refresh();
+    });
+
+    it('should verify the `Your Username must be at least 6 characters long.` error appears if  in `Username` input was entered less than 6 characters:', () => {
+        $(registerPage.userNameInput).setValue(registerPageE.userNameShortValue);
+        browser.keys('Tab');
+        const errorMsg = $(registerPage.userNameInUseErrorMsg);
+        const errorMsgText = errorMsg.getText();
+        expect(errorMsgText).eq(registerPageE.userNameShortValueMsg);
+        browser.refresh();
+    });
+
+    it('should verify the `Step 2` is present on the page', () => {
+        const stepsList = $$(registerPage.steps);
+        for (let i = 0; i < stepsList.length; i++) {
+            const actual = stepsList[i].getText();
+            if (actual.includes('Step 2')) {
+                expect(actual).eq(registerPageE.step2);
+                break;
+            }
+        }
+    });
+
+    it('should verify the `Password` label is present', () => {
+        const actual = $(registerPage.passwordLabel).isDisplayed();
+        expect(actual).true;
+    });
+
+    it('should verify the `Re-Type Password` label is present', () => {
+        const actual = $(registerPage.reTypePasswordLabel).isDisplayed();
+        expect(actual).true;
     });
 });

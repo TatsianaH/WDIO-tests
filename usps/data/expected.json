@@ -32,6 +32,9 @@
     "state": "FL - Florida",
     "country": "UNITED STATES",
     "step1": "Step 1: Choose your language and username",
-    "userNameEmptyInputMsg": "A Username is a required entry."
+    "userNameEmptyInputMsg": "A Username is a required entry.",
+    "userNameShortValueMsg": "Your Username must be at least 6 characters long.",
+    "userNameShortValue": "123qw",
+    "step2": "Step 2: Enter your security information"
   }
 }
