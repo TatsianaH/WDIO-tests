@@ -43,4 +43,54 @@ describe('User Registration', () => {
             }
         }
     });
+
+    it('should verify the `Choose a language preference` label is present', () => {
+        const actual = $(registerPage.chooseLangLabel).isDisplayed();
+        expect(actual).true;
+    });
+
+    it('should verify the `Choose a language preference` select menu has 3 options: `English, Español, 简体中文`', () => {
+        const languageMenu = $$(registerPage.languages);
+        const languagesIncluded = languageMenu.every(language => registerPageE.languagesList.includes(language.getText()));
+        expect(languagesIncluded).true;
+    });
+
+    it('should verify the `UserName` label is present', () => {
+        const actual = $(registerPage.userNameLabel).isDisplayed();
+        expect(actual).true;
+    });
+
+    it('should verify the `Available!` message appears if correct credentials were entered into `UserName` input', () => {
+        $(registerPage.userNameInput).setValue(registerPageE.userName);
+        browser.keys('Tab');
+        browser.pause(1000);
+
+        if($(registerPage.userNameInUseErrorMsg).isDisplayed()){
+            $(registerPage.userNameSuggestedRadioBtn1).click();
+
+            browser.waitUntil(
+                () => $(registerPage.availableMsg).isDisplayed() === true,
+                {
+                    timeout: 2000,
+                    timeoutMsg: 'No text displayed'
+                },
+            );
+            const actual = $(registerPage.availableMsg).getText();
+            expect(actual).eq(registerPageE.userNameAvailableMsg);
+        } else {
+            const actual = $(registerPage.userNameInput).getValue();
+            expect(actual).eq(registerPageE.userName);
+        }
+        $(registerPage.userNameInput).clearValue();
+    });
+
+    it('should verify the `A Username is a required entry.` message appears if `UserName` input stays empty', () => {
+        $(registerPage.userNameInput).click();
+        browser.keys('Tab');
+        browser.pause(1000);
+
+        const errorMsg = $(registerPage.userNameInUseErrorMsg);
+        const errorMsgText = errorMsg.getText();
+        expect(errorMsgText).eq(registerPageE.userNameEmptyInputMsg);
+    });
 });

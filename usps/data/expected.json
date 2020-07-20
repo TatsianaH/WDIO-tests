@@ -7,6 +7,7 @@
     "title": "USPS.com® - Register for an online account",
     "header": "Create Your USPS.com Account",
     "languageValue": "en",
+    "languagesList": ["English", "Español", "简体中文"],
     "userName": "ab12-A_",
     "password": "Qq1234567",
     "answer1": "Ca1",
@@ -30,6 +31,7 @@
     "suffix": "Jr",
     "state": "FL - Florida",
     "country": "UNITED STATES",
-    "step1": "Step 1: Choose your language and username"
+    "step1": "Step 1: Choose your language and username",
+    "userNameEmptyInputMsg": "A Username is a required entry."
   }
 }
