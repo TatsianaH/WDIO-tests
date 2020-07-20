@@ -35,6 +35,9 @@
     "userNameEmptyInputMsg": "A Username is a required entry.",
     "userNameShortValueMsg": "Your Username must be at least 6 characters long.",
     "userNameShortValue": "123qw",
-    "step2": "Step 2: Enter your security information"
+    "step2": "Step 2: Enter your security information",
+    "passwordInputSuccessFontColor": "#555555",
+    "passwordInputFailFontColor": "#e71921",
+    "password8Characters": "Qq123456"
   }
 }
