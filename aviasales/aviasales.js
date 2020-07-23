@@ -31,9 +31,9 @@ describe('Book a flight ticket_ Aviasales', () => {
     });
 
     it('should verify `To` input field is present and had placeholder `To`', () => {
-        const from = $('#destination');
-        const actual = from.isDisplayed();
-        const actualPlaceholderText = from.getAttribute('placeholder');
+        const to = $('#destination');
+        const actual = to.isDisplayed();
+        const actualPlaceholderText = to.getAttribute('placeholder');
         expect(actual).true;
         expect(actualPlaceholderText).eq('To');
     });
@@ -44,5 +44,23 @@ describe('Book a flight ticket_ Aviasales', () => {
         const returnInputField = dates[1].getAttribute('placeholder');
         expect(departInputField).eq('Depart');
         expect(returnInputField).eq('Return');
+    });
+
+    it('should fill `From` input filed', () => {
+        const from = $('#origin');
+        const value = 'Fort Lauderdale';
+        from.setValue(value);
+        const actual = from.getValue();
+        browser.keys('Tab');
+        expect(actual).eq(value);
+    });
+
+    it('should fill `To` input filed', () => {
+        const to = $('#destination');
+        const value = 'Las Vegas';
+        to.setValue(value);
+        const actual = to.getValue();
+        browser.keys('Tab');
+        expect(actual).eq(value);
     });
 });
