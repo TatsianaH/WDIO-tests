@@ -46,21 +46,79 @@ describe('Book a flight ticket_ Aviasales', () => {
         expect(returnInputField).eq('Return');
     });
 
-    it('should fill `From` input filed', () => {
+    it('should fill `From` input field', () => {
         const from = $('#origin');
-        const value = 'Fort Lauderdale';
-        from.setValue(value);
-        const actual = from.getValue();
+        const value = 'Fort ';
+        from.clearValue();
+        //browser.pause(500);
+        from.addValue(value);
         browser.keys('Tab');
-        expect(actual).eq(value);
+        //browser.pause(500);
+        //$('.autocomplete__dropdown').selectByIndex(0);
+        //const actual = from.getValue();
+        //browser.keys('Tab');
+        console.log( from.getValue(), '////////////');
+        browser.waitUntil(() =>
+            from.getValue() === 'Fort Lauderdale', {
+            timeout: 1000, timeoutMsg: 'Wrong city name'
+        });
+        //expect(actual).eq('Fort Lauderdale');
     });
 
-    it('should fill `To` input filed', () => {
+    it('should fill `To` input field', () => {
         const to = $('#destination');
-        const value = 'Las Vegas';
-        to.setValue(value);
-        const actual = to.getValue();
+        const value = 'Las ';
+        to.addValue(value);
         browser.keys('Tab');
-        expect(actual).eq(value);
+        //browser.pause(500);
+        //$('.autocomplete__dropdown').selectByIndex(0);
+        //const actual = to.getValue();
+        browser.waitUntil(() =>
+            to.getValue() === 'Las Vegas', {
+            timeout: 1000, timeoutMsg: 'Wrong city name'
+        });
+        //browser.keys('Tab');
+        //expect(actual).eq('Las Vegas');
     });
+
+    it('should fill Departure date', () => {
+        const selector = $('.trip-duration__input-wrapper.--departure');
+        selector.click();
+        browser.waitUntil(() => 
+            $('.trip-duration__dropdown').isDisplayed() === true,
+        { timeout: 3000, timeoutMsg: 'No date input displayed'});
+     
+        //const selector = $('[placeholder="Depart"]');
+        //selector.click();
+        //$('.calendar-day.--selected.--bounded div.calendar-day__date').moveTo().click();
+        $('[aria-label="Sun Jul 26 2020"]').click();
+        expect($('.trip-duration__input-wrapper.--departure input ').getValue()).eq('26.07.2020');
+        //browser.pause(1000);
+        //$('.trip-duration__input-wrapper.--departure input').addValue('Sun Jul 26 2020');
+        //browser.keys('Tab');
+        //$('[aria-label="Sun Jul 26 2020"]').click();
+        // selector.setValue('25 july, sa');
+        // const selector = $('[placeholder="Depart"]');
+        // selector.click();
+        // const value1 = $('[value="25.07.2020"]');
+        // value1.click();
+
+    });
+
+    it('should fill Return date', () => {
+        $('[aria-label="Sun Aug 02 2020"]').click();
+        expect($('.trip-duration__input-wrapper.--return input ').getValue()).eq('2 august, sun');
+        //const sel = $('[placeholder="Return"]');
+        //$('[aria-label="Mon Aug 03 2020"]').click();
+        //$('[placeholder="Return"]').setValue('2 august, sun');
+        // const value2 = $('[value="02.08.2020"]');
+        // value2.click();
+        // $('.trip-duration__input-wrapper.--return input').addValue('Mon Aug 03 2020');
+        //browser.keys('Tab');
+        browser.pause(5000);
+    });
+
+    // it('should choose 2 adults and economy class', () => {
+    //     $('.additional-fields.--avia').click();
+    // });
 });
