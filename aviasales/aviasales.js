@@ -86,8 +86,27 @@ describe('Book a flight ticket_ Aviasales', () => {
         const actual = $('.trip-duration__input-wrapper.--return input').getValue();
         expect(actual).eq('2 august, sun');
     });
-
-    // it('should choose 2 adults and economy class', () => {
+    //
+    // it('should choose 2 adults, 1 child and business class', () => {
     //     $('.additional-fields.--avia').click();
+    //     const titles = $$('.additional-fields__passenger-title');
+    //     console.log(titles.length, '///////////////');
+    //     titles.forEach((title, i) => {
+    //         if(title.getText() === 'Adults'){
+    //             $('.additional-fields__passenger-control.--increment')[i].click();
+    //         }
+    //         if(title.getText() === 'Children'){
+    //             $('.additional-fields__passenger-control.--increment')[i].click();
+    //         }
+    //     });
+    //     const radioBtns = $$('.custom-radio__caption');
+    //     console.log(radioBtns.length, '=============');
+    //     radioBtns[1].click();
+    //     console.log($('#additional-fields-C').getProperty('checked'), '----------------------');
+    //     expect($('#additional-fields-C').getProperty('checked')).true;
+    //     browser.pause(5000);
+    //     // + .additional-fields__passenger-control.--increment
+    //     //.additional-fields__passenger-title
+    //     //.custom-radio__caption
     // });
 });
