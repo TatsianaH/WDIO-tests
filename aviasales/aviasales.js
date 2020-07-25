@@ -90,7 +90,7 @@ describe('Book a flight ticket_ Aviasales', () => {
         expect(actual).eq('2 august, sun');
     });
 
-    it('should choose 3 adults, 1 child and business class', () => {
+    it('should choose 3 adults and 1 child in passenger`s row', () => {
         $('.additional-fields.--avia').click();
         const passengerRow = $$('.additional-fields__passenger-row');
         const titles = $$('.additional-fields__passenger-title strong');
@@ -107,12 +107,14 @@ describe('Book a flight ticket_ Aviasales', () => {
                 expect(values[i].getText()).eq('1');
             }
         }
+        const totalNumberOfPassengers = $('.additional-fields__label').getText();
+        expect(totalNumberOfPassengers).eq('4 passengers');
+    });
+
+    it('should choose Business class', () => {
         const radioBtns = $$('.custom-radio__caption');
         radioBtns[1].click();
-        const totalNumberOfPassengers = $('.additional-fields__label').getText();
         expect($('#additional-fields-C').getProperty('checked')).true;
         expect($('#additional-fields-Y').getProperty('checked')).false;
-        expect(totalNumberOfPassengers).eq('4 passengers');
-        browser.pause(5000);
     });
 });
