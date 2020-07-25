@@ -5,6 +5,8 @@ describe('Book a flight ticket_ Aviasales', () => {
         browser.setWindowSize(1400, 1024);
         browser.deleteAllCookies();
         browser.url('https://www.aviasales.com/');
+        const from = $('#origin');
+        from.clearValue();
     });
 
     it('should verify the Logo is present', () => {
@@ -48,34 +50,35 @@ describe('Book a flight ticket_ Aviasales', () => {
 
     it('should fill `From` input field', () => {
         const from = $('#origin');
-        const value = 'Fort ';
-        from.clearValue();
-        from.addValue(value);
-        browser.keys('Tab');
-        browser.waitUntil(() =>
-            from.getValue() === 'Fort Lauderdale', {
-            timeout: 1000, timeoutMsg: 'Wrong From city name'
-        });
+        const value = 'Fort Lauderdale';
+        from.setValue(value);
+        while(from.getValue() !== 'Fort Lauderdale'){
+            from.clearValue();
+            from.setValue(value);
+        }
+        expect(from.getAttribute('value')).eq(value);
     });
 
     it('should fill `To` input field', () => {
         const to = $('#destination');
-        const value = 'Las ';
-        to.addValue(value);
-        browser.keys('Tab');
-        browser.waitUntil(() =>
-            to.getValue() === 'Las Vegas', {
-            timeout: 1000, timeoutMsg: 'Wrong To city name'
-        });
+        const value = 'Las Vegas';
+        to.setValue(value);
+        while(to.getValue() !== 'Las Vegas'){
+            to.clearValue();
+            to.setValue(value);
+        }
+        expect(to.getAttribute('value')).eq(value);
     });
 
-    it('should fill Departure date', () => {
-        const selector = $('.trip-duration__input-wrapper.--departure');
+    it('should open trip duration dropdown menu', () => {
+        const selector = $('.trip-duration__field.--departure');
         selector.click();
         browser.waitUntil(() => 
             $('.trip-duration__dropdown').isDisplayed() === true,
         { timeout: 3000, timeoutMsg: 'No date input displayed'});
+    });
 
+    it('should fill Departure date', () => {
         $('[aria-label="Sun Jul 26 2020"]').click();
         const actual = $('.trip-duration__input-wrapper.--departure input').getValue();
         expect(actual).eq('26.07.2020');
@@ -86,27 +89,30 @@ describe('Book a flight ticket_ Aviasales', () => {
         const actual = $('.trip-duration__input-wrapper.--return input').getValue();
         expect(actual).eq('2 august, sun');
     });
-    //
-    // it('should choose 2 adults, 1 child and business class', () => {
-    //     $('.additional-fields.--avia').click();
-    //     const titles = $$('.additional-fields__passenger-title');
-    //     console.log(titles.length, '///////////////');
-    //     titles.forEach((title, i) => {
-    //         if(title.getText() === 'Adults'){
-    //             $('.additional-fields__passenger-control.--increment')[i].click();
-    //         }
-    //         if(title.getText() === 'Children'){
-    //             $('.additional-fields__passenger-control.--increment')[i].click();
-    //         }
-    //     });
-    //     const radioBtns = $$('.custom-radio__caption');
-    //     console.log(radioBtns.length, '=============');
-    //     radioBtns[1].click();
-    //     console.log($('#additional-fields-C').getProperty('checked'), '----------------------');
-    //     expect($('#additional-fields-C').getProperty('checked')).true;
-    //     browser.pause(5000);
-    //     // + .additional-fields__passenger-control.--increment
-    //     //.additional-fields__passenger-title
-    //     //.custom-radio__caption
-    // });
+
+    it('should choose 3 adults, 1 child and business class', () => {
+        $('.additional-fields.--avia').click();
+        const passengerRow = $$('.additional-fields__passenger-row');
+        const titles = $$('.additional-fields__passenger-title strong');
+        const increments = $$('.additional-fields__passenger-control.--increment');
+        const values = $$('span.additional-fields__passenger-value');
+        for(let i = 0; i < passengerRow.length; i++){
+            if(titles[i].getText() === 'Adults'){
+                increments[i].click();
+                increments[i].click();
+                expect(values[i].getText()).eq('3');
+            }
+            if(titles[i].getText() === 'Children'){
+                increments[i].click();
+                expect(values[i].getText()).eq('1');
+            }
+        }
+        const radioBtns = $$('.custom-radio__caption');
+        radioBtns[1].click();
+        const totalNumberOfPassengers = $('.additional-fields__label').getText();
+        expect($('#additional-fields-C').getProperty('checked')).true;
+        expect($('#additional-fields-Y').getProperty('checked')).false;
+        expect(totalNumberOfPassengers).eq('4 passengers');
+        browser.pause(5000);
+    });
 });
