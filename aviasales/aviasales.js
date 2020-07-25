@@ -117,4 +117,35 @@ describe('Book a flight ticket_ Aviasales', () => {
         expect($('#additional-fields-C').getProperty('checked')).true;
         expect($('#additional-fields-Y').getProperty('checked')).false;
     });
+
+    it('should unchecked `Open Booking.com in a new window` checkbox', () => {
+        $('.additional-fields.--avia').click();
+        const selector = $('#clicktripz');
+        $('[for="clicktripz"]').click();
+        expect(selector.getProperty('checked')).false;
+    });
+
+    // it('should click `Search flights` button', () => {
+    //     $('.--on-home').click();
+    //     const selector = $('.error-informer h2');
+    //     browser.waitUntil(() =>
+    //         selector.isDisplayed() === true, {
+    //         timeout: 8000,
+    //         timeoutMsg: 'No errors displayed'
+    //     });
+    //     expect(selector.getText()).eq('No flights found');
+    // });
+    // .product-list__item.fade-enter-done
+
+    it('should click `Search flights` button and open list with suggested flights', () => {
+        $('.--on-home').click();
+        const selector = $('product-container__header');
+        browser.waitUntil(() =>
+            $('show-more-products__button').isDisplayed() === true, {
+            timeout: 15000,
+            timeoutMsg: 'No flights are displayed'
+        });
+        const flightsList = $$('.product-list__item.fade-enter-done');
+        expect(flightsList).to.have.lengthOf.to.be.greaterThan(0);
+    });
 });
