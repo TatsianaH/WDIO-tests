@@ -79,9 +79,9 @@ describe('Book a flight ticket_ Aviasales', () => {
     });
 
     it('should fill Departure date', () => {
-        $('[aria-label="Sun Jul 26 2020"]').click();
+        $('[aria-label="Mon Jul 27 2020"]').click();
         const actual = $('.trip-duration__input-wrapper.--departure input').getValue();
-        expect(actual).eq('26.07.2020');
+        expect(actual).eq('27.07.2020');
     });
 
     it('should fill Return date', () => {
@@ -139,12 +139,13 @@ describe('Book a flight ticket_ Aviasales', () => {
 
     it('should click `Search flights` button and open list with suggested flights', () => {
         $('.--on-home').click();
-        const selector = $('product-container__header');
-        browser.waitUntil(() =>
-            $('show-more-products__button').isDisplayed() === true, {
-            timeout: 15000,
-            timeoutMsg: 'No flights are displayed'
-        });
+        //const selector = $('product-container__header');
+        $('.popular-filters__title').waitForDisplayed();
+        // browser.waitUntil(() =>
+        //     $('show-more-products__button').isDisplayed() === true, {
+        //     timeout: 15000,
+        //     timeoutMsg: 'No flights are displayed'
+        // });
         const flightsList = $$('.product-list__item.fade-enter-done');
         expect(flightsList).to.have.lengthOf.to.be.greaterThan(0);
     });
