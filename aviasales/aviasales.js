@@ -139,14 +139,21 @@ describe('Book a flight ticket_ Aviasales', () => {
 
     it('should click `Search flights` button and open list with suggested flights', () => {
         $('.--on-home').click();
-        //const selector = $('product-container__header');
         $('.popular-filters__title').waitForDisplayed();
-        // browser.waitUntil(() =>
-        //     $('show-more-products__button').isDisplayed() === true, {
-        //     timeout: 15000,
-        //     timeoutMsg: 'No flights are displayed'
-        // });
         const flightsList = $$('.product-list__item.fade-enter-done');
         expect(flightsList).to.have.lengthOf.to.be.greaterThan(0);
+    });
+
+    it('should click `Quickest` sorting', () => {
+        const selector = $('ul.sorting__tabs li.sorting__tab:nth-child(2)');
+        expect(selector.isClickable()).true;
+        selector.click();
+    });
+
+    it('should verify the `Quickest` is selected', () => {
+        const selector1 = $('ul.sorting__tabs li.sorting__tab.is-active:nth-child(1)');
+        const selector2 = $('ul.sorting__tabs li.sorting__tab.is-active:nth-child(2)');
+        expect(selector2.isDisplayed()).true;
+        expect(selector1.isDisplayed()).false;
     });
 });
