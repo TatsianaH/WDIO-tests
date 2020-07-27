@@ -10,7 +10,8 @@
     "amazon": "wdio wdio.conf.js --spec ./test/testAmazon.js",
     "userRegisterTest": "wdio wdio.conf.js --spec usps/userRegistration_RegressionTest.js",
     "userRegFunctTests": "wdio wdio.conf.js --spec usps/userRegistration_FucntionalTests.js",
-    "avisales": "wdio wdio.conf.js --spec aviasales/aviasales.js"
+    "avisales": "wdio wdio.conf.js --spec aviasales/aviasales.js",
+    "herokuApp": "wdio wdio.conf.js --spec herokuApp/herokuAppTests.js"
   },
   "repository": {
     "type": "git",
