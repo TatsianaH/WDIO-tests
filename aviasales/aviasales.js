@@ -178,14 +178,14 @@ describe('Book a flight ticket_ Aviasales', () => {
     });
 
     it('should verify the origin departure city is FLL', () => {
-        const departureCities = $$('.filter__route-origin');
-        const destinationCities = $$('.filter__route-destination');
+        const departureCities = $$('.filter__sub-title span.filter__route-origin');
+        const destinationCities = $$('.filter__sub-title span.filter__route-destination');
         departureCities.forEach((city, i) => {
-            const value = destinationCities[i].getValue();
-            if(city.getValue() === 'Fort Lauderdale') {
+            const value = destinationCities[i].getText();
+            if(city.getText().includes('Fort Lauderdale')) {
                 expect(value).eq('Las Vegas');
             } else {
-                expect(value).eq('Fort Lauderdale');
+                expect(value).to.include('Fort Lauderdale');
             }
         });
     });
