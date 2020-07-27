@@ -79,15 +79,15 @@ describe('Book a flight ticket_ Aviasales', () => {
     });
 
     it('should fill Departure date', () => {
-        $('[aria-label="Mon Jul 27 2020"]').click();
+        $('[aria-label="Sat Aug 01 2020"]').click();
         const actual = $('.trip-duration__input-wrapper.--departure input').getValue();
-        expect(actual).eq('27.07.2020');
+        expect(actual).eq('01.08.2020');
     });
 
     it('should fill Return date', () => {
-        $('[aria-label="Sun Aug 02 2020"]').click();
+        $('[aria-label="Sun Aug 30 2020"]').click();
         const actual = $('.trip-duration__input-wrapper.--return input').getValue();
-        expect(actual).eq('2 august, sun');
+        expect(actual).eq('30 august, sun');
     });
 
     it('should choose 3 adults and 1 child in passenger`s row', () => {
@@ -155,5 +155,38 @@ describe('Book a flight ticket_ Aviasales', () => {
         const selector2 = $('ul.sorting__tabs li.sorting__tab.is-active:nth-child(2)');
         expect(selector2.isDisplayed()).true;
         expect(selector1.isDisplayed()).false;
+    });
+
+    it('should check that all stops are selected', () => {
+        const allStopsCheckBoxes = $$('.checkboxes-list__label span input');
+        allStopsCheckBoxes.forEach(checkBox => {
+            expect(checkBox.getProperty('checked')).true;
+        });
+    });
+
+    it('should select only `1 stop` option', () => {
+        const allStopsCheckBox = $('#stops_all');
+        const stop1CheckBox = $('#stops_1');
+        const stop2CheckBox = $('#stops_2');
+        const allStopsCheckBoxes = $$('.checkboxes-list__label');
+        allStopsCheckBoxes.forEach(checkBox => {
+            if(checkBox.getText() === '2 stops') checkBox.click();
+        });
+        expect(allStopsCheckBox.getProperty('checked')).false;
+        expect(stop1CheckBox.getProperty('checked')).true;
+        expect(stop2CheckBox.getProperty('checked')).false;
+    });
+
+    it('should verify the origin departure city is FLL', () => {
+        const departureCities = $$('.filter__route-origin');
+        const destinationCities = $$('.filter__route-destination');
+        departureCities.forEach((city, i) => {
+            const value = destinationCities[i].getValue();
+            if(city.getValue() === 'Fort Lauderdale') {
+                expect(value).eq('Las Vegas');
+            } else {
+                expect(value).eq('Fort Lauderdale');
+            }
+        });
     });
 });
