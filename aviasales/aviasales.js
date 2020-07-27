@@ -52,7 +52,7 @@ describe('Book a flight ticket_ Aviasales', () => {
         const from = $('#origin');
         const value = 'Fort Lauderdale';
         from.setValue(value);
-        while(from.getValue() !== 'Fort Lauderdale'){
+        while (from.getValue() !== 'Fort Lauderdale') {
             from.clearValue();
             from.setValue(value);
         }
@@ -63,7 +63,7 @@ describe('Book a flight ticket_ Aviasales', () => {
         const to = $('#destination');
         const value = 'Las Vegas';
         to.setValue(value);
-        while(to.getValue() !== 'Las Vegas'){
+        while (to.getValue() !== 'Las Vegas') {
             to.clearValue();
             to.setValue(value);
         }
@@ -73,9 +73,10 @@ describe('Book a flight ticket_ Aviasales', () => {
     it('should open trip duration dropdown menu', () => {
         const selector = $('.trip-duration__field.--departure');
         selector.click();
-        browser.waitUntil(() => 
-            $('.trip-duration__dropdown').isDisplayed() === true,
-        { timeout: 3000, timeoutMsg: 'No date input displayed'});
+        browser.waitUntil(() => $('.trip-duration__dropdown').isDisplayed() === true, {
+            timeout: 3000,
+            timeoutMsg: 'No date input displayed',
+        });
     });
 
     it('should fill Departure date', () => {
@@ -96,13 +97,13 @@ describe('Book a flight ticket_ Aviasales', () => {
         const titles = $$('.additional-fields__passenger-title strong');
         const increments = $$('.additional-fields__passenger-control.--increment');
         const values = $$('span.additional-fields__passenger-value');
-        for(let i = 0; i < passengerRow.length; i++){
-            if(titles[i].getText() === 'Adults'){
+        for (let i = 0; i < passengerRow.length; i++) {
+            if (titles[i].getText() === 'Adults') {
                 increments[i].click();
                 increments[i].click();
                 expect(values[i].getText()).eq('3');
             }
-            if(titles[i].getText() === 'Children'){
+            if (titles[i].getText() === 'Children') {
                 increments[i].click();
                 expect(values[i].getText()).eq('1');
             }
@@ -170,7 +171,7 @@ describe('Book a flight ticket_ Aviasales', () => {
         const stop2CheckBox = $('#stops_2');
         const allStopsCheckBoxes = $$('.checkboxes-list__label');
         allStopsCheckBoxes.forEach(checkBox => {
-            if(checkBox.getText() === '2 stops') checkBox.click();
+            if (checkBox.getText() === '2 stops') checkBox.click();
         });
         expect(allStopsCheckBox.getProperty('checked')).false;
         expect(stop1CheckBox.getProperty('checked')).true;
@@ -182,7 +183,7 @@ describe('Book a flight ticket_ Aviasales', () => {
         const destinationCities = $$('.filter__sub-title span.filter__route-destination');
         departureCities.forEach((city, i) => {
             const value = destinationCities[i].getText();
-            if(city.getText().includes('Fort Lauderdale')) {
+            if (city.getText().includes('Fort Lauderdale')) {
                 expect(value).eq('Las Vegas');
             } else {
                 expect(value).to.include('Fort Lauderdale');
