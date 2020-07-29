@@ -7,8 +7,8 @@ describe('Testing different elements', () => {
 
     it('', () => {
         const links = $$('ul li a');
-        for(let i = 0; i < links.length; i++){
-            if(links[i].getText() === 'A/B Testing') {
+        for (let i = 0; i < links.length; i++) {
+            if (links[i].getText() === 'A/B Testing') {
                 links[i].click();
                 break;
             }
@@ -19,4 +19,14 @@ describe('Testing different elements', () => {
         expect(actualUrl).eq('https://the-internet.herokuapp.com/abtest');
         expect(expectedHeader).to.include(actualHeader);
     });
+    it('should come back to home page', () => {
+        browser.back();
+        const actual = browser.getUrl();
+        expect(actual).eq('https://the-internet.herokuapp.com/');
+    });
+
+    it('should open `Add/Remove Elements` page', () => {
+
+    });
+    //[href="/add_remove_elements/"]
 });
