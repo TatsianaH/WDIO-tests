@@ -36,13 +36,22 @@ describe('Testing different elements', () => {
         const btn = $('button');
         const selector = $('#elements button');
         expect(btn.isClickable()).true;
+        expect(btn.isDisplayed()).true;
         expect(selector.isDisplayed()).false;
         btn.click();
     });
 
-    it('should verify the `Delete` button is showed up after ``Add Element` button was clicked', () => {
+    it('should verify the `Delete` button is showed up after `Add Element` button was clicked', () => {
         const selector = $('#elements button');
         expect(selector.isDisplayed()).true;
         expect(selector.isClickable()).true;
+    });
+
+    it('should verify after click the `Delete` button only `Add Element` button stays', () => {
+        const btn = $('button');
+        const selector = $('#elements button');
+        selector.click();
+        expect(btn.isDisplayed()).true;
+        expect(selector.isDisplayed()).false;
     });
 });
