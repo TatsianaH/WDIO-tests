@@ -5,7 +5,7 @@ describe('Testing different elements', () => {
         browser.url('https://the-internet.herokuapp.com/');
     });
 
-    it('', () => {
+    it('should open `A/B Testing` page', () => {
         const links = $$('ul li a');
         for (let i = 0; i < links.length; i++) {
             if (links[i].getText() === 'A/B Testing') {
@@ -19,6 +19,7 @@ describe('Testing different elements', () => {
         expect(actualUrl).eq('https://the-internet.herokuapp.com/abtest');
         expect(expectedHeader).to.include(actualHeader);
     });
+
     it('should come back to home page', () => {
         browser.back();
         const actual = browser.getUrl();
@@ -26,7 +27,8 @@ describe('Testing different elements', () => {
     });
 
     it('should open `Add/Remove Elements` page', () => {
-
+        $('[href="/add_remove_elements/"]').click();
+        const actual = $('h3').getText();
+        expect(actual).eq('Add/Remove Elements');
     });
-    //[href="/add_remove_elements/"]
 });
