@@ -31,4 +31,18 @@ describe('Testing different elements', () => {
         const actual = $('h3').getText();
         expect(actual).eq('Add/Remove Elements');
     });
+
+    it('should click `Add Element` button', () => {
+        const btn = $('button');
+        const selector = $('#elements button');
+        expect(btn.isClickable()).true;
+        expect(selector.isDisplayed()).false;
+        btn.click();
+    });
+
+    it('should verify the `Delete` button is showed up after ``Add Element` button was clicked', () => {
+        const selector = $('#elements button');
+        expect(selector.isDisplayed()).true;
+        expect(selector.isClickable()).true;
+    });
 });
