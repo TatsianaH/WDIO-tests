@@ -53,5 +53,12 @@ describe('Testing different elements', () => {
         selector.click();
         expect(btn.isDisplayed()).true;
         expect(selector.isDisplayed()).false;
+        browser.back();
+    });
+
+    it('should verify the `Basic auth` page is open', () => {
+        $('[href="/basic_auth"]').click();
+        const actual =browser.getUrl();
+        expect(actual).eq('https://the-internet.herokuapp.com/basic_auth');
     });
 });
