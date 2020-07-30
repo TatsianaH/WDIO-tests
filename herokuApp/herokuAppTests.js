@@ -58,7 +58,16 @@ describe('Testing different elements', () => {
 
     it('should verify the `Basic auth` page is open', () => {
         $('[href="/basic_auth"]').click();
-        const actual =browser.getUrl();
+        const actual = browser.getUrl();
         expect(actual).eq('https://the-internet.herokuapp.com/basic_auth');
+        browser.back();
+    });
+
+    it('should verify the `Broken image` page is open', () => {
+        $('[href="/broken_images"]').click();
+        const actual = browser.getUrl();
+        const actualHeader = $('h3').getText();
+        expect(actual).eq('https://the-internet.herokuapp.com/broken_images');
+        expect(actualHeader).eq('Broken Images');
     });
 });
