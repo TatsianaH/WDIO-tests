@@ -70,4 +70,11 @@ describe('Testing different elements', () => {
         expect(actual).eq('https://the-internet.herokuapp.com/broken_images');
         expect(actualHeader).eq('Broken Images');
     });
+
+    it('should verify the images are not broken', () => {
+        const imgs = $$('.example>img');
+        imgs.forEach(img => {
+            expect(img.getAttribute('src')).to.have.lengthOf.above(0);
+        });
+    });
 });
