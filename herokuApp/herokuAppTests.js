@@ -76,5 +76,18 @@ describe('Testing different elements', () => {
         imgs.forEach(img => {
             expect(img.getAttribute('src')).to.have.lengthOf.above(0);
         });
+        browser.back();
+    });
+
+    it('should verify the `Challenging DOM` page is open', () => {
+        $('[href="/challenging_dom"]').click();
+        const actual = browser.getUrl();
+        const actualHeader = $('h3').getText();
+        expect(actual).eq('https://the-internet.herokuapp.com/challenging_dom');
+        expect(actualHeader).eq('Challenging DOM');
+    });
+
+    it('should verify the specific elements (with ID) are present', () => {
+
     });
 });
