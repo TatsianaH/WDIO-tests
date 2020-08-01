@@ -98,4 +98,39 @@ describe('Testing different elements', () => {
         expect(selector3.isDisplayed()).true;
         expect(canvas.isDisplayed()).true;
     });
+
+    it('should verify the table consists of 10 rows', () => {
+        const rows = $$('table tbody tr');
+        expect(rows).to.have.lengthOf(10);
+    });
+
+    it('should verify each row in the table contains its specific digit', () => {
+        const elementsInRow = $$('table tbody tr td');
+        for (let i = 0; i < elementsInRow.length; i++) {
+            const value = elementsInRow[i].getText();
+            if (i < 6) {
+                expect(value).to.include('0');
+            } else if (i > 6 && i <= 12) {
+                expect(value).to.include('1');
+            } else if (i > 13 && i <= 19) {
+                expect(value).to.include('2');
+            } else if (i > 20 && i <= 26) {
+                expect(value).to.include('3');
+            } else if (i > 27 && i <= 33) {
+                expect(value).to.include('4');
+            } else if (i > 34 && i <= 40) {
+                expect(value).to.include('5');
+            } else if (i > 41 && i <= 47) {
+                expect(value).to.include('6');
+            } else if (i > 48 && i <= 54) {
+                expect(value).to.include('7');
+            } else if (i > 55 && i <= 61) {
+                expect(value).to.include('8');
+            } else if (i > 62 && i <= 68) {
+                expect(value).to.include('9');
+            } else {
+                expect(value).to.include('edit');
+            }
+        }
+    });
 });
