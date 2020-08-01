@@ -79,63 +79,81 @@ describe('Testing different elements', () => {
     //     browser.back();
     // });
 
-    it('should verify the `Challenging DOM` page is open', () => {
-        $('[href="/challenging_dom"]').click();
+    // it('should verify the `Challenging DOM` page is open', () => {
+    //     $('[href="/challenging_dom"]').click();
+    //     const actual = browser.getUrl();
+    //     const actualHeader = $('h3').getText();
+    //     expect(actual).eq('https://the-internet.herokuapp.com/challenging_dom');
+    //     expect(actualHeader).eq('Challenging DOM');
+    // });
+    //
+    // it('should verify the specific elements (with ID) are present', () => {
+    //     const selector1 = $$('.button')[0];
+    //     const selector2 = $('.button.alert');
+    //     const selector3 = $('.button.success');
+    //     const canvas = $('#canvas');
+    //     expect(selector1.isDisplayed()).true;
+    //     expect(selector2.isDisplayed()).true;
+    //     expect(selector2.isClickable()).true;
+    //     expect(selector3.isDisplayed()).true;
+    //     expect(canvas.isDisplayed()).true;
+    // });
+    //
+    // it('should verify the table consists of 10 rows', () => {
+    //     const rows = $$('table tbody tr');
+    //     expect(rows).to.have.lengthOf(10);
+    // });
+    //
+    // it('should verify each row in the table contains its specific digit', () => {
+    //     const elementsInRow = $$('table tbody tr td');
+    //     for (let i = 0; i < elementsInRow.length; i++) {
+    //         const value = elementsInRow[i].getText();
+    //         if (i < 6) {
+    //             expect(value).to.include('0');
+    //         } else if (i > 6 && i <= 12) {
+    //             expect(value).to.include('1');
+    //         } else if (i > 13 && i <= 19) {
+    //             expect(value).to.include('2');
+    //         } else if (i > 20 && i <= 26) {
+    //             expect(value).to.include('3');
+    //         } else if (i > 27 && i <= 33) {
+    //             expect(value).to.include('4');
+    //         } else if (i > 34 && i <= 40) {
+    //             expect(value).to.include('5');
+    //         } else if (i > 41 && i <= 47) {
+    //             expect(value).to.include('6');
+    //         } else if (i > 48 && i <= 54) {
+    //             expect(value).to.include('7');
+    //         } else if (i > 55 && i <= 61) {
+    //             expect(value).to.include('8');
+    //         } else if (i > 62 && i <= 68) {
+    //             expect(value).to.include('9');
+    //         } else {
+    //             expect(value).to.include('edit');
+    //         }
+    //     }
+    //     browser.back();
+    // });
+
+    it('should verify the `Checkboxes` page is open', () => {
+        $('[href="/checkboxes').click();
         const actual = browser.getUrl();
         const actualHeader = $('h3').getText();
-        expect(actual).eq('https://the-internet.herokuapp.com/challenging_dom');
-        expect(actualHeader).eq('Challenging DOM');
+        expect(actual).eq('https://the-internet.herokuapp.com/checkboxes');
+        expect(actualHeader).eq('Checkboxes');
     });
 
-    it('should verify the specific elements (with ID) are present', () => {
-        const selector1 = $$('.button')[0];
-        const selector2 = $('.button.alert');
-        const selector3 = $('.button.success');
-        const canvas = $('#canvas');
-        expect(selector1.isDisplayed()).true;
-        expect(selector2.isDisplayed()).true;
-        expect(selector2.isClickable()).true;
-        expect(selector3.isDisplayed()).true;
-        expect(canvas.isDisplayed()).true;
+    it('should verify the `Checkbox2` is checked and `Checkbox1` is not checked', () => {
+        const checkboxes = $$('input');
+        expect(checkboxes[0].getProperty('checked')).false;
+        expect(checkboxes[1].getProperty('checked')).true;
     });
 
-    it('should verify the table consists of 10 rows', () => {
-        const rows = $$('table tbody tr');
-        expect(rows).to.have.lengthOf(10);
-    });
-
-    it('should verify each row in the table contains its specific digit', () => {
-        const elementsInRow = $$('table tbody tr td');
-        for (let i = 0; i < elementsInRow.length; i++) {
-            const value = elementsInRow[i].getText();
-            if (i < 6) {
-                expect(value).to.include('0');
-            } else if (i > 6 && i <= 12) {
-                expect(value).to.include('1');
-            } else if (i > 13 && i <= 19) {
-                expect(value).to.include('2');
-            } else if (i > 20 && i <= 26) {
-                expect(value).to.include('3');
-            } else if (i > 27 && i <= 33) {
-                expect(value).to.include('4');
-            } else if (i > 34 && i <= 40) {
-                expect(value).to.include('5');
-            } else if (i > 41 && i <= 47) {
-                expect(value).to.include('6');
-            } else if (i > 48 && i <= 54) {
-                expect(value).to.include('7');
-            } else if (i > 55 && i <= 61) {
-                expect(value).to.include('8');
-            } else if (i > 62 && i <= 68) {
-                expect(value).to.include('9');
-            } else {
-                expect(value).to.include('edit');
-            }
-        }
+    it('should click the `Checkbox1` and verify the both checkboxes are checked', () => {
+        const checkboxes = $$('input');
+        checkboxes[0].click();
+        expect(checkboxes[0].getProperty('checked')).true;
+        expect(checkboxes[1].getProperty('checked')).true;
         browser.back();
-    });
-
-    it('', () => {
-
     });
 });
