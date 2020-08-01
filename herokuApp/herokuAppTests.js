@@ -62,7 +62,7 @@ describe('Testing different elements', () => {
     //     expect(actual).eq('https://the-internet.herokuapp.com/basic_auth');
     //     browser.back();
     // });
-    //
+
     // it('should verify the `Broken image` page is open', () => {
     //     $('[href="/broken_images"]').click();
     //     const actual = browser.getUrl();
@@ -135,25 +135,76 @@ describe('Testing different elements', () => {
     //     browser.back();
     // });
 
-    it('should verify the `Checkboxes` page is open', () => {
-        $('[href="/checkboxes').click();
+    // it('should verify the `Checkboxes` page is open', () => {
+    //     $('[href="/checkboxes').click();
+    //     const actual = browser.getUrl();
+    //     const actualHeader = $('h3').getText();
+    //     expect(actual).eq('https://the-internet.herokuapp.com/checkboxes');
+    //     expect(actualHeader).eq('Checkboxes');
+    // });
+    //
+    // it('should verify the `Checkbox2` is checked and `Checkbox1` is not checked', () => {
+    //     const checkboxes = $$('input');
+    //     expect(checkboxes[0].getProperty('checked')).false;
+    //     expect(checkboxes[1].getProperty('checked')).true;
+    // });
+    //
+    // it('should click the `Checkbox1` and verify the both checkboxes are checked', () => {
+    //     const checkboxes = $$('input');
+    //     checkboxes[0].click();
+    //     expect(checkboxes[0].getProperty('checked')).true;
+    //     expect(checkboxes[1].getProperty('checked')).true;
+    //     browser.back();
+    // });
+    //
+    // it('should verify the `Context Menu` page is open', () => {
+    //     $('[href="/context_menu').click();
+    //     const actual = browser.getUrl();
+    //     const actualHeader = $('h3').getText();
+    //     expect(actual).eq('https://the-internet.herokuapp.com/context_menu');
+    //     expect(actualHeader).eq('Context Menu');
+    // });
+    //
+    // it('should invoke te context menu', () => {
+    //     const selector = $('#hot-spot');
+    //     selector.click({ button: 'right' });
+    //     const actual = browser.getAlertText();
+    //     expect(actual).eq('You selected a context menu');
+    //     browser.acceptAlert();
+    //     browser.back();
+    // });
+
+    it('should verify the `Disappearing Elements` page is open', () => {
+        $('[href="/disappearing_elements').click();
         const actual = browser.getUrl();
         const actualHeader = $('h3').getText();
-        expect(actual).eq('https://the-internet.herokuapp.com/checkboxes');
-        expect(actualHeader).eq('Checkboxes');
+        expect(actual).eq('https://the-internet.herokuapp.com/disappearing_elements');
+        expect(actualHeader).eq('Disappearing Elements');
     });
 
-    it('should verify the `Checkbox2` is checked and `Checkbox1` is not checked', () => {
-        const checkboxes = $$('input');
-        expect(checkboxes[0].getProperty('checked')).false;
-        expect(checkboxes[1].getProperty('checked')).true;
+    it('should verify the number of the links are presented on the `Disappearing Elements` page', () => {
+        const links = $$('ul>li');
+        const linksNumber = [4, 5];
+        const getNumber = (links, linksNumber) => {
+            return linksNumber.some(el => el === links.length);
+        };
+        expect(getNumber(links, linksNumber)).true;
     });
 
-    it('should click the `Checkbox1` and verify the both checkboxes are checked', () => {
-        const checkboxes = $$('input');
-        checkboxes[0].click();
-        expect(checkboxes[0].getProperty('checked')).true;
-        expect(checkboxes[1].getProperty('checked')).true;
-        browser.back();
+    it('should redirect to Home page after click `Home` link on `Disappearing Elements` page', () => {
+        const links = $$('ul>li');
+        links[0].click();
+        const actual = browser.getUrl();
+        expect(actual).eq('https://the-internet.herokuapp.com/');
+    });
+
+    it('should verify the number of the links are presented on the `Disappearing Elements` page after user goes to the page the second time', () => {
+        $('[href="/disappearing_elements').click();
+        const links = $$('ul>li');
+        const linksNumber = [4, 5];
+        const getNumber = (links, linksNumber) => {
+            return linksNumber.some(el => el === links.length);
+        };
+        expect(getNumber(links, linksNumber)).true;
     });
 });
