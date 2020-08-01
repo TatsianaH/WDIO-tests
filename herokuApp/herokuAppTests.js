@@ -2,6 +2,7 @@ import { expect } from 'chai';
 
 describe('Testing different elements', () => {
     before('open home page', () => {
+        browser.setWindowSize(1440, 900);
         browser.url('https://the-internet.herokuapp.com/');
     });
 
@@ -174,37 +175,64 @@ describe('Testing different elements', () => {
     //     browser.back();
     // });
 
+    // it('should verify the `Disappearing Elements` page is open', () => {
+    //     $('[href="/disappearing_elements').click();
+    //     const actual = browser.getUrl();
+    //     const actualHeader = $('h3').getText();
+    //     expect(actual).eq('https://the-internet.herokuapp.com/disappearing_elements');
+    //     expect(actualHeader).eq('Disappearing Elements');
+    // });
+    //
+    // it('should verify the number of the links are presented on the `Disappearing Elements` page', () => {
+    //     const links = $$('ul>li');
+    //     const linksNumber = [4, 5];
+    //     const getNumber = (links, linksNumber) => {
+    //         return linksNumber.some(el => el === links.length);
+    //     };
+    //     expect(getNumber(links, linksNumber)).true;
+    // });
+    //
+    // it('should redirect to Home page after click `Home` link on `Disappearing Elements` page', () => {
+    //     const links = $$('ul>li');
+    //     links[0].click();
+    //     const actual = browser.getUrl();
+    //     expect(actual).eq('https://the-internet.herokuapp.com/');
+    // });
+    //
+    // it('should verify the number of the links are presented on the `Disappearing Elements` page after user goes to the page the second time', () => {
+    //     $('[href="/disappearing_elements').click();
+    //     const links = $$('ul>li');
+    //     const linksNumber = [4, 5];
+    //     const getNumber = (links, linksNumber) => {
+    //         return linksNumber.some(el => el === links.length);
+    //     };
+    //     expect(getNumber(links, linksNumber)).true;
+    //     browser.back();
+    // });
+
     it('should verify the `Disappearing Elements` page is open', () => {
-        $('[href="/disappearing_elements').click();
+        $('[href="/drag_and_drop').click();
         const actual = browser.getUrl();
         const actualHeader = $('h3').getText();
-        expect(actual).eq('https://the-internet.herokuapp.com/disappearing_elements');
-        expect(actualHeader).eq('Disappearing Elements');
+        expect(actual).eq('https://the-internet.herokuapp.com/drag_and_drop');
+        expect(actualHeader).eq('Drag and Drop');
     });
 
-    it('should verify the number of the links are presented on the `Disappearing Elements` page', () => {
-        const links = $$('ul>li');
-        const linksNumber = [4, 5];
-        const getNumber = (links, linksNumber) => {
-            return linksNumber.some(el => el === links.length);
-        };
-        expect(getNumber(links, linksNumber)).true;
+    it('should verify the column1 has the header `A` and the column2 - `B`', () => {
+        const column1 = $('#column-a header').getText();
+        const column2 = $('#column-b header').getText();
+        expect(column1).eq('A');
+        expect(column2).eq('B');
     });
 
-    it('should redirect to Home page after click `Home` link on `Disappearing Elements` page', () => {
-        const links = $$('ul>li');
-        links[0].click();
-        const actual = browser.getUrl();
-        expect(actual).eq('https://the-internet.herokuapp.com/');
-    });
-
-    it('should verify the number of the links are presented on the `Disappearing Elements` page after user goes to the page the second time', () => {
-        $('[href="/disappearing_elements').click();
-        const links = $$('ul>li');
-        const linksNumber = [4, 5];
-        const getNumber = (links, linksNumber) => {
-            return linksNumber.some(el => el === links.length);
-        };
-        expect(getNumber(links, linksNumber)).true;
+    // does not work on the website
+    it.skip('should verify after drag and drop column2 to column1 place the column1 has the header `B` and the column2 - `A`', () => {
+        const column1 = $('#column-a');
+        const column2 = $('#column-b');
+        column2.dragAndDrop(column1);
+        const column11 = $('#column-a header').getText();
+        const column22 = $('#column-b header').getText();
+        expect(column11).eq('B');
+        expect(column22).eq('A');
     });
 });
