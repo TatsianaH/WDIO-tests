@@ -137,7 +137,7 @@ describe('Testing different elements', () => {
     // });
 
     // it('should verify the `Checkboxes` page is open', () => {
-    //     $('[href="/checkboxes').click();
+    //     $('[href="/checkboxes"]').click();
     //     const actual = browser.getUrl();
     //     const actualHeader = $('h3').getText();
     //     expect(actual).eq('https://the-internet.herokuapp.com/checkboxes');
@@ -159,7 +159,7 @@ describe('Testing different elements', () => {
     // });
     //
     // it('should verify the `Context Menu` page is open', () => {
-    //     $('[href="/context_menu').click();
+    //     $('[href="/context_menu"]').click();
     //     const actual = browser.getUrl();
     //     const actualHeader = $('h3').getText();
     //     expect(actual).eq('https://the-internet.herokuapp.com/context_menu');
@@ -176,7 +176,7 @@ describe('Testing different elements', () => {
     // });
 
     // it('should verify the `Disappearing Elements` page is open', () => {
-    //     $('[href="/disappearing_elements').click();
+    //     $('[href="/disappearing_elements"]').click();
     //     const actual = browser.getUrl();
     //     const actualHeader = $('h3').getText();
     //     expect(actual).eq('https://the-internet.herokuapp.com/disappearing_elements');
@@ -200,7 +200,7 @@ describe('Testing different elements', () => {
     // });
     //
     // it('should verify the number of the links are presented on the `Disappearing Elements` page after user goes to the page the second time', () => {
-    //     $('[href="/disappearing_elements').click();
+    //     $('[href="/disappearing_elements"]').click();
     //     const links = $$('ul>li');
     //     const linksNumber = [4, 5];
     //     const getNumber = (links, linksNumber) => {
@@ -210,20 +210,20 @@ describe('Testing different elements', () => {
     //     browser.back();
     // });
 
-    it('should verify the `Disappearing Elements` page is open', () => {
-        $('[href="/drag_and_drop').click();
-        const actual = browser.getUrl();
-        const actualHeader = $('h3').getText();
-        expect(actual).eq('https://the-internet.herokuapp.com/drag_and_drop');
-        expect(actualHeader).eq('Drag and Drop');
-    });
-
-    it('should verify the column1 has the header `A` and the column2 - `B`', () => {
-        const column1 = $('#column-a header').getText();
-        const column2 = $('#column-b header').getText();
-        expect(column1).eq('A');
-        expect(column2).eq('B');
-    });
+    // it('should verify the `Disappearing Elements` page is open', () => {
+    //     $('[href="/drag_and_drop"]').click();
+    //     const actual = browser.getUrl();
+    //     const actualHeader = $('h3').getText();
+    //     expect(actual).eq('https://the-internet.herokuapp.com/drag_and_drop');
+    //     expect(actualHeader).eq('Drag and Drop');
+    // });
+    //
+    // it('should verify the column1 has the header `A` and the column2 - `B`', () => {
+    //     const column1 = $('#column-a header').getText();
+    //     const column2 = $('#column-b header').getText();
+    //     expect(column1).eq('A');
+    //     expect(column2).eq('B');
+    // });
 
     // does not work on the website
     it.skip('should verify after drag and drop column2 to column1 place the column1 has the header `B` and the column2 - `A`', () => {
@@ -234,5 +234,37 @@ describe('Testing different elements', () => {
         const column22 = $('#column-b header').getText();
         expect(column11).eq('B');
         expect(column22).eq('A');
+        browser.back();
+    });
+
+    it('should verify the `Dropdown List` page is open', () => {
+        browser.url('https://the-internet.herokuapp.com/');
+        $('[href="/dropdown"]').click();
+        browser.pause(2000);
+        const actual = browser.getUrl();
+        const actualHeader = $('h3').getText();
+        expect(actual).eq('https://the-internet.herokuapp.com/dropdown');
+        expect(actualHeader).eq('Dropdown List');
+    });
+
+    it('should verify the dropdown menu is present' , () => {
+        const dropdownMenu = $('#dropdown');
+        const actual = dropdownMenu.isDisplayed();
+        expect(actual).true;
+    });
+
+    it('should verify the selected by default dropdown menu option' , () => {
+        const selector = $('[selected="selected"]');
+        const actual = selector.getText();
+        expect(actual).eq('Please select an option');
+    });
+
+    it('should select `Option1` in dropdown menu', () => {
+        const dropdownMenu = $('#dropdown');
+        dropdownMenu.click();
+        dropdownMenu.selectByIndex(1);
+        const selector = $('[selected="selected"]');
+        const actual = selector.getText();
+        expect(actual).eq('Option 1');
     });
 });
