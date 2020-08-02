@@ -295,6 +295,36 @@ describe('Testing different elements', () => {
         expect(actualSubheader).true;
         expect(actualCheckbox).eq('A checkbox');
         expect(actualRemoveBtn).true;
+    });
 
+    it('should verify `Add` button will be displayed and checkbox will disappear after `Remove` button was clicked', () => {
+        const button = $$('button');
+        const checkbox = $('#checkbox');
+        button[0].click();
+        $('#message').waitForDisplayed();
+        const actual = button[0].isDisplayed();
+        const actualText = button[0].getText();
+        const actualCheckbox = checkbox.isDisplayed();
+        expect(actual).true;
+        expect(actualText).eq('Add');
+        expect(actualCheckbox).false;
+    });
+
+    it('should verify `Remove` button and checkbox will be displayed after `Add` button was clicked', () => {
+        const button = $$('button');
+        const checkbox = $('#checkbox');
+        button[0].click();
+        browser.waitUntil(
+            () => {
+                return $('#message').getText() === 'It\'s back!';
+            },
+            { timeout: 2000, timeoutMsg: 'Wrong text' },
+        );
+        const actual = button[0].isDisplayed();
+        const actualText = button[0].getText();
+        const actualCheckbox = checkbox.isDisplayed();
+        expect(actual).true;
+        expect(actualText).eq('Remove');
+        expect(actualCheckbox).true;
     });
 });
