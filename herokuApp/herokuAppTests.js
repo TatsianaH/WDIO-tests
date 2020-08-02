@@ -267,4 +267,14 @@ describe('Testing different elements', () => {
         const actual = selector.getText();
         expect(actual).eq('Option 1');
     });
+
+    it('should select `Option2` in dropdown menu', () => {
+        const dropdownMenu = $('#dropdown');
+        dropdownMenu.click();
+        dropdownMenu.selectByVisibleText('Option 2');
+        const selector = $('[selected="selected"]');
+        const actual = selector.getText();
+        expect(actual).eq('Option 2');
+        browser.back();
+    });
 });
