@@ -237,44 +237,64 @@ describe('Testing different elements', () => {
         browser.back();
     });
 
-    it('should verify the `Dropdown List` page is open', () => {
-        browser.url('https://the-internet.herokuapp.com/');
-        $('[href="/dropdown"]').click();
-        browser.pause(2000);
+    // it('should verify the `Dropdown List` page is open', () => {
+    //     browser.url('https://the-internet.herokuapp.com/');
+    //     $('[href="/dropdown"]').click();
+    //     const actual = browser.getUrl();
+    //     const actualHeader = $('h3').getText();
+    //     expect(actual).eq('https://the-internet.herokuapp.com/dropdown');
+    //     expect(actualHeader).eq('Dropdown List');
+    // });
+    //
+    // it('should verify the dropdown menu is present' , () => {
+    //     const dropdownMenu = $('#dropdown');
+    //     const actual = dropdownMenu.isDisplayed();
+    //     expect(actual).true;
+    // });
+    //
+    // it('should verify the selected by default dropdown menu option' , () => {
+    //     const selector = $('[selected="selected"]');
+    //     const actual = selector.getText();
+    //     expect(actual).eq('Please select an option');
+    // });
+    //
+    // it('should select `Option1` in dropdown menu', () => {
+    //     const dropdownMenu = $('#dropdown');
+    //     dropdownMenu.click();
+    //     dropdownMenu.selectByIndex(1);
+    //     const selector = $('[selected="selected"]');
+    //     const actual = selector.getText();
+    //     expect(actual).eq('Option 1');
+    // });
+    //
+    // it('should select `Option2` in dropdown menu', () => {
+    //     const dropdownMenu = $('#dropdown');
+    //     dropdownMenu.click();
+    //     dropdownMenu.selectByVisibleText('Option 2');
+    //     const selector = $('[selected="selected"]');
+    //     const actual = selector.getText();
+    //     expect(actual).eq('Option 2');
+    //     browser.back();
+    // });
+
+    it('should verify the `Dynamic controls` page is open', () => {
+        $('[href="/dynamic_controls"]').click();
         const actual = browser.getUrl();
-        const actualHeader = $('h3').getText();
-        expect(actual).eq('https://the-internet.herokuapp.com/dropdown');
-        expect(actualHeader).eq('Dropdown List');
+        const actualHeader = $$('h4')[0].getText();
+        expect(actual).eq('https://the-internet.herokuapp.com/dynamic_controls');
+        expect(actualHeader).eq('Dynamic Controls');
     });
 
-    it('should verify the dropdown menu is present' , () => {
-        const dropdownMenu = $('#dropdown');
-        const actual = dropdownMenu.isDisplayed();
-        expect(actual).true;
-    });
+    it('should verify the subheader `Remove/add`, checkbox and `Remove` button are present', () => {
+        const subheader = $$('h4');
+        const checkbox = $('#checkbox');
+        const removeBtn = $$('button');
+        const actualSubheader = subheader[1].isDisplayed();
+        const actualCheckbox = checkbox.getText();
+        const actualRemoveBtn = removeBtn[0].isClickable();
+        expect(actualSubheader).true;
+        expect(actualCheckbox).eq('A checkbox');
+        expect(actualRemoveBtn).true;
 
-    it('should verify the selected by default dropdown menu option' , () => {
-        const selector = $('[selected="selected"]');
-        const actual = selector.getText();
-        expect(actual).eq('Please select an option');
-    });
-
-    it('should select `Option1` in dropdown menu', () => {
-        const dropdownMenu = $('#dropdown');
-        dropdownMenu.click();
-        dropdownMenu.selectByIndex(1);
-        const selector = $('[selected="selected"]');
-        const actual = selector.getText();
-        expect(actual).eq('Option 1');
-    });
-
-    it('should select `Option2` in dropdown menu', () => {
-        const dropdownMenu = $('#dropdown');
-        dropdownMenu.click();
-        dropdownMenu.selectByVisibleText('Option 2');
-        const selector = $('[selected="selected"]');
-        const actual = selector.getText();
-        expect(actual).eq('Option 2');
-        browser.back();
     });
 });
