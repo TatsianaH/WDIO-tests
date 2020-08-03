@@ -386,17 +386,18 @@ describe('Testing different elements', () => {
     it('should verify the modal window is displayed', () => {
         const modal = $('#modal');
         const modatTitle = $('#modal .modal .modal-title h3');
+        modal.waitForDisplayed();
         const actualModalIsDisplayed = modal.getAttribute('style');
         const modatTitleText = modatTitle.getText();
         expect(actualModalIsDisplayed).eq('display: block;');
         expect(modatTitleText).eq('THIS IS A MODAL WINDOW');
     });
 
-    // it('should verify the modal window is closed after clicking the header on the `Entry Ad` page', () => {
-    //     const selector = $('.modal-footer');
-    //     const modal = $('#modal');
-    //     selector.click();
-    //     const actualModalIsDisplayed = modal.getAttribute('style');
-    //     expect(actualModalIsDisplayed).eq('display: none;');
-    // });
+    it('should verify the modal window is closed after clicking the header on the `Entry Ad` page', () => {
+        const selector = $('.modal-footer p');
+        const modal = $('#modal');
+        selector.click();
+        const actualModalIsDisplayed = modal.getAttribute('style');
+        expect(actualModalIsDisplayed).eq('display: none;');
+    });
 });
