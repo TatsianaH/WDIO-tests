@@ -400,4 +400,11 @@ describe('Testing different elements', () => {
         const actualModalIsDisplayed = modal.getAttribute('style');
         expect(actualModalIsDisplayed).eq('display: none;');
     });
+
+    it('should verify no modal window popped up after it was closed and the page was reloaded', () => {
+        browser.refresh();
+        const modal = $('#modal');
+        const actual = modal.isDisplayedInViewport();
+        expect(actual).false;
+    });
 });
