@@ -407,4 +407,14 @@ describe('Testing different elements', () => {
         const actual = modal.isDisplayedInViewport();
         expect(actual).false;
     });
+
+    it('should verify the modal window pops up after `click here` link was clicked on', () => {
+        browser.deleteAllCookies();
+        const modal = $('#modal');
+        const link = $('#restart-ad');
+        link.click();
+        modal.waitForDisplayed();
+        const actual = modal.isDisplayedInViewport();
+        expect(actual).true;
+    });
 });
