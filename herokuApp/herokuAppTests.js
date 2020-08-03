@@ -277,13 +277,13 @@ describe('Testing different elements', () => {
     //     browser.back();
     // });
 
-    it('should verify the `Dynamic controls` page is open', () => {
-        $('[href="/dynamic_controls"]').click();
-        const actual = browser.getUrl();
-        const actualHeader = $$('h4')[0].getText();
-        expect(actual).eq('https://the-internet.herokuapp.com/dynamic_controls');
-        expect(actualHeader).eq('Dynamic Controls');
-    });
+    // it('should verify the `Dynamic controls` page is open', () => {
+    //     $('[href="/dynamic_controls"]').click();
+    //     const actual = browser.getUrl();
+    //     const actualHeader = $$('h4')[0].getText();
+    //     expect(actual).eq('https://the-internet.herokuapp.com/dynamic_controls');
+    //     expect(actualHeader).eq('Dynamic Controls');
+    // });
     //
     // it('should verify the subheader `Remove/add`, checkbox and `Remove` button are present', () => {
     //     const subheader = $$('h4');
@@ -328,52 +328,75 @@ describe('Testing different elements', () => {
     //     expect(actualCheckbox).true;
     // });
 
-    it('should verify the input under `Enable/disable` subheader is disabled', () => {
-        const input = $('#input-example input');
-        const actual = input.getAttribute('disabled');
-        expect(actual).eq('true');
+    // it('should verify the input under `Enable/disable` subheader is disabled', () => {
+    //     const input = $('#input-example input');
+    //     const actual = input.getAttribute('disabled');
+    //     expect(actual).eq('true');
+    // });
+    //
+    // it('should verify the input under `Enable/disable` subheader is enable after `Enable` button was clicked', () => {
+    //     const button = $$('button');
+    //     button[1].click();
+    //     browser.waitUntil(
+    //         () => {
+    //             return $('#message').getText() === 'It\'s enabled!';
+    //         },
+    //         { timeout: 2000, timeoutMsg: 'Wrong text' },
+    //     );
+    //     const input = $('#input-example input');
+    //     const actual = input.getAttribute('disabled');
+    //     const actualBtn = button[1].getText();
+    //     expect(actual).to.be.null;
+    //     expect(actualBtn).eq('Disable');
+    // });
+    //
+    // it('should verify the input under `Enable/disable` subheader accepts a text', () => {
+    //     const input = $('#input-example input');
+    //     const value = 'Hello! I Love JS!';
+    //     input.addValue(value);
+    //     const actual = input.getValue();
+    //     expect(actual).eq(value);
+    // });
+    //
+    // it('should verify the input under `Enable/disable` subheader is disable after `Disable` button was clicked', () => {
+    //     const button = $$('button');
+    //     button[1].click();
+    //     browser.waitUntil(
+    //         () => {
+    //             return $('#message').getText() === 'It\'s disabled!';
+    //         },
+    //         { timeout: 2000, timeoutMsg: 'Wrong text' },
+    //     );
+    //     const input = $('#input-example input');
+    //     const actual = input.getAttribute('disabled');
+    //     const actualBtn = button[1].getText();
+    //     expect(actual).eq('true');
+    //     expect(actualBtn).eq('Enable');
+    //     browser.back();
+    // });
+
+    it('should verify the `Entry Ad` page is open', () => {
+        $('[href="/entry_ad"]').click();
+        const actual = browser.getUrl();
+        const actualHeader = $('.example h3').getText();
+        expect(actual).eq('https://the-internet.herokuapp.com/entry_ad');
+        expect(actualHeader).eq('Entry Ad');
     });
 
-    it('should verify the input under `Enable/disable` subheader is enable after `Enable` button was clicked', () => {
-        const button = $$('button');
-        button[1].click();
-        browser.waitUntil(
-            () => {
-                return $('#message').getText() === 'It\'s enabled!';
-            },
-            { timeout: 2000, timeoutMsg: 'Wrong text' },
-        );
-        const input = $('#input-example input');
-        const actual = input.getAttribute('disabled');
-        const actualBtn = button[1].getText();
-        expect(actual).to.be.null;
-        expect(actualBtn).eq('Disable');
+    it('should verify the modal window is displayed', () => {
+        const modal = $('#modal');
+        const modatTitle = $('#modal .modal .modal-title h3');
+        const actualModalIsDisplayed = modal.getAttribute('style');
+        const modatTitleText = modatTitle.getText();
+        expect(actualModalIsDisplayed).eq('display: block;');
+        expect(modatTitleText).eq('THIS IS A MODAL WINDOW');
     });
 
-    it('should verify the input under `Enable/disable` subheader accepts a text', () => {
-        const input = $('#input-example input');
-        const value = 'Hello! I Love JS!';
-        input.addValue(value);
-        const actual = input.getValue();
-        expect(actual).eq(value);
-    });
-
-    it('should verify the input under `Enable/disable` subheader is disable after `Disable` button was clicked', () => {
-        const button = $$('button');
-        button[1].click();
-        browser.waitUntil(
-            () => {
-                return $('#message').getText() === 'It\'s disabled!';
-            },
-            { timeout: 2000, timeoutMsg: 'Wrong text' },
-        );
-        const input = $('#input-example input');
-        const actual = input.getAttribute('disabled');
-        const actualBtn = button[1].getText();
-        expect(actual).eq('true');
-        expect(actualBtn).eq('Enable');
-        browser.back();
-    });
-
-
+    // it('should verify the modal window is closed after clicking the header on the `Entry Ad` page', () => {
+    //     const selector = $('.modal-footer');
+    //     const modal = $('#modal');
+    //     selector.click();
+    //     const actualModalIsDisplayed = modal.getAttribute('style');
+    //     expect(actualModalIsDisplayed).eq('display: none;');
+    // });
 });
