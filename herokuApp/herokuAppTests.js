@@ -372,5 +372,8 @@ describe('Testing different elements', () => {
         const actualBtn = button[1].getText();
         expect(actual).eq('true');
         expect(actualBtn).eq('Enable');
+        browser.back();
     });
+
+
 });
