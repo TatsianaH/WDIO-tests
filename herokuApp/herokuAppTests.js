@@ -2,7 +2,7 @@ import { expect } from 'chai';
 
 describe('Testing different elements', () => {
     before('open home page', () => {
-        browser.setWindowSize(1440, 900);
+        browser.setWindowSize(1400, 900);
         browser.url('https://the-internet.herokuapp.com/');
     });
 
@@ -375,46 +375,66 @@ describe('Testing different elements', () => {
     //     browser.back();
     // });
 
-    it('should verify the `Entry Ad` page is open', () => {
-        $('[href="/entry_ad"]').click();
+    // it('should verify the `Entry Ad` page is open', () => {
+    //     $('[href="/entry_ad"]').click();
+    //     const actual = browser.getUrl();
+    //     const actualHeader = $('.example h3').getText();
+    //     expect(actual).eq('https://the-internet.herokuapp.com/entry_ad');
+    //     expect(actualHeader).eq('Entry Ad');
+    // });
+    //
+    // it('should verify the modal window is displayed', () => {
+    //     const modal = $('#modal');
+    //     const modatTitle = $('#modal .modal .modal-title h3');
+    //     modal.waitForDisplayed();
+    //     const actualModalIsDisplayed = modal.getAttribute('style');
+    //     const modatTitleText = modatTitle.getText();
+    //     expect(actualModalIsDisplayed).eq('display: block;');
+    //     expect(modatTitleText).eq('THIS IS A MODAL WINDOW');
+    // });
+    //
+    // it('should verify the modal window is closed after clicking the header on the `Entry Ad` page', () => {
+    //     const selector = $('.modal-footer p');
+    //     const modal = $('#modal');
+    //     selector.click();
+    //     const actualModalIsDisplayed = modal.getAttribute('style');
+    //     expect(actualModalIsDisplayed).eq('display: none;');
+    // });
+    //
+    // it('should verify no modal window popped up after it was closed and the page was reloaded', () => {
+    //     browser.refresh();
+    //     const modal = $('#modal');
+    //     const actual = modal.isDisplayedInViewport();
+    //     expect(actual).false;
+    // });
+    //
+    // it('should verify the modal window pops up after `click here` link was clicked on', () => {
+    //     browser.deleteAllCookies();
+    //     const modal = $('#modal');
+    //     const link = $('#restart-ad');
+    //     link.click();
+    //     modal.waitForDisplayed();
+    //     const actual = modal.isDisplayedInViewport();
+    //     expect(actual).true;
+    //     browser.back();
+    // });
+
+    it('should verify the `Forgot Password` page is open', () => {
+        $('[href="/forgot_password"]').click();
         const actual = browser.getUrl();
-        const actualHeader = $('.example h3').getText();
-        expect(actual).eq('https://the-internet.herokuapp.com/entry_ad');
-        expect(actualHeader).eq('Entry Ad');
+        const actualHeader = $('.example h2').getText();
+        expect(actual).eq('https://the-internet.herokuapp.com/forgot_password');
+        expect(actualHeader).eq('Forgot Password');
     });
 
-    it('should verify the modal window is displayed', () => {
-        const modal = $('#modal');
-        const modatTitle = $('#modal .modal .modal-title h3');
-        modal.waitForDisplayed();
-        const actualModalIsDisplayed = modal.getAttribute('style');
-        const modatTitleText = modatTitle.getText();
-        expect(actualModalIsDisplayed).eq('display: block;');
-        expect(modatTitleText).eq('THIS IS A MODAL WINDOW');
-    });
-
-    it('should verify the modal window is closed after clicking the header on the `Entry Ad` page', () => {
-        const selector = $('.modal-footer p');
-        const modal = $('#modal');
-        selector.click();
-        const actualModalIsDisplayed = modal.getAttribute('style');
-        expect(actualModalIsDisplayed).eq('display: none;');
-    });
-
-    it('should verify no modal window popped up after it was closed and the page was reloaded', () => {
-        browser.refresh();
-        const modal = $('#modal');
-        const actual = modal.isDisplayedInViewport();
-        expect(actual).false;
-    });
-
-    it('should verify the modal window pops up after `click here` link was clicked on', () => {
-        browser.deleteAllCookies();
-        const modal = $('#modal');
-        const link = $('#restart-ad');
-        link.click();
-        modal.waitForDisplayed();
-        const actual = modal.isDisplayedInViewport();
-        expect(actual).true;
+    it('should verify a user gets redirected to success page after correct credentials were entered into email input field', () => {
+        const email = $('#email');
+        const button = $('#form_submit');
+        email.setValue('test@test.com');
+        button.click();
+        const actual = browser.getUrl();
+        const message = $('#content').getText();
+        expect(actual).eq('https://the-internet.herokuapp.com/email_sent');
+        expect(message).eq('Your e-mail\'s been sent!');
     });
 });
