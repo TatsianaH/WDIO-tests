@@ -284,47 +284,93 @@ describe('Testing different elements', () => {
         expect(actual).eq('https://the-internet.herokuapp.com/dynamic_controls');
         expect(actualHeader).eq('Dynamic Controls');
     });
+    //
+    // it('should verify the subheader `Remove/add`, checkbox and `Remove` button are present', () => {
+    //     const subheader = $$('h4');
+    //     const checkbox = $('#checkbox');
+    //     const removeBtn = $$('button');
+    //     const actualSubheader = subheader[1].isDisplayed();
+    //     const actualCheckbox = checkbox.getText();
+    //     const actualRemoveBtn = removeBtn[0].isClickable();
+    //     expect(actualSubheader).true;
+    //     expect(actualCheckbox).eq('A checkbox');
+    //     expect(actualRemoveBtn).true;
+    // });
 
-    it('should verify the subheader `Remove/add`, checkbox and `Remove` button are present', () => {
-        const subheader = $$('h4');
-        const checkbox = $('#checkbox');
-        const removeBtn = $$('button');
-        const actualSubheader = subheader[1].isDisplayed();
-        const actualCheckbox = checkbox.getText();
-        const actualRemoveBtn = removeBtn[0].isClickable();
-        expect(actualSubheader).true;
-        expect(actualCheckbox).eq('A checkbox');
-        expect(actualRemoveBtn).true;
+    // it('should verify `Add` button will be displayed and checkbox will disappear after `Remove` button was clicked', () => {
+    //     const button = $$('button');
+    //     const checkbox = $('#checkbox');
+    //     button[0].click();
+    //     $('#message').waitForDisplayed();
+    //     const actual = button[0].isDisplayed();
+    //     const actualText = button[0].getText();
+    //     const actualCheckbox = checkbox.isDisplayed();
+    //     expect(actual).true;
+    //     expect(actualText).eq('Add');
+    //     expect(actualCheckbox).false;
+    // });
+    //
+    // it('should verify `Remove` button and checkbox will be displayed after `Add` button was clicked', () => {
+    //     const button = $$('button');
+    //     const checkbox = $('#checkbox');
+    //     button[0].click();
+    //     browser.waitUntil(
+    //         () => {
+    //             return $('#message').getText() === 'It\'s back!';
+    //         },
+    //         { timeout: 2000, timeoutMsg: 'Wrong text' },
+    //     );
+    //     const actual = button[0].isDisplayed();
+    //     const actualText = button[0].getText();
+    //     const actualCheckbox = checkbox.isDisplayed();
+    //     expect(actual).true;
+    //     expect(actualText).eq('Remove');
+    //     expect(actualCheckbox).true;
+    // });
+
+    it('should verify the input under `Enable/disable` subheader is disabled', () => {
+        const input = $('#input-example input');
+        const actual = input.getAttribute('disabled');
+        expect(actual).eq('true');
     });
 
-    it('should verify `Add` button will be displayed and checkbox will disappear after `Remove` button was clicked', () => {
+    it('should verify the input under `Enable/disable` subheader is enable after `Enable` button was clicked', () => {
         const button = $$('button');
-        const checkbox = $('#checkbox');
-        button[0].click();
-        $('#message').waitForDisplayed();
-        const actual = button[0].isDisplayed();
-        const actualText = button[0].getText();
-        const actualCheckbox = checkbox.isDisplayed();
-        expect(actual).true;
-        expect(actualText).eq('Add');
-        expect(actualCheckbox).false;
-    });
-
-    it('should verify `Remove` button and checkbox will be displayed after `Add` button was clicked', () => {
-        const button = $$('button');
-        const checkbox = $('#checkbox');
-        button[0].click();
+        button[1].click();
         browser.waitUntil(
             () => {
-                return $('#message').getText() === 'It\'s back!';
+                return $('#message').getText() === 'It\'s enabled!';
             },
             { timeout: 2000, timeoutMsg: 'Wrong text' },
         );
-        const actual = button[0].isDisplayed();
-        const actualText = button[0].getText();
-        const actualCheckbox = checkbox.isDisplayed();
-        expect(actual).true;
-        expect(actualText).eq('Remove');
-        expect(actualCheckbox).true;
+        const input = $('#input-example input');
+        const actual = input.getAttribute('disabled');
+        const actualBtn = button[1].getText();
+        expect(actual).to.be.null;
+        expect(actualBtn).eq('Disable');
+    });
+
+    it('should verify the input under `Enable/disable` subheader accepts a text', () => {
+        const input = $('#input-example input');
+        const value = 'Hello! I Love JS!';
+        input.addValue(value);
+        const actual = input.getValue();
+        expect(actual).eq(value);
+    });
+
+    it('should verify the input under `Enable/disable` subheader is disable after `Disable` button was clicked', () => {
+        const button = $$('button');
+        button[1].click();
+        browser.waitUntil(
+            () => {
+                return $('#message').getText() === 'It\'s disabled!';
+            },
+            { timeout: 2000, timeoutMsg: 'Wrong text' },
+        );
+        const input = $('#input-example input');
+        const actual = input.getAttribute('disabled');
+        const actualBtn = button[1].getText();
+        expect(actual).eq('true');
+        expect(actualBtn).eq('Enable');
     });
 });
