@@ -419,22 +419,37 @@ describe('Testing different elements', () => {
     //     browser.back();
     // });
 
-    it('should verify the `Forgot Password` page is open', () => {
-        $('[href="/forgot_password"]').click();
+    // it('should verify the `Forgot Password` page is open', () => {
+    //     $('[href="/forgot_password"]').click();
+    //     const actual = browser.getUrl();
+    //     const actualHeader = $('.example h2').getText();
+    //     expect(actual).eq('https://the-internet.herokuapp.com/forgot_password');
+    //     expect(actualHeader).eq('Forgot Password');
+    // });
+    //
+    // it('should verify a user gets redirected to success page after correct credentials were entered into email input field', () => {
+    //     const email = $('#email');
+    //     const button = $('#form_submit');
+    //     email.setValue('test@test.com');
+    //     button.click();
+    //     const actual = browser.getUrl();
+    //     const message = $('#content').getText();
+    //     expect(actual).eq('https://the-internet.herokuapp.com/email_sent');
+    //     expect(message).eq('Your e-mail\'s been sent!');
+    //     browser.back();
+    //     browser.back();
+    // });
+
+    it('should verify the `Login Page` page is open', () => {
+        $('[href="/login"]').click();
         const actual = browser.getUrl();
         const actualHeader = $('.example h2').getText();
-        expect(actual).eq('https://the-internet.herokuapp.com/forgot_password');
-        expect(actualHeader).eq('Forgot Password');
+        expect(actual).eq('https://the-internet.herokuapp.com/login');
+        expect(actualHeader).eq('Login Page');
     });
 
-    it('should verify a user gets redirected to success page after correct credentials were entered into email input field', () => {
-        const email = $('#email');
-        const button = $('#form_submit');
-        email.setValue('test@test.com');
-        button.click();
-        const actual = browser.getUrl();
-        const message = $('#content').getText();
-        expect(actual).eq('https://the-internet.herokuapp.com/email_sent');
-        expect(message).eq('Your e-mail\'s been sent!');
+    it('should verify a user sees a successful message after correct credentials were entered in username and password fields, and `Login` button was clicked', () => {
+        const userName = '';
+        const password = '';
     });
 });
