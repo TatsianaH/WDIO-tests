@@ -475,4 +475,20 @@ describe('Testing different elements', () => {
         expect(alertMsgTextActual).eq(alertMsgTextExpected);
         expect(urlActual).eq(urlExpected);
     });
+
+    it('should verify the `Logout` button is present', () => {
+        const button = $('.button');
+        const actual = button.isDisplayed();
+        const actualClickable = button.isClickable();
+        expect(actual).true;
+        expect(actualClickable).true;
+    });
+
+    it('should verify user gets redirected to `Login Page` after `Logout` button was clicked', () => {
+        const button = $('.button');
+        button.click();
+        const expected = 'https://the-internet.herokuapp.com/login';
+        const actual = browser.getUrl();
+        expect(actual).eq(expected);
+    });
 });
