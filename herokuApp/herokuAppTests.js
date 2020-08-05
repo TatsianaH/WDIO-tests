@@ -448,8 +448,31 @@ describe('Testing different elements', () => {
         expect(actualHeader).eq('Login Page');
     });
 
+    it('should verify the correct credentials were entered in username and password fields', () => {
+        const userName = 'tomsmith';
+        const password = 'SuperSecretPassword!';
+        const userNameSelector = $('#username');
+        const passwordSelector = $('#password');
+        userNameSelector.setValue(userName);
+        passwordSelector.setValue(password);
+        const userNameActual = userNameSelector.getValue();
+        const passwordActual = passwordSelector.getValue();
+        expect(userNameActual).eq(userName);
+        expect(passwordActual).eq(password);
+    });
+
     it('should verify a user sees a successful message after correct credentials were entered in username and password fields, and `Login` button was clicked', () => {
-        const userName = '';
-        const password = '';
+        const loginBtnSelector = $('button');
+        loginBtnSelector.click();
+        const urlExpected = 'https://the-internet.herokuapp.com/secure';
+        const alertMsgSelector = $('#flash');
+        const alertMsgTextActual = alertMsgSelector.getText();
+        const alertMsgTextExpected = 'You logged into a secure area!\n×';
+        const headerTextExpected = 'Secure Area';
+        const headerTextActual = $('h2').getText();
+        const urlActual = browser.getUrl();
+        expect(headerTextActual).eq(headerTextExpected);
+        expect(alertMsgTextActual).eq(alertMsgTextExpected);
+        expect(urlActual).eq(urlExpected);
     });
 });
