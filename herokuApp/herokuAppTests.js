@@ -491,4 +491,24 @@ describe('Testing different elements', () => {
         const actual = browser.getUrl();
         expect(actual).eq(expected);
     });
+
+    it('should verify a user sees a unsuccessful message after incorrect credentials were entered in username and password fields, and `Login` button was clicked', () => {
+        const userName = 'tom';
+        const password = 'Super!';
+        const userNameSelector = $('#username');
+        const passwordSelector = $('#password');
+        userNameSelector.clearValue();
+        userNameSelector.setValue(userName);
+        passwordSelector.setValue(password);
+        const loginBtnSelector = $('button');
+        loginBtnSelector.click();
+        const urlExpected = 'https://the-internet.herokuapp.com/login';
+        const alertMsgSelector = $('#flash');
+        const alertMsgTextActual = alertMsgSelector.getText();
+        const alertMsgTextExpected = 'Your username is invalid!\n×';
+        const urlActual = browser.getUrl();
+        expect(alertMsgTextActual).eq(alertMsgTextExpected);
+        expect(urlActual).eq(urlExpected);
+    });
+
 });
