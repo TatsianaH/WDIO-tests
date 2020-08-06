@@ -511,4 +511,13 @@ describe('Testing different elements', () => {
         expect(urlActual).eq(urlExpected);
     });
 
+    it('should verify the `Login Page` page is open', () => {
+        browser.url('https://the-internet.herokuapp.com/');
+        $('[href="/frames"]').click();
+        const actual = browser.getUrl();
+        const actualHeader = $('.example h3').getText();
+        expect(actual).eq('https://the-internet.herokuapp.com/frames');
+        expect(actualHeader).eq('Frames');
+    });
+
 });
