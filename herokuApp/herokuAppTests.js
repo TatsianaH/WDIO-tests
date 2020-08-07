@@ -440,76 +440,76 @@ describe('Testing different elements', () => {
     //     browser.back();
     // });
 
-    it('should verify the `Login Page` page is open', () => {
-        $('[href="/login"]').click();
-        const actual = browser.getUrl();
-        const actualHeader = $('.example h2').getText();
-        expect(actual).eq('https://the-internet.herokuapp.com/login');
-        expect(actualHeader).eq('Login Page');
-    });
-
-    it('should verify the correct credentials were entered in username and password fields', () => {
-        const userName = 'tomsmith';
-        const password = 'SuperSecretPassword!';
-        const userNameSelector = $('#username');
-        const passwordSelector = $('#password');
-        userNameSelector.setValue(userName);
-        passwordSelector.setValue(password);
-        const userNameActual = userNameSelector.getValue();
-        const passwordActual = passwordSelector.getValue();
-        expect(userNameActual).eq(userName);
-        expect(passwordActual).eq(password);
-    });
-
-    it('should verify a user sees a successful message after correct credentials were entered in username and password fields, and `Login` button was clicked', () => {
-        const loginBtnSelector = $('button');
-        loginBtnSelector.click();
-        const urlExpected = 'https://the-internet.herokuapp.com/secure';
-        const alertMsgSelector = $('#flash');
-        const alertMsgTextActual = alertMsgSelector.getText();
-        const alertMsgTextExpected = 'You logged into a secure area!\n×';
-        const headerTextExpected = 'Secure Area';
-        const headerTextActual = $('h2').getText();
-        const urlActual = browser.getUrl();
-        expect(headerTextActual).eq(headerTextExpected);
-        expect(alertMsgTextActual).eq(alertMsgTextExpected);
-        expect(urlActual).eq(urlExpected);
-    });
-
-    it('should verify the `Logout` button is present', () => {
-        const button = $('.button');
-        const actual = button.isDisplayed();
-        const actualClickable = button.isClickable();
-        expect(actual).true;
-        expect(actualClickable).true;
-    });
-
-    it('should verify user gets redirected to `Login Page` after `Logout` button was clicked', () => {
-        const button = $('.button');
-        button.click();
-        const expected = 'https://the-internet.herokuapp.com/login';
-        const actual = browser.getUrl();
-        expect(actual).eq(expected);
-    });
-
-    it('should verify a user sees a unsuccessful message after incorrect credentials were entered in username and password fields, and `Login` button was clicked', () => {
-        const userName = 'tom';
-        const password = 'Super!';
-        const userNameSelector = $('#username');
-        const passwordSelector = $('#password');
-        userNameSelector.clearValue();
-        userNameSelector.setValue(userName);
-        passwordSelector.setValue(password);
-        const loginBtnSelector = $('button');
-        loginBtnSelector.click();
-        const urlExpected = 'https://the-internet.herokuapp.com/login';
-        const alertMsgSelector = $('#flash');
-        const alertMsgTextActual = alertMsgSelector.getText();
-        const alertMsgTextExpected = 'Your username is invalid!\n×';
-        const urlActual = browser.getUrl();
-        expect(alertMsgTextActual).eq(alertMsgTextExpected);
-        expect(urlActual).eq(urlExpected);
-    });
+    // it('should verify the `Login Page` page is open', () => {
+    //     $('[href="/login"]').click();
+    //     const actual = browser.getUrl();
+    //     const actualHeader = $('.example h2').getText();
+    //     expect(actual).eq('https://the-internet.herokuapp.com/login');
+    //     expect(actualHeader).eq('Login Page');
+    // });
+    //
+    // it('should verify the correct credentials were entered in username and password fields', () => {
+    //     const userName = 'tomsmith';
+    //     const password = 'SuperSecretPassword!';
+    //     const userNameSelector = $('#username');
+    //     const passwordSelector = $('#password');
+    //     userNameSelector.setValue(userName);
+    //     passwordSelector.setValue(password);
+    //     const userNameActual = userNameSelector.getValue();
+    //     const passwordActual = passwordSelector.getValue();
+    //     expect(userNameActual).eq(userName);
+    //     expect(passwordActual).eq(password);
+    // });
+    //
+    // it('should verify a user sees a successful message after correct credentials were entered in username and password fields, and `Login` button was clicked', () => {
+    //     const loginBtnSelector = $('button');
+    //     loginBtnSelector.click();
+    //     const urlExpected = 'https://the-internet.herokuapp.com/secure';
+    //     const alertMsgSelector = $('#flash');
+    //     const alertMsgTextActual = alertMsgSelector.getText();
+    //     const alertMsgTextExpected = 'You logged into a secure area!\n×';
+    //     const headerTextExpected = 'Secure Area';
+    //     const headerTextActual = $('h2').getText();
+    //     const urlActual = browser.getUrl();
+    //     expect(headerTextActual).eq(headerTextExpected);
+    //     expect(alertMsgTextActual).eq(alertMsgTextExpected);
+    //     expect(urlActual).eq(urlExpected);
+    // });
+    //
+    // it('should verify the `Logout` button is present', () => {
+    //     const button = $('.button');
+    //     const actual = button.isDisplayed();
+    //     const actualClickable = button.isClickable();
+    //     expect(actual).true;
+    //     expect(actualClickable).true;
+    // });
+    //
+    // it('should verify user gets redirected to `Login Page` after `Logout` button was clicked', () => {
+    //     const button = $('.button');
+    //     button.click();
+    //     const expected = 'https://the-internet.herokuapp.com/login';
+    //     const actual = browser.getUrl();
+    //     expect(actual).eq(expected);
+    // });
+    //
+    // it('should verify a user sees a unsuccessful message after incorrect credentials were entered in username and password fields, and `Login` button was clicked', () => {
+    //     const userName = 'tom';
+    //     const password = 'Super!';
+    //     const userNameSelector = $('#username');
+    //     const passwordSelector = $('#password');
+    //     userNameSelector.clearValue();
+    //     userNameSelector.setValue(userName);
+    //     passwordSelector.setValue(password);
+    //     const loginBtnSelector = $('button');
+    //     loginBtnSelector.click();
+    //     const urlExpected = 'https://the-internet.herokuapp.com/login';
+    //     const alertMsgSelector = $('#flash');
+    //     const alertMsgTextActual = alertMsgSelector.getText();
+    //     const alertMsgTextExpected = 'Your username is invalid!\n×';
+    //     const urlActual = browser.getUrl();
+    //     expect(alertMsgTextActual).eq(alertMsgTextExpected);
+    //     expect(urlActual).eq(urlExpected);
+    // });
 
     it('should verify the `Login Page` page is open', () => {
         browser.url('https://the-internet.herokuapp.com/');
@@ -538,5 +538,25 @@ describe('Testing different elements', () => {
         const paragraphNew = $('#tinymce p');
         const actual = paragraphNew.getText();
         expect(actual).eq(text);
+    });
+
+    it('should verify the text is bold and Italic', () => {
+        const paragraph = $('#tinymce');
+        paragraph.clearValue();
+        browser.switchToParentFrame();
+        const boldBtn = $('[aria-label="Bold"]');
+        const alignRightBtn = $('[aria-label="Align right"]');
+        boldBtn.click();
+        alignRightBtn.click();
+        const iFrameSelector = $('#mce_0_ifr');
+        browser.switchToFrame(iFrameSelector);
+        const text = 'Hello! I am able to write in this form!!!';
+        paragraph.addValue(text);
+        const paragraphNew = $('#tinymce p');
+        const alignActual = paragraphNew.getAttribute('style');
+        const alignExpected = 'text-align: right;';
+        const boldActual = $('#tinymce p strong').getText();
+        expect(alignActual).eq(alignExpected);
+        expect(boldActual).eq(text);
     });
 });
