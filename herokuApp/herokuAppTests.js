@@ -528,15 +528,15 @@ describe('Testing different elements', () => {
         expect(actualHeader).eq('An iFrame containing the TinyMCE WYSIWYG Editor');
     });
 
-    // it('should verify the iframe accepts the text', () => {
-    //     const iFrameSelector = $('#mce_0_ifr');
-    //     browser.switchToFrame(iFrameSelector);
-    //     const paragraph = $('#tinymce p');
-    //     paragraph.clearValue();
-    //     const text = 'Hello! I am able to write in this form!!!';
-    //     const paragraphNew = $('#tinymce p #_mce_caret');
-    //     paragraphNew.addValue(text);
-    //     const actual = paragraphNew.getValue();
-    //     expect(actual).eq(text);
-    // });
+    it('should verify the iframe accepts the text', () => {
+        const iFrameSelector = $('#mce_0_ifr');
+        browser.switchToFrame(iFrameSelector);
+        const paragraph = $('#tinymce');
+        paragraph.clearValue();
+        const text = 'Hello! I am able to write in this form!!!';
+        paragraph.setValue(text);
+        const paragraphNew = $('#tinymce p');
+        const actual = paragraphNew.getText();
+        expect(actual).eq(text);
+    });
 });
