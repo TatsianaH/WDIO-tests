@@ -572,7 +572,7 @@ describe('Testing different elements', () => {
         expect(boldActual).eq(text);
     });
 
-    it('should verify the `Nested frames Page` page is open', () => {
+    it('should verify the `Nested frames` page is open', () => {
         browser.url('https://the-internet.herokuapp.com/');
         $('[href="/nested_frames"]').click();
         const actual = browser.getUrl();
