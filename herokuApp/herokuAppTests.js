@@ -540,9 +540,20 @@ describe('Testing different elements', () => {
         expect(actual).eq(text);
     });
 
-    it('should verify the text is bold and Italic', () => {
+    it('should clear value after `new document` was clicked', () => {
+        browser.switchToParentFrame();
+        const fileBtn = $('#mceu_15-open');
+        fileBtn.click();
+        const newDocBtn = $('#mceu_31');
+        newDocBtn.click();
+        const iFrameSelector = $('#mce_0_ifr');
+        browser.switchToFrame(iFrameSelector);
         const paragraph = $('#tinymce');
-        paragraph.clearValue();
+        const actual = paragraph.getText();
+        expect(actual).eq('');
+    });
+
+    it('should verify the text is bold and Italic', () => {
         browser.switchToParentFrame();
         const boldBtn = $('[aria-label="Bold"]');
         const alignRightBtn = $('[aria-label="Align right"]');
@@ -551,6 +562,7 @@ describe('Testing different elements', () => {
         const iFrameSelector = $('#mce_0_ifr');
         browser.switchToFrame(iFrameSelector);
         const text = 'Hello! I am able to write in this form!!!';
+        const paragraph = $('#tinymce');
         paragraph.addValue(text);
         const paragraphNew = $('#tinymce p');
         const alignActual = paragraphNew.getAttribute('style');
