@@ -511,7 +511,7 @@ describe('Testing different elements', () => {
     //     expect(urlActual).eq(urlExpected);
     // });
 
-    it('should verify the `Login Page` page is open', () => {
+    it('should verify the `Frames` page is open', () => {
         browser.url('https://the-internet.herokuapp.com/');
         $('[href="/frames"]').click();
         const actual = browser.getUrl();
@@ -571,4 +571,12 @@ describe('Testing different elements', () => {
         expect(alignActual).eq(alignExpected);
         expect(boldActual).eq(text);
     });
+
+    it('should verify the `Nested frames Page` page is open', () => {
+        browser.url('https://the-internet.herokuapp.com/');
+        $('[href="/nested_frames"]').click();
+        const actual = browser.getUrl();
+        expect(actual).eq('https://the-internet.herokuapp.com/nested_frames');
+    });
+
 });
