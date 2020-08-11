@@ -572,19 +572,29 @@ describe('Testing different elements', () => {
     //     expect(boldActual).eq(text);
     // });
 
-    it('should verify the `Nested frames` page is open', () => {
+    // it('should verify the `Nested frames` page is open', () => {
+    //     browser.url('https://the-internet.herokuapp.com/');
+    //     $('[href="/nested_frames"]').click();
+    //     const actual = browser.getUrl();
+    //     expect(actual).eq('https://the-internet.herokuapp.com/nested_frames');
+    // });
+    //
+    // it('should verify the page contains 2 framesets with 2 and 3 frames accordingly', () => {
+    //     const frameset1 = $$('frameset frame');
+    //     browser.switchToFrame($('frame[name="frame-top"]'));
+    //     const frameset2 = $$('frameset frame');
+    //     expect(frameset1).to.have.lengthOf(2);
+    //     expect(frameset2).to.have.lengthOf(3);
+    //     browser.switchToParentFrame();
+    // });
+
+    it('should verify the `Horizontal Slider` page is open', () => {
         browser.url('https://the-internet.herokuapp.com/');
-        $('[href="/nested_frames"]').click();
+        $('[href="/horizontal_slider"]').click();
         const actual = browser.getUrl();
-        expect(actual).eq('https://the-internet.herokuapp.com/nested_frames');
+        const actualHeader = $('.example h3').getText();
+        expect(actualHeader).eq('Horizontal Slider');
+        expect(actual).eq('https://the-internet.herokuapp.com/horizontal_slider');
     });
 
-    it('should verify the page contains 2 framesets with 2 and 3 frames accordingly', () => {
-        const frameset1 = $$('frameset frame');
-        browser.switchToFrame($('frame[name="frame-top"]'));
-        const frameset2 = $$('frameset frame');
-        expect(frameset1).to.have.lengthOf(2);
-        expect(frameset2).to.have.lengthOf(3);
-        browser.switchToParentFrame();
-    });
 });
