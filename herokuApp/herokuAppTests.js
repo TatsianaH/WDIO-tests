@@ -511,71 +511,79 @@ describe('Testing different elements', () => {
     //     expect(urlActual).eq(urlExpected);
     // });
 
-    it('should verify the `Frames` page is open', () => {
-        browser.url('https://the-internet.herokuapp.com/');
-        $('[href="/frames"]').click();
-        const actual = browser.getUrl();
-        const actualHeader = $('.example h3').getText();
-        expect(actual).eq('https://the-internet.herokuapp.com/frames');
-        expect(actualHeader).eq('Frames');
-    });
-
-    it('should verify `iFrame` link gets redirected to iFrame page', () => {
-        $('[href="/iframe"]').click();
-        const actual = browser.getUrl();
-        expect(actual).eq('https://the-internet.herokuapp.com/iframe');
-        const actualHeader = $('.example h3').getText();
-        expect(actualHeader).eq('An iFrame containing the TinyMCE WYSIWYG Editor');
-    });
-
-    it('should verify the iframe accepts the text', () => {
-        const iFrameSelector = $('#mce_0_ifr');
-        browser.switchToFrame(iFrameSelector);
-        const paragraph = $('#tinymce');
-        paragraph.clearValue();
-        const text = 'Hello! I am able to write in this form!!!';
-        paragraph.setValue(text);
-        const paragraphNew = $('#tinymce p');
-        const actual = paragraphNew.getText();
-        expect(actual).eq(text);
-    });
-
-    it('should clear value after `new document` was clicked', () => {
-        browser.switchToParentFrame();
-        const fileBtn = $('#mceu_15-open');
-        fileBtn.click();
-        const newDocBtn = $('#mceu_31');
-        newDocBtn.click();
-        const iFrameSelector = $('#mce_0_ifr');
-        browser.switchToFrame(iFrameSelector);
-        const paragraph = $('#tinymce');
-        const actual = paragraph.getText();
-        expect(actual).eq('');
-    });
-
-    it('should verify the text is bold and Italic', () => {
-        browser.switchToParentFrame();
-        const boldBtn = $('[aria-label="Bold"]');
-        const alignRightBtn = $('[aria-label="Align right"]');
-        boldBtn.click();
-        alignRightBtn.click();
-        const iFrameSelector = $('#mce_0_ifr');
-        browser.switchToFrame(iFrameSelector);
-        const text = 'Hello! I am able to write in this form!!!';
-        const paragraph = $('#tinymce');
-        paragraph.addValue(text);
-        const paragraphNew = $('#tinymce p');
-        const alignActual = paragraphNew.getAttribute('style');
-        const alignExpected = 'text-align: right;';
-        const boldActual = $('#tinymce p strong').getText();
-        expect(alignActual).eq(alignExpected);
-        expect(boldActual).eq(text);
-    });
+    // it('should verify the `Frames` page is open', () => {
+    //     browser.url('https://the-internet.herokuapp.com/');
+    //     $('[href="/frames"]').click();
+    //     const actual = browser.getUrl();
+    //     const actualHeader = $('.example h3').getText();
+    //     expect(actual).eq('https://the-internet.herokuapp.com/frames');
+    //     expect(actualHeader).eq('Frames');
+    // });
+    //
+    // it('should verify `iFrame` link gets redirected to iFrame page', () => {
+    //     $('[href="/iframe"]').click();
+    //     const actual = browser.getUrl();
+    //     expect(actual).eq('https://the-internet.herokuapp.com/iframe');
+    //     const actualHeader = $('.example h3').getText();
+    //     expect(actualHeader).eq('An iFrame containing the TinyMCE WYSIWYG Editor');
+    // });
+    //
+    // it('should verify the iframe accepts the text', () => {
+    //     const iFrameSelector = $('#mce_0_ifr');
+    //     browser.switchToFrame(iFrameSelector);
+    //     const paragraph = $('#tinymce');
+    //     paragraph.clearValue();
+    //     const text = 'Hello! I am able to write in this form!!!';
+    //     paragraph.setValue(text);
+    //     const paragraphNew = $('#tinymce p');
+    //     const actual = paragraphNew.getText();
+    //     expect(actual).eq(text);
+    // });
+    //
+    // it('should clear value after `new document` was clicked', () => {
+    //     browser.switchToParentFrame();
+    //     const fileBtn = $('#mceu_15-open');
+    //     fileBtn.click();
+    //     const newDocBtn = $('#mceu_31');
+    //     newDocBtn.click();
+    //     const iFrameSelector = $('#mce_0_ifr');
+    //     browser.switchToFrame(iFrameSelector);
+    //     const paragraph = $('#tinymce');
+    //     const actual = paragraph.getText();
+    //     expect(actual).eq('');
+    // });
+    //
+    // it('should verify the text is bold and Italic', () => {
+    //     browser.switchToParentFrame();
+    //     const boldBtn = $('[aria-label="Bold"]');
+    //     const alignRightBtn = $('[aria-label="Align right"]');
+    //     boldBtn.click();
+    //     alignRightBtn.click();
+    //     const iFrameSelector = $('#mce_0_ifr');
+    //     browser.switchToFrame(iFrameSelector);
+    //     const text = 'Hello! I am able to write in this form!!!';
+    //     const paragraph = $('#tinymce');
+    //     paragraph.addValue(text);
+    //     const paragraphNew = $('#tinymce p');
+    //     const alignActual = paragraphNew.getAttribute('style');
+    //     const alignExpected = 'text-align: right;';
+    //     const boldActual = $('#tinymce p strong').getText();
+    //     expect(alignActual).eq(alignExpected);
+    //     expect(boldActual).eq(text);
+    // });
 
     it('should verify the `Nested frames` page is open', () => {
         browser.url('https://the-internet.herokuapp.com/');
         $('[href="/nested_frames"]').click();
         const actual = browser.getUrl();
         expect(actual).eq('https://the-internet.herokuapp.com/nested_frames');
+    });
+
+    it('should verify the page contains 2 framesets with 2 and 3 frames accordingly', () => {
+        const frameset1 = $$('frameset frame');
+        browser.switchToFrame($('frame[name="frame-top"]'));
+        const frameset2 = $$('frameset frame');
+        expect(frameset1).to.have.lengthOf(2);
+        expect(frameset2).to.have.lengthOf(3);
     });
 });
