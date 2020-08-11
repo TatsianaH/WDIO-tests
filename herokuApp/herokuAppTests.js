@@ -597,4 +597,22 @@ describe('Testing different elements', () => {
         expect(actual).eq('https://the-internet.herokuapp.com/horizontal_slider');
     });
 
+    it('should verify the input is present on the page and has initial value equals 0', () => {
+        const input = $('input');
+        const range = $('#range');
+        const valueActual = range.getText();
+        expect(input.isDisplayed()).true;
+        expect(valueActual).eq('0');
+    });
+
+    it('should move horizontal slider to the right until its maximum value', () => {
+        const range = $('#range');
+        const input = $('input');
+        input.click();
+        for(let i = 0; i < 5; i += 0.5){
+            browser.keys('ArrowRight');
+        }
+        const valueActual = range.getText();
+        expect(valueActual).eq('5');
+    });
 });
