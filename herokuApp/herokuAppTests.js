@@ -625,7 +625,7 @@ describe('Testing different elements', () => {
         expect(actual).eq('https://the-internet.herokuapp.com/hovers');
     });
 
-    it('should verify 3 iages are presented on the page', () => {
+    it('should verify 3 images are presented on the page', () => {
         const images = $$('.figure');
         for(let i = 0; i < images.length; i++){
             const imagesInfo = $$('.figure .figcaption');
