@@ -585,5 +585,6 @@ describe('Testing different elements', () => {
         const frameset2 = $$('frameset frame');
         expect(frameset1).to.have.lengthOf(2);
         expect(frameset2).to.have.lengthOf(3);
+        browser.switchToParentFrame();
     });
 });
