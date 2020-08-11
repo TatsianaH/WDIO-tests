@@ -636,6 +636,7 @@ describe('Testing different elements', () => {
             expect(displayAfter).eq('block');
             const subheader = $$('.figure .figcaption h5' );
             expect(subheader[i].getText()).eq(`name: user${i + 1}`);
+            browser.back();
         }
     });
 });
