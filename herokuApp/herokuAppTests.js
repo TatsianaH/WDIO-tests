@@ -624,4 +624,18 @@ describe('Testing different elements', () => {
         expect(actualHeader).eq('Hovers');
         expect(actual).eq('https://the-internet.herokuapp.com/hovers');
     });
+
+    it('should verify 3 iages are presented on the page', () => {
+        const images = $$('.figure');
+        for(let i = 0; i < images.length; i++){
+            const imagesInfo = $$('.figure .figcaption');
+            const displayBefore = imagesInfo[i].getCSSProperty('display').value;
+            expect(displayBefore).eq('none');
+            images[i].moveTo();
+            const displayAfter = images[i].getCSSProperty('display').value;
+            expect(displayAfter).eq('block');
+            const subheader = $$('.figure .figcaption h5' );
+            expect(subheader[i].getText()).eq(`name: user${i + 1}`);
+        }
+    });
 });
