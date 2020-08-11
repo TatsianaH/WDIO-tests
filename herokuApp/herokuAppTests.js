@@ -578,6 +578,4 @@ describe('Testing different elements', () => {
         const actual = browser.getUrl();
         expect(actual).eq('https://the-internet.herokuapp.com/nested_frames');
     });
-
-
 });
