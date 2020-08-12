@@ -654,4 +654,12 @@ describe('Testing different elements', () => {
         const actual = Number.parseInt(input.getValue());
         expect(actual).eq(10);
     });
+
+    it('should verify the value can be increased by 1 if user clicks arrow up', () => {
+        const input = $('input');
+        input.click();
+        browser.keys('ArrowUp');
+        const actual = Number.parseInt(input.getValue());
+        expect(actual).eq(11);
+    });
 });
