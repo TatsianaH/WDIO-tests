@@ -617,49 +617,69 @@ describe('Testing different elements', () => {
     //     browser.back();
     // });
 
-    it('should verify the `Hovers` page is open', () => {
-        $('[href="/hovers"]').click();
+    // it('should verify the `Hovers` page is open', () => {
+    //     $('[href="/hovers"]').click();
+    //     const actual = browser.getUrl();
+    //     const actualHeader = $('.example h3').getText();
+    //     expect(actualHeader).eq('Hovers');
+    //     expect(actual).eq('https://the-internet.herokuapp.com/hovers');
+    // });
+    //
+    // it('should verify 3 images are presented on the page', () => {
+    //     const images = $$('.figure');
+    //     for(let i = 0; i < images.length; i++){
+    //         const imagesInfo = $$('.figure .figcaption');
+    //         const displayBefore = imagesInfo[i].getCSSProperty('display').value;
+    //         expect(displayBefore).eq('none');
+    //         images[i].moveTo();
+    //         const displayAfter = images[i].getCSSProperty('display').value;
+    //         expect(displayAfter).eq('block');
+    //         const subheader = $$('.figure .figcaption h5' );
+    //         expect(subheader[i].getText()).eq(`name: user${i + 1}`);
+    //     }
+    //     browser.back();
+    // });
+    //
+    // it('should verify the `Inputs` page is open', () => {
+    //     $('[href="/inputs"]').click();
+    //     const actual = browser.getUrl();
+    //     const actualHeader = $('h3').getText();
+    //     expect(actualHeader).eq('Inputs');
+    //     expect(actual).eq('https://the-internet.herokuapp.com/inputs');
+    // });
+    //
+    // it('should verify the input accepts numbers', () => {
+    //     const input = $('input');
+    //     input.setValue(10);
+    //     const actual = Number.parseInt(input.getValue());
+    //     expect(actual).eq(10);
+    // });
+    //
+    // it('should verify the value can be increased by 1 if user clicks arrow up', () => {
+    //     const input = $('input');
+    //     input.click();
+    //     browser.keys('ArrowUp');
+    //     const actual = Number.parseInt(input.getValue());
+    //     expect(actual).eq(11);
+    //     browser.back();
+    // });
+
+    it('should verify the `JQueryUI - Menu` page is open', () => {
+        $('[href="/jqueryui/menu"]').click();
         const actual = browser.getUrl();
         const actualHeader = $('.example h3').getText();
-        expect(actualHeader).eq('Hovers');
-        expect(actual).eq('https://the-internet.herokuapp.com/hovers');
-    });
-
-    it('should verify 3 images are presented on the page', () => {
-        const images = $$('.figure');
-        for(let i = 0; i < images.length; i++){
-            const imagesInfo = $$('.figure .figcaption');
-            const displayBefore = imagesInfo[i].getCSSProperty('display').value;
-            expect(displayBefore).eq('none');
-            images[i].moveTo();
-            const displayAfter = images[i].getCSSProperty('display').value;
-            expect(displayAfter).eq('block');
-            const subheader = $$('.figure .figcaption h5' );
-            expect(subheader[i].getText()).eq(`name: user${i + 1}`);
-        }
+        expect(actualHeader).eq('JQueryUI - Menu');
+        expect(actual).eq('https://the-internet.herokuapp.com/jqueryui/menu');
         browser.back();
     });
 
-    it('should verify the `Inputs` page is open', () => {
-        $('[href="/inputs"]').click();
+    it('should verify the `JQueryUI - Menu` page is open', () => {
+        $('[href="/jqueryui/menu"]').click();
         const actual = browser.getUrl();
-        const actualHeader = $('h3').getText();
-        expect(actualHeader).eq('Inputs');
-        expect(actual).eq('https://the-internet.herokuapp.com/inputs');
+        const actualHeader = $('.example h3').getText();
+        expect(actualHeader).eq('JQueryUI - Menu');
+        expect(actual).eq('https://the-internet.herokuapp.com/jqueryui/menu');
+        browser.back();
     });
 
-    it('should verify the input accepts numbers', () => {
-        const input = $('input');
-        input.setValue(10);
-        const actual = Number.parseInt(input.getValue());
-        expect(actual).eq(10);
-    });
-
-    it('should verify the value can be increased by 1 if user clicks arrow up', () => {
-        const input = $('input');
-        input.click();
-        browser.keys('ArrowUp');
-        const actual = Number.parseInt(input.getValue());
-        expect(actual).eq(11);
-    });
 });
