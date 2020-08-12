@@ -636,7 +636,15 @@ describe('Testing different elements', () => {
             expect(displayAfter).eq('block');
             const subheader = $$('.figure .figcaption h5' );
             expect(subheader[i].getText()).eq(`name: user${i + 1}`);
-            browser.back();
         }
+        browser.back();
+    });
+
+    it('should verify the `Inputs` page is open', () => {
+        $('[href="/inputs"]').click();
+        const actual = browser.getUrl();
+        const actualHeader = $('h3').getText();
+        expect(actualHeader).eq('Inputs');
+        expect(actual).eq('https://the-internet.herokuapp.com/inputs');
     });
 });
