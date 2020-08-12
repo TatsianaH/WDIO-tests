@@ -647,4 +647,11 @@ describe('Testing different elements', () => {
         expect(actualHeader).eq('Inputs');
         expect(actual).eq('https://the-internet.herokuapp.com/inputs');
     });
+
+    it('should verify the input accepts numbers', () => {
+        const input = $('input');
+        input.setValue(10);
+        const actual = Number.parseInt(input.getValue());
+        expect(actual).eq(10);
+    });
 });
