@@ -673,13 +673,12 @@ describe('Testing different elements', () => {
         browser.back();
     });
 
-    it('should verify the `JQueryUI - Menu` page is open', () => {
-        $('[href="/jqueryui/menu"]').click();
+    it('should verify the `JavaScript Alerts` page is open', () => {
+        $('[href="/javascript_alerts"]').click();
         const actual = browser.getUrl();
         const actualHeader = $('.example h3').getText();
-        expect(actualHeader).eq('JQueryUI - Menu');
-        expect(actual).eq('https://the-internet.herokuapp.com/jqueryui/menu');
-        browser.back();
+        expect(actualHeader).eq('JavaScript Alerts');
+        expect(actual).eq('https://the-internet.herokuapp.com/javascript_alerts');
     });
 
 });
