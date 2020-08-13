@@ -681,4 +681,14 @@ describe('Testing different elements', () => {
         expect(actual).eq('https://the-internet.herokuapp.com/javascript_alerts');
     });
 
+    it('should verify the 3 buttons are presented on the page', () => {
+        const buttons = $$('button');
+        const btnExpected = ['Click for JS Alert', 'Click for JS Confirm', 'Click for JS Prompt'];
+        let buttonName = [];
+        buttons.forEach(button => {
+            buttonName.push(button.getText());
+        });
+        expect(buttonName).to.deep.equal(btnExpected);
+    });
+
 });
