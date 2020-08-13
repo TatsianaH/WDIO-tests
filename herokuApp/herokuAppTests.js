@@ -691,4 +691,11 @@ describe('Testing different elements', () => {
         expect(buttonName).to.deep.equal(btnExpected);
     });
 
+    it('should verify that all buttons are clickable', () => {
+        const buttons = $$('button');
+        buttons.forEach(button => {
+            expect(button.isClickable()).true;
+        });
+    });
+
 });
