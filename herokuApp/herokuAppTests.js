@@ -698,11 +698,47 @@ describe('Testing different elements', () => {
         });
     });
 
+    it('should verify no text in `Result` presented', () => {
+        const result = $('#result');
+        const actual = result.getText();
+        expect(actual).eq('');
+    });
+
     it('should verify the text of the alert message after `Click for JS Alert` button was clicked', () => {
         const buttons = $$('button');
         buttons[0].click();
         const actualText = browser.getAlertText();
         expect(actualText).eq('I am a JS Alert');
-        browser.acceptAlert();
     });
+
+    it('should verify the text in `Result` after alert message was accepted', () => {
+        browser.acceptAlert();
+        const result = $('#result');
+        const actual = result.getText();
+        expect(actual).eq('You successfuly clicked an alert');
+    });
+
+    it('should verify the text of the alert message after `Click for JS Confirm` button was clicked', () => {
+        const buttons = $$('button');
+        buttons[1].click();
+        const actualText = browser.getAlertText();
+        expect(actualText).eq('I am a JS Confirm');
+    });
+
+    it('should verify the text in `Result` after alert message was accepted', () => {
+        browser.acceptAlert();
+        const result = $('#result');
+        const actual = result.getText();
+        expect(actual).eq('You clicked: Ok');
+    });
+
+    it('should verify the text in `Result` after alert message was canceled', () => {
+        const buttons = $$('button');
+        buttons[1].click();
+        browser.dismissAlert();
+        const result = $('#result');
+        const actual = result.getText();
+        expect(actual).eq('You clicked: Cancel');
+    });
+
 });
