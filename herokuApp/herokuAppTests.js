@@ -741,4 +741,38 @@ describe('Testing different elements', () => {
         expect(actual).eq('You clicked: Cancel');
     });
 
+    it('should verify the text of the alert message after `Click for JS Prompt` button was clicked', () => {
+        const buttons = $$('button');
+        buttons[2].click();
+        const actualText = browser.getAlertText();
+        expect(actualText).eq('I am a JS prompt');
+    });
+
+    it('should verify the text in `Result` after alert message was accepted and no text was entered', () => {
+        browser.acceptAlert();
+        const result = $('#result');
+        const actual = result.getText();
+        expect(actual).eq('You entered:');
+    });
+
+    it('should verify the text in `Result` after alert message was canceled', () => {
+        const buttons = $$('button');
+        buttons[2].click();
+        browser.dismissAlert();
+        const result = $('#result');
+        const actual = result.getText();
+        expect(actual).eq('You entered: null');
+    });
+
+    it('should verify the text in `Result` after alert message was accepted and a text was entered', () => {
+        const buttons = $$('button');
+        buttons[2].click();
+        const text = 'Hello!!!';
+        browser.sendAlertText(text);
+        browser.acceptAlert();
+        const result = $('#result');
+        const actual = result.getText();
+        expect(actual).eq(`You entered: ${text}`);
+    });
+
 });
