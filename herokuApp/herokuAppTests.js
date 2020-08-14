@@ -698,4 +698,11 @@ describe('Testing different elements', () => {
         });
     });
 
+    it('should verify the text of the alert message after `Click for JS Alert` button was clicked', () => {
+        const buttons = $$('button');
+        buttons[0].click();
+        const actualText = browser.getAlertText();
+        expect(actualText).eq('I am a JS Alert');
+        browser.acceptAlert();
+    });
 });
