@@ -821,5 +821,37 @@ describe('Testing different elements', () => {
     it('should return user to old page after a new window was closed', () => {
         const actual = browser.getUrl();
         expect(actual).eq('https://the-internet.herokuapp.com/windows');
+        browser.back();
+    });
+
+    it('should verify the `Nested frames` page is open', () => {
+        $('[href="/nested_frames"]').click();
+        const actual = browser.getUrl();
+        expect(actual).eq('https://the-internet.herokuapp.com/nested_frames');
+    });
+
+    it('should verify 3 frames are inside the `frame-top` frame', () => {
+        const frameTop = $('frame[name="frame-top"]');
+        browser.switchToFrame(frameTop);
+        const frames = $$('frameset frame');
+        expect(frames).to.have.lengthOf(3);
+    });
+
+    it('should verify the content in middle frame is `MIDDLE`', () => {
+        const frameMiddle = $('frame[name="frame-middle"]');
+        browser.switchToFrame(frameMiddle);
+        const content = $('#content');
+        const actual = content.getText();
+        expect(actual).eq('MIDDLE');
+    });
+
+    it('should verify the content in bottom frame is `BOTTOM`', () => {
+        browser.switchToParentFrame();
+        browser.switchToParentFrame();
+        const frameBottom = $('frame[name="frame-bottom"]');
+        browser.switchToFrame(frameBottom);
+        const content = $('body');
+        const actual = content.getText();
+        expect(actual).eq('BOTTOM');
     });
 });
