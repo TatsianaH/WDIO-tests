@@ -854,4 +854,27 @@ describe('Testing different elements', () => {
         const actual = content.getText();
         expect(actual).eq('BOTTOM');
     });
+
+    it('should verify the `Notification Message` page is open', () => {
+        browser.url('http://the-internet.herokuapp.com/notification_message_rendered');
+        const urlActual = browser.getUrl();
+        const headerActual = $('.example h3').getText();
+        expect(urlActual).eq('http://the-internet.herokuapp.com/notification_message_rendered');
+        expect(headerActual).eq('Notification Message');
+    });
+
+    it('should verify there is no notification message on the page', () => {
+        const msg = $('#flash');
+        expect(msg.isDisplayed()).false;
+    });
+
+    it('should verify the success notification pops up after the `Click here` link was clicked', () => {
+        const link = $('a[href="/notification_message"]');
+        link.click();
+        const msg = $('#flash');
+        msg.waitForDisplayed();
+        const msgActual = msg.getText();
+        const msgExpected = ['Action successful\n×','Action unsuccesful, please try again\n×'];
+        expect(msgExpected).to.include(msgActual);
+    });
 });
