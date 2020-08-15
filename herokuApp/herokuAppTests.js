@@ -793,4 +793,33 @@ describe('Testing different elements', () => {
         expect(actual).eq(`You entered: ${key.toUpperCase()}`);
         browser.back();
     });
+
+    it('should verify the `Opening a new window` page is open', () => {
+        $('[href="/windows"]').click();
+        const actual = browser.getUrl();
+        const actualHeader = $('.example h3').getText();
+        expect(actualHeader).eq('Opening a new window');
+        expect(actual).eq('https://the-internet.herokuapp.com/windows');
+    });
+
+    it('should verify the new window will be opened in a new tab after the link `Click here` was clicked', () => {
+        const link = $('a[href="/windows/new"]');
+        link.click();
+        const handles = browser.getWindowHandles();
+
+        if (handles.length > 1) {
+            browser.switchToWindow(handles[1]);
+            const urlActual = browser.getUrl();
+            const headerActual = $('.example h3').getText();
+            expect(headerActual).eq('New Window');
+            expect(urlActual).eq('https://the-internet.herokuapp.com/windows/new');
+            browser.closeWindow();
+            browser.switchToWindow(handles[0]);
+        }
+    });
+
+    it('should return user to old page after a new window was closed', () => {
+        const actual = browser.getUrl();
+        expect(actual).eq('https://the-internet.herokuapp.com/windows');
+    });
 });
