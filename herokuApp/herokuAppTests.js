@@ -868,7 +868,7 @@ describe('Testing different elements', () => {
         expect(msg.isDisplayed()).false;
     });
 
-    it('should verify the success notification pops up after the `Click here` link was clicked', () => {
+    it('should verify the notification message pops up after the `Click here` link was clicked', () => {
         const link = $('a[href="/notification_message"]');
         link.click();
         const msg = $('#flash');
