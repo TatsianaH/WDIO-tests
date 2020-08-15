@@ -63,7 +63,7 @@ describe('Testing different elements', () => {
     //     expect(actual).eq('https://the-internet.herokuapp.com/basic_auth');
     //     browser.back();
     // });
-
+    //
     // it('should verify the `Broken image` page is open', () => {
     //     $('[href="/broken_images"]').click();
     //     const actual = browser.getUrl();
@@ -79,7 +79,7 @@ describe('Testing different elements', () => {
     //     });
     //     browser.back();
     // });
-
+    //
     // it('should verify the `Challenging DOM` page is open', () => {
     //     $('[href="/challenging_dom"]').click();
     //     const actual = browser.getUrl();
@@ -135,7 +135,7 @@ describe('Testing different elements', () => {
     //     }
     //     browser.back();
     // });
-
+    //
     // it('should verify the `Checkboxes` page is open', () => {
     //     $('[href="/checkboxes"]').click();
     //     const actual = browser.getUrl();
@@ -174,7 +174,7 @@ describe('Testing different elements', () => {
     //     browser.acceptAlert();
     //     browser.back();
     // });
-
+    //
     // it('should verify the `Disappearing Elements` page is open', () => {
     //     $('[href="/disappearing_elements"]').click();
     //     const actual = browser.getUrl();
@@ -209,7 +209,7 @@ describe('Testing different elements', () => {
     //     expect(getNumber(links, linksNumber)).true;
     //     browser.back();
     // });
-
+    //
     // it('should verify the `Disappearing Elements` page is open', () => {
     //     $('[href="/drag_and_drop"]').click();
     //     const actual = browser.getUrl();
@@ -224,19 +224,19 @@ describe('Testing different elements', () => {
     //     expect(column1).eq('A');
     //     expect(column2).eq('B');
     // });
-
-    // does not work on the website
-    it.skip('should verify after drag and drop column2 to column1 place the column1 has the header `B` and the column2 - `A`', () => {
-        const column1 = $('#column-a');
-        const column2 = $('#column-b');
-        column2.dragAndDrop(column1);
-        const column11 = $('#column-a header').getText();
-        const column22 = $('#column-b header').getText();
-        expect(column11).eq('B');
-        expect(column22).eq('A');
-        browser.back();
-    });
-
+    //
+    // // does not work on the website
+    // it.skip('should verify after drag and drop column2 to column1 place the column1 has the header `B` and the column2 - `A`', () => {
+    //     const column1 = $('#column-a');
+    //     const column2 = $('#column-b');
+    //     column2.dragAndDrop(column1);
+    //     const column11 = $('#column-a header').getText();
+    //     const column22 = $('#column-b header').getText();
+    //     expect(column11).eq('B');
+    //     expect(column22).eq('A');
+    //     browser.back();
+    // });
+    //
     // it('should verify the `Dropdown List` page is open', () => {
     //     browser.url('https://the-internet.herokuapp.com/');
     //     $('[href="/dropdown"]').click();
@@ -276,7 +276,7 @@ describe('Testing different elements', () => {
     //     expect(actual).eq('Option 2');
     //     browser.back();
     // });
-
+    //
     // it('should verify the `Dynamic controls` page is open', () => {
     //     $('[href="/dynamic_controls"]').click();
     //     const actual = browser.getUrl();
@@ -296,7 +296,7 @@ describe('Testing different elements', () => {
     //     expect(actualCheckbox).eq('A checkbox');
     //     expect(actualRemoveBtn).true;
     // });
-
+    //
     // it('should verify `Add` button will be displayed and checkbox will disappear after `Remove` button was clicked', () => {
     //     const button = $$('button');
     //     const checkbox = $('#checkbox');
@@ -327,7 +327,7 @@ describe('Testing different elements', () => {
     //     expect(actualText).eq('Remove');
     //     expect(actualCheckbox).true;
     // });
-
+    //
     // it('should verify the input under `Enable/disable` subheader is disabled', () => {
     //     const input = $('#input-example input');
     //     const actual = input.getAttribute('disabled');
@@ -374,7 +374,7 @@ describe('Testing different elements', () => {
     //     expect(actualBtn).eq('Enable');
     //     browser.back();
     // });
-
+    //
     // it('should verify the `Entry Ad` page is open', () => {
     //     $('[href="/entry_ad"]').click();
     //     const actual = browser.getUrl();
@@ -418,7 +418,7 @@ describe('Testing different elements', () => {
     //     expect(actual).true;
     //     browser.back();
     // });
-
+    //
     // it('should verify the `Forgot Password` page is open', () => {
     //     $('[href="/forgot_password"]').click();
     //     const actual = browser.getUrl();
@@ -439,7 +439,7 @@ describe('Testing different elements', () => {
     //     browser.back();
     //     browser.back();
     // });
-
+    //
     // it('should verify the `Login Page` page is open', () => {
     //     $('[href="/login"]').click();
     //     const actual = browser.getUrl();
@@ -510,7 +510,7 @@ describe('Testing different elements', () => {
     //     expect(alertMsgTextActual).eq(alertMsgTextExpected);
     //     expect(urlActual).eq(urlExpected);
     // });
-
+    //
     // it('should verify the `Frames` page is open', () => {
     //     browser.url('https://the-internet.herokuapp.com/');
     //     $('[href="/frames"]').click();
@@ -571,7 +571,7 @@ describe('Testing different elements', () => {
     //     expect(alignActual).eq(alignExpected);
     //     expect(boldActual).eq(text);
     // });
-
+    //
     // it('should verify the `Nested frames` page is open', () => {
     //     browser.url('https://the-internet.herokuapp.com/');
     //     $('[href="/nested_frames"]').click();
@@ -587,7 +587,7 @@ describe('Testing different elements', () => {
     //     expect(frameset2).to.have.lengthOf(3);
     //     browser.switchToParentFrame();
     // });
-
+    //
     // it('should verify the `Horizontal Slider` page is open', () => {
     //     browser.url('https://the-internet.herokuapp.com/');
     //     $('[href="/horizontal_slider"]').click();
@@ -616,7 +616,7 @@ describe('Testing different elements', () => {
     //     expect(valueActual).eq('5');
     //     browser.back();
     // });
-
+    //
     // it('should verify the `Hovers` page is open', () => {
     //     $('[href="/hovers"]').click();
     //     const actual = browser.getUrl();
@@ -663,116 +663,134 @@ describe('Testing different elements', () => {
     //     expect(actual).eq(11);
     //     browser.back();
     // });
+    //
+    // it('should verify the `JQueryUI - Menu` page is open', () => {
+    //     $('[href="/jqueryui/menu"]').click();
+    //     const actual = browser.getUrl();
+    //     const actualHeader = $('.example h3').getText();
+    //     expect(actualHeader).eq('JQueryUI - Menu');
+    //     expect(actual).eq('https://the-internet.herokuapp.com/jqueryui/menu');
+    //     browser.back();
+    // });
+    //
+    // it('should verify the `JavaScript Alerts` page is open', () => {
+    //     $('[href="/javascript_alerts"]').click();
+    //     const actual = browser.getUrl();
+    //     const actualHeader = $('.example h3').getText();
+    //     expect(actualHeader).eq('JavaScript Alerts');
+    //     expect(actual).eq('https://the-internet.herokuapp.com/javascript_alerts');
+    // });
+    //
+    // it('should verify the 3 buttons are presented on the page', () => {
+    //     const buttons = $$('button');
+    //     const btnExpected = ['Click for JS Alert', 'Click for JS Confirm', 'Click for JS Prompt'];
+    //     let buttonName = [];
+    //     buttons.forEach(button => {
+    //         buttonName.push(button.getText());
+    //     });
+    //     expect(buttonName).to.deep.equal(btnExpected);
+    // });
+    //
+    // it('should verify that all buttons are clickable', () => {
+    //     const buttons = $$('button');
+    //     buttons.forEach(button => {
+    //         expect(button.isClickable()).true;
+    //     });
+    // });
+    //
+    // it('should verify no text in `Result` presented', () => {
+    //     const result = $('#result');
+    //     const actual = result.getText();
+    //     expect(actual).eq('');
+    // });
+    //
+    // it('should verify the text of the alert message after `Click for JS Alert` button was clicked', () => {
+    //     const buttons = $$('button');
+    //     buttons[0].click();
+    //     const actualText = browser.getAlertText();
+    //     expect(actualText).eq('I am a JS Alert');
+    // });
+    //
+    // it('should verify the text in `Result` after alert message was accepted', () => {
+    //     browser.acceptAlert();
+    //     const result = $('#result');
+    //     const actual = result.getText();
+    //     expect(actual).eq('You successfuly clicked an alert');
+    // });
+    //
+    // it('should verify the text of the alert message after `Click for JS Confirm` button was clicked', () => {
+    //     const buttons = $$('button');
+    //     buttons[1].click();
+    //     const actualText = browser.getAlertText();
+    //     expect(actualText).eq('I am a JS Confirm');
+    // });
+    //
+    // it('should verify the text in `Result` after alert message was accepted', () => {
+    //     browser.acceptAlert();
+    //     const result = $('#result');
+    //     const actual = result.getText();
+    //     expect(actual).eq('You clicked: Ok');
+    // });
+    //
+    // it('should verify the text in `Result` after alert message was canceled', () => {
+    //     const buttons = $$('button');
+    //     buttons[1].click();
+    //     browser.dismissAlert();
+    //     const result = $('#result');
+    //     const actual = result.getText();
+    //     expect(actual).eq('You clicked: Cancel');
+    // });
+    //
+    // it('should verify the text of the alert message after `Click for JS Prompt` button was clicked', () => {
+    //     const buttons = $$('button');
+    //     buttons[2].click();
+    //     const actualText = browser.getAlertText();
+    //     expect(actualText).eq('I am a JS prompt');
+    // });
+    //
+    // it('should verify the text in `Result` after alert message was accepted and no text was entered', () => {
+    //     browser.acceptAlert();
+    //     const result = $('#result');
+    //     const actual = result.getText();
+    //     expect(actual).eq('You entered:');
+    // });
+    //
+    // it('should verify the text in `Result` after alert message was canceled', () => {
+    //     const buttons = $$('button');
+    //     buttons[2].click();
+    //     browser.dismissAlert();
+    //     const result = $('#result');
+    //     const actual = result.getText();
+    //     expect(actual).eq('You entered: null');
+    // });
 
-    it('should verify the `JQueryUI - Menu` page is open', () => {
-        $('[href="/jqueryui/menu"]').click();
+    // it('should verify the text in `Result` after alert message was accepted and a text was entered', () => {
+    //     const buttons = $$('button');
+    //     buttons[2].click();
+    //     const text = 'Hello!!!';
+    //     browser.sendAlertText(text);
+    //     browser.acceptAlert();
+    //     const result = $('#result');
+    //     const actual = result.getText();
+    //     expect(actual).eq(`You entered: ${text}`);
+    // });
+
+    it('should verify the `Key Presses` page is open', () => {
+        $('[href="/key_presses"]').click();
         const actual = browser.getUrl();
         const actualHeader = $('.example h3').getText();
-        expect(actualHeader).eq('JQueryUI - Menu');
-        expect(actual).eq('https://the-internet.herokuapp.com/jqueryui/menu');
+        expect(actualHeader).eq('Key Presses');
+        expect(actual).eq('https://the-internet.herokuapp.com/key_presses');
+    });
+
+    it('should verify the input accepts space and as result a message with the same key appears', () => {
+        const input = $('#target');
+        const result = $('#result');
+        const key = 'Space';
+        input.click();
+        browser.keys(key);
+        const actual = result.getText();
+        expect(actual).eq(`You entered: ${key.toUpperCase()}`);
         browser.back();
     });
-
-    it('should verify the `JavaScript Alerts` page is open', () => {
-        $('[href="/javascript_alerts"]').click();
-        const actual = browser.getUrl();
-        const actualHeader = $('.example h3').getText();
-        expect(actualHeader).eq('JavaScript Alerts');
-        expect(actual).eq('https://the-internet.herokuapp.com/javascript_alerts');
-    });
-
-    it('should verify the 3 buttons are presented on the page', () => {
-        const buttons = $$('button');
-        const btnExpected = ['Click for JS Alert', 'Click for JS Confirm', 'Click for JS Prompt'];
-        let buttonName = [];
-        buttons.forEach(button => {
-            buttonName.push(button.getText());
-        });
-        expect(buttonName).to.deep.equal(btnExpected);
-    });
-
-    it('should verify that all buttons are clickable', () => {
-        const buttons = $$('button');
-        buttons.forEach(button => {
-            expect(button.isClickable()).true;
-        });
-    });
-
-    it('should verify no text in `Result` presented', () => {
-        const result = $('#result');
-        const actual = result.getText();
-        expect(actual).eq('');
-    });
-
-    it('should verify the text of the alert message after `Click for JS Alert` button was clicked', () => {
-        const buttons = $$('button');
-        buttons[0].click();
-        const actualText = browser.getAlertText();
-        expect(actualText).eq('I am a JS Alert');
-    });
-
-    it('should verify the text in `Result` after alert message was accepted', () => {
-        browser.acceptAlert();
-        const result = $('#result');
-        const actual = result.getText();
-        expect(actual).eq('You successfuly clicked an alert');
-    });
-
-    it('should verify the text of the alert message after `Click for JS Confirm` button was clicked', () => {
-        const buttons = $$('button');
-        buttons[1].click();
-        const actualText = browser.getAlertText();
-        expect(actualText).eq('I am a JS Confirm');
-    });
-
-    it('should verify the text in `Result` after alert message was accepted', () => {
-        browser.acceptAlert();
-        const result = $('#result');
-        const actual = result.getText();
-        expect(actual).eq('You clicked: Ok');
-    });
-
-    it('should verify the text in `Result` after alert message was canceled', () => {
-        const buttons = $$('button');
-        buttons[1].click();
-        browser.dismissAlert();
-        const result = $('#result');
-        const actual = result.getText();
-        expect(actual).eq('You clicked: Cancel');
-    });
-
-    it('should verify the text of the alert message after `Click for JS Prompt` button was clicked', () => {
-        const buttons = $$('button');
-        buttons[2].click();
-        const actualText = browser.getAlertText();
-        expect(actualText).eq('I am a JS prompt');
-    });
-
-    it('should verify the text in `Result` after alert message was accepted and no text was entered', () => {
-        browser.acceptAlert();
-        const result = $('#result');
-        const actual = result.getText();
-        expect(actual).eq('You entered:');
-    });
-
-    it('should verify the text in `Result` after alert message was canceled', () => {
-        const buttons = $$('button');
-        buttons[2].click();
-        browser.dismissAlert();
-        const result = $('#result');
-        const actual = result.getText();
-        expect(actual).eq('You entered: null');
-    });
-
-    it('should verify the text in `Result` after alert message was accepted and a text was entered', () => {
-        const buttons = $$('button');
-        buttons[2].click();
-        const text = 'Hello!!!';
-        browser.sendAlertText(text);
-        browser.acceptAlert();
-        const result = $('#result');
-        const actual = result.getText();
-        expect(actual).eq(`You entered: ${text}`);
-    });
-
 });
