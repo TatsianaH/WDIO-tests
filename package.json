@@ -11,7 +11,8 @@
     "userRegisterTest": "wdio wdio.conf.js --spec test/usps/userRegistration_Smoke.js",
     "userRegFunctTests": "wdio wdio.conf.js --spec test/usps/userRegistration_Regression.js",
     "avisales": "wdio wdio.conf.js --spec test/aviasales/aviasales.js",
-    "herokuApp": "npm run clean && wdio wdio.conf.js --spec test/herokuApp/herokuAppTests.js && npm run report"
+    "herokuApp": "npm run clean && wdio wdio.conf.js --spec test/herokuApp/herokuAppTests.js && npm run report",
+    "iherb": "npm run clean && wdio wdio.conf.js --spec test/iherb/iherbTests.js && npm run report"
   },
   "repository": {
     "type": "git",
