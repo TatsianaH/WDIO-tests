@@ -877,4 +877,19 @@ describe('Testing different elements', () => {
         const msgExpected = ['Action successful\n×','Action unsuccesful, please try again\n×'];
         expect(msgExpected).to.include(msgActual);
     });
+
+    it('should verify the `Status Codes` page is open', () => {
+        browser.url('http://the-internet.herokuapp.com/status_codes');
+        const urlActual = browser.getUrl();
+        const headerActual = $('.example h3').getText();
+        expect(urlActual).eq('http://the-internet.herokuapp.com/status_codes');
+        expect(headerActual).eq('Status Codes');
+    });
+
+    it('should verify user gets redirected to the proper page after link `301` was clicked', () => {
+        const link = $('=301');
+        link.click();
+        const urlActual = browser.getUrl();
+        expect(urlActual).eq('http://the-internet.herokuapp.com/status_codes/301');
+    });
 });
