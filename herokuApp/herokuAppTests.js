@@ -878,8 +878,17 @@ describe('Testing different elements', () => {
         expect(msgExpected).to.include(msgActual);
     });
 
+    it('should verify the `Redirection` page is open', () => {
+        browser.url('http://the-internet.herokuapp.com//redirector');
+        const urlActual = browser.getUrl();
+        const headerActual = $('.example h3').getText();
+        expect(urlActual).eq('http://the-internet.herokuapp.com//redirector');
+        expect(headerActual).eq('Redirection');
+    });
+
     it('should verify the `Status Codes` page is open', () => {
-        browser.url('http://the-internet.herokuapp.com/status_codes');
+        const link = $('#redirect');
+        link.click();
         const urlActual = browser.getUrl();
         const headerActual = $('.example h3').getText();
         expect(urlActual).eq('http://the-internet.herokuapp.com/status_codes');
