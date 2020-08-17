@@ -8,10 +8,10 @@
     "report": "allure generate --clean && allure open",
     "clean": "rm -rf allure-results",
     "amazon": "wdio wdio.conf.js --spec ./test/testAmazon.js",
-    "userRegisterTest": "wdio wdio.conf.js --spec usps/userRegistration_RegressionTest.js",
-    "userRegFunctTests": "wdio wdio.conf.js --spec usps/userRegistration_FucntionalTests.js",
-    "avisales": "wdio wdio.conf.js --spec aviasales/aviasales.js",
-    "herokuApp": "wdio wdio.conf.js --spec herokuApp/herokuAppTests.js"
+    "userRegisterTest": "wdio wdio.conf.js --spec test/usps/userRegistration_RegressionTest.js",
+    "userRegFunctTests": "wdio wdio.conf.js --spec test/usps/userRegistration_FucntionalTests.js",
+    "avisales": "wdio wdio.conf.js --spec test/aviasales/aviasales.js",
+    "herokuApp": "npm run clean && wdio wdio.conf.js --spec test/herokuApp/herokuAppTests.js && npm run report"
   },
   "repository": {
     "type": "git",
