@@ -80,9 +80,9 @@ describe('Book a flight ticket_ Aviasales', () => {
     });
 
     it('should fill Departure date', () => {
-        $('[aria-label="Sat Aug 01 2020"]').click();
+        $('[aria-label="Tue Aug 18 2020"]').click();
         const actual = $('.trip-duration__input-wrapper.--departure input').getValue();
-        expect(actual).eq('01.08.2020');
+        expect(actual).eq('18.08.2020');
     });
 
     it('should fill Return date', () => {
