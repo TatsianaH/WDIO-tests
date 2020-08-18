@@ -1,5 +1,8 @@
 import { expect } from 'chai';
 
+let bathPrice = 0;
+let bathDescription = '';
+
 describe('Add some Best Sellers to Cart', () => {
     before(() => {
         browser.url('https://www.iherb.com/');
@@ -24,8 +27,18 @@ describe('Add some Best Sellers to Cart', () => {
     it('should choose the second product from `Bath & Personal Care` department', () => {
         const link = $('*=Bath');
         link.click();
-        const items = $$('#section-Bath-Personal-Care .description');
+        const items = $$('#section-Bath-Personal-Care .description .product-title');
+        const prices = $$('#section-Bath-Personal-Care .price');
+        bathDescription = items[1].getText();
+        bathPrice = prices[1].getText();
         expect(items).to.have.lengthOf(10);
+        expect(prices).to.have.lengthOf(10);
         items[1].click();
+    });
+
+    it('should verify the user gets redirected to selected product page', () => {
+        const urlActual = browser.getUrl();
+        const linkPartialExpected = bathDescription.split(' ')[0];
+        expect(urlActual).to.include(linkPartialExpected);
     });
 });
