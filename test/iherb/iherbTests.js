@@ -79,7 +79,7 @@ describe('Add some Best Sellers to Cart', () => {
             timeoutMsg: 'No correct page is displayed',
         });
 
-        it('', () => {
+        it('should verify the 24 products are presented on the page and add the last one to the cart', () => {
             const showProductsQuantity = $$('[aria-label="Display Number of Items"] option');
             const productQuantityExpected = showProductsQuantity[0].getAttribute('value');
             const shippingCheckbox = $('[title="Shipping Saver"]');
@@ -88,7 +88,7 @@ describe('Add some Best Sellers to Cart', () => {
             const vitaminsCheckbox = $('#FilterVitamins101072');
             vitaminsCheckbox.scrollIntoView();
             vitaminsCheckbox.click();
-            const productsAll = $$('.products.clearfix .product-cell-container');
+            const productsAll = $$('.products.clearfix .product-cell-container .absolute-link-wrapper');
             expect(productsAll).to.have.lengthOf(+productQuantityExpected);
         });
     });
