@@ -59,28 +59,15 @@ describe('Add some Best Sellers to Cart', () => {
         expect(priceActual).eq(bathPrice);
     });
 
-    // it('should add 2 product (from the Bath department) to the cart', () => {
-    //     const quantity = $('#volume-quantity');
-    //     const btn = $('button[name="AddToCart"]');
-    //     const quantityValue = $$('#volume-quantity option');
-    //     numberOfProducts += +quantityValue[1].getAttribute('value');
-    //     quantity.selectByIndex(1);
-    //     btn.click();
-    //     const msg = $('#add-to-cart-popup');
-    //     browser.acceptAlert();
-    //     //msg.waitForDisplayed();
-    //     // const isOpen = browser.isAlertOpen();
-    //     //
-    //     // if (isOpen) {
-    //     //     console.log("===========>" + isOpen);
-    //     //     browser.acceptAlert();
-    //     //     browser.pause(5000);
-    //     // }
-    //     // const text = browser.getAlertText();
-    //     // console.log(text, '///////////////////');
-    //     // browser.waitUntil(() => msg.isDisplayed() === false, {
-    //     //     timeout: 2000,
-    //     //     timeoutMsg: 'No pop-up message is showed up',
-    //     // });
-    // });
+    it('should add 2 product (from the Bath department) to the cart', () => {
+        const quantity = $('#volume-quantity');
+        const btn = $('button[name="AddToCart"]');
+        const quantityValue = $$('#volume-quantity option');
+        numberOfProducts += quantityValue[1].getAttribute('value');
+        quantity.selectByIndex(1);
+        btn.click();
+        browser.pause(3000);
+        const msg = $('#add-to-cart-popup');
+        expect(msg.isDisplayed()).true;
+    });
 });
