@@ -46,7 +46,7 @@ describe('Add some Best Sellers to Cart', () => {
 
     it('should verify the user gets redirected to selected product page', () => {
         const urlActual = browser.getUrl();
-        const linkPartialExpected = bathDescription.split(' ')[0];
+        const linkPartialExpected = bathDescription.split(' ')[0].replace(/[^a-z]/ig, '');
         expect(urlActual).to.include(linkPartialExpected);
     });
 
@@ -69,5 +69,14 @@ describe('Add some Best Sellers to Cart', () => {
         browser.pause(3000);
         const msg = $('#add-to-cart-popup');
         expect(msg.isDisplayed()).true;
+    });
+
+    it('should verify a user gets redirected to `Super Deals` page after proper link was clicked', () => {
+        const link = $('=Super Deals');
+        link.click();
+        browser.waitUntil(() => browser.getUrl() === 'https://www.iherb.com/specials', {
+            timeout: 3000,
+            timeoutMsg: 'No correct page is displayed',
+        });
     });
 });
