@@ -16,13 +16,32 @@ describe('Add some Best Sellers to Cart', () => {
         expect(actual).eq('https://www.iherb.com/');
     });
 
-    it('', () => {
+    it('should verify the `countryLangCurrency` window is open', () => {
         const countryLangCurrency = $('.selected-country-wrapper');
         countryLangCurrency.click();
         const countryLangCurrencyOptions = $('.selection-list-wrapper');
         expect(countryLangCurrencyOptions.isDisplayedInViewport()).true;
+    });
+
+    it('should check the United States as country destination', () => {
+        const country = $('#CurrentCountryCode');
+        country.click();
+        const allCountries = $$('.item.popular label');
+        allCountries.forEach(country => {
+            if(country.getText() === 'United States') country.click();
+        });
+        const countrySelected = $('.select-country .dropdown-text.text label');
+        expect(countrySelected.getText()).eq('United States');
 
     });
+
+    it('should save preferences and close the `countryLangCurrency` window', () => {
+        const btn = $('button=Save Preferences');
+        btn.click();
+        const countryLangCurrencyOptions = $('.selection-list-wrapper');
+        expect(countryLangCurrencyOptions.isDisplayedInViewport()).false;
+    });
+
     // it('should verify the `Best Sellers` page is open', () => {
     //     const link = $('=Best Sellers');
     //     link.click();
