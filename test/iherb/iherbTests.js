@@ -80,7 +80,7 @@ describe('Add some Best Sellers to Cart', () => {
             timeoutMsg: 'No correct page is displayed',
         });
     });
-
+// does not work check it!!!!!
     it('should verify the 24 products are presented on the page and add the last one to the cart', () => {
         const showProductsQuantity = $$('[aria-label="Display Number of Items"] option');
         const productQuantityExpected = showProductsQuantity[0].getAttribute('value');
