@@ -46,7 +46,7 @@ describe('Add some Best Sellers to Cart', () => {
 
     it('should verify the user gets redirected to selected product page', () => {
         const urlActual = browser.getUrl();
-        const linkPartialExpected = bathDescription.split(' ')[0].replace(/[^a-z]/ig, '');
+        const linkPartialExpected = bathDescription.split(' ')[0].replace(/[^a-z]/gi, '');
         expect(urlActual).to.include(linkPartialExpected);
     });
 
@@ -59,16 +59,17 @@ describe('Add some Best Sellers to Cart', () => {
         expect(priceActual).eq(bathPrice);
     });
 
-    it('should add 2 product (from the Bath department) to the cart', () => {
+    it('should add 2 products (from the Bath department) to the cart', () => {
         const quantity = $('#volume-quantity');
         const btn = $('button[name="AddToCart"]');
         const quantityValue = $$('#volume-quantity option');
-        numberOfProducts += quantityValue[1].getAttribute('value');
+        numberOfProducts += Number(quantityValue[1].getAttribute('value'));
         quantity.selectByIndex(1);
         btn.click();
         browser.pause(3000);
         const msg = $('#add-to-cart-popup');
         expect(msg.isDisplayed()).true;
+        expect(numberOfProducts).eq(2);
     });
 
     it('should verify a user gets redirected to `Super Deals` page after proper link was clicked', () => {
@@ -89,7 +90,20 @@ describe('Add some Best Sellers to Cart', () => {
             vitaminsCheckbox.scrollIntoView();
             vitaminsCheckbox.click();
             const productsAll = $$('.products.clearfix .product-cell-container .absolute-link-wrapper');
+            productsAll[productsAll.length - 1].moveTo();
+            const addToCartBtn = $('[data-ga-event-action="addToCart"]');
+            browser.waitUntil(() => addToCartBtn.isDisplayed() === true, {
+                timeout: 1000,
+                timeoutMsg: 'No button is displayed',
+            });
+            addToCartBtn.click();
+            numberOfProducts++;
+            console.log(numberOfProducts, '/////////////////');
+            browser.pause(3000);
+            const msg = $('#add-to-cart-popup');
+            expect(msg.isDisplayed()).true;
             expect(productsAll).to.have.lengthOf(+productQuantityExpected);
+            expect(numberOfProducts).eq(3);
         });
     });
 });
