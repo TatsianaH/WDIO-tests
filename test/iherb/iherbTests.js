@@ -79,31 +79,31 @@ describe('Add some Best Sellers to Cart', () => {
             timeout: 3000,
             timeoutMsg: 'No correct page is displayed',
         });
+    });
 
-        it('should verify the 24 products are presented on the page and add the last one to the cart', () => {
-            const showProductsQuantity = $$('[aria-label="Display Number of Items"] option');
-            const productQuantityExpected = showProductsQuantity[0].getAttribute('value');
-            const shippingCheckbox = $('[title="Shipping Saver"]');
-            shippingCheckbox.scrollIntoView();
-            shippingCheckbox.click();
-            const vitaminsCheckbox = $('#FilterVitamins101072');
-            vitaminsCheckbox.scrollIntoView();
-            vitaminsCheckbox.click();
-            const productsAll = $$('.products.clearfix .product-cell-container .absolute-link-wrapper');
-            productsAll[productsAll.length - 1].moveTo();
-            const addToCartBtn = $('[data-ga-event-action="addToCart"]');
-            browser.waitUntil(() => addToCartBtn.isDisplayed() === true, {
-                timeout: 1000,
-                timeoutMsg: 'No button is displayed',
-            });
-            addToCartBtn.click();
-            numberOfProducts++;
-            console.log(numberOfProducts, '/////////////////');
-            browser.pause(3000);
-            const msg = $('#add-to-cart-popup');
-            expect(msg.isDisplayed()).true;
-            expect(productsAll).to.have.lengthOf(+productQuantityExpected);
-            expect(numberOfProducts).eq(3);
+    it('should verify the 24 products are presented on the page and add the last one to the cart', () => {
+        const showProductsQuantity = $$('[aria-label="Display Number of Items"] option');
+        const productQuantityExpected = showProductsQuantity[0].getAttribute('value');
+        const shippingCheckbox = $('[title="Shipping Saver"]');
+        shippingCheckbox.scrollIntoView();
+        shippingCheckbox.click();
+        const vitaminsCheckbox = $('#FilterVitamins101072');
+        vitaminsCheckbox.scrollIntoView();
+        vitaminsCheckbox.click();
+        const productsAll = $$('.products.clearfix .product-cell-container .absolute-link-wrapper');
+        productsAll[productsAll.length - 1].moveTo();
+        const addToCartBtn = $('[data-ga-event-action="addToCart"]');
+        browser.waitUntil(() => addToCartBtn.isDisplayed() === true, {
+            timeout: 1000,
+            timeoutMsg: 'No button is displayed',
         });
+        addToCartBtn.click();
+        numberOfProducts++;
+        console.log(numberOfProducts, '/////////////////');
+        browser.pause(3000);
+        const msg = $('#add-to-cart-popup');
+        expect(msg.isDisplayed()).true;
+        expect(productsAll).to.have.lengthOf(+productQuantityExpected);
+        expect(numberOfProducts).eq(3);
     });
 });
