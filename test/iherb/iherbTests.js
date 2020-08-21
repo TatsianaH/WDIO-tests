@@ -23,7 +23,7 @@ describe('Add some Best Sellers to Cart', () => {
         expect(countryLangCurrencyOptions.isDisplayedInViewport()).true;
     });
 
-    it('should check the United States as country destination', () => {
+    it('should check the United States as Your Shipping Destination', () => {
         const country = $('.search-input');
         country.click();
         // const dropdownMenu = $$('.icon-uparrow.dropdown-icon');
@@ -31,16 +31,27 @@ describe('Add some Best Sellers to Cart', () => {
         //const allCountries = $$('.item.popular label');
         const allCountries = $$('.menu.search-list.open .item.popular');
         allCountries.forEach(country => {
-            if(country.getAttribute('data-val') === 'US') country.click();
+            if (country.getAttribute('data-val') === 'US') country.click();
         });
         const countrySelected = $('.select-country .dropdown-text.text label');
         expect(countrySelected.getText()).eq('United States');
+    });
 
+    it('should check English as Your Language', () => {
+        const language = $('.select-language');
+        language.click();
+        const allLanguages = $$('.select-language .item');
+        allLanguages.forEach(language => {
+            if (language.getAttribute('data-val') === 'en-US') language.click();
+        });
+        const languageSelected = $('.select-language .dropdown-text.text label');
+        expect(languageSelected.getText()).eq('English');
     });
 
     it('should save preferences and close the `countryLangCurrency` window', () => {
         const btn = $('button=Save Preferences');
         btn.click();
+        browser.pause(1500);
         const countryLangCurrencyOptions = $('.selection-list-wrapper');
         expect(countryLangCurrencyOptions.isDisplayedInViewport()).false;
     });
