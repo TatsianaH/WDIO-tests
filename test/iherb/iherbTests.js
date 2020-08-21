@@ -24,11 +24,14 @@ describe('Add some Best Sellers to Cart', () => {
     });
 
     it('should check the United States as country destination', () => {
-        const country = $('#CurrentCountryCode');
+        const country = $('.search-input');
         country.click();
-        const allCountries = $$('.item.popular label');
+        // const dropdownMenu = $$('.icon-uparrow.dropdown-icon');
+        // dropdownMenu.click();
+        //const allCountries = $$('.item.popular label');
+        const allCountries = $$('.menu.search-list.open .item.popular');
         allCountries.forEach(country => {
-            if(country.getText() === 'United States') country.click();
+            if(country.getAttribute('data-val') === 'US') country.click();
         });
         const countrySelected = $('.select-country .dropdown-text.text label');
         expect(countrySelected.getText()).eq('United States');
