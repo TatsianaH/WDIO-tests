@@ -48,6 +48,17 @@ describe('Add some Best Sellers to Cart', () => {
         expect(languageSelected.getText()).eq('English');
     });
 
+    it('should check USD as Your Currency', () => {
+        const currency = $('.select-currency ');
+        currency.click();
+        const allCurrencies = $$('.select-currency .item');
+        allCurrencies .forEach(currency => {
+            if (currency.getAttribute('data-val') === 'USD') currency.click();
+        });
+        const currencySelected = $('.select-currency .dropdown-text.text bdi label');
+        expect(currencySelected.getText()).eq('USD ($)');
+    });
+
     it('should save preferences and close the `countryLangCurrency` window', () => {
         const btn = $('button=Save Preferences');
         btn.click();
