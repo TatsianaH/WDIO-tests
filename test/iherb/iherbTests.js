@@ -139,42 +139,33 @@ describe('Add some Best Sellers to Cart', () => {
         selector.scrollIntoView();
         const filterList = $$('#flag-filtering ul > li');
         filterList[0].click();
-        browser.pause(500);
-        filterList[1].click();
+        // browser.pause(500);
+        // filterList[1].click();
         const checkbox = $('#Filtersssshippingsaver');
         const checkboxChecked = Boolean(checkbox.getAttribute('checked'));
-        const checkbox2 = $('#Filtersititested');
-        const checkboxChecked2 = Boolean(checkbox2.getAttribute('checked'));
+        // const checkbox2 = $('#Filtersititested');
+        // const checkboxChecked2 = Boolean(checkbox2.getAttribute('checked'));
         expect(checkboxChecked).true;
-        expect(checkboxChecked2).true;
+        //expect(checkboxChecked2).true;
     });
-    //
-    // // does not work check it!!!!!
-    // // it('should verify the 24 products are presented on the page and add the last one to the cart', () => {
-    // //     const showProductsQuantity = $$('[aria-label="Display Number of Items"] option');
-    // //     const productQuantityExpected = showProductsQuantity[0].getAttribute('value');
-    // //     const shippingCheckbox = $('#Filtersssshippingsaver');
-    // //
-    // //     shippingCheckbox.scrollIntoView();
-    // //     shippingCheckbox.click();
-    // //
-    // //     const vitaminsCheckbox = $('#FilterVitamins101072');
-    // //     vitaminsCheckbox.scrollIntoView();
-    // //     // vitaminsCheckbox.click();
-    // //     const productsAll = $$('.products.clearfix .product-cell-container .absolute-link-wrapper');
-    // //     productsAll[productsAll.length - 1].moveTo();
-    // //     const addToCartBtn = $('[data-ga-event-action="addToCart"]');
-    // //     browser.waitUntil(() => addToCartBtn.isDisplayed() === true, {
-    // //         timeout: 1000,
-    // //         timeoutMsg: 'No button is displayed',
-    // //     });
-    // //     addToCartBtn.click();
-    // //     numberOfProducts++;
-    // //     console.log(numberOfProducts, '/////////////////');
-    // //     browser.pause(3000);
-    // //     const msg = $('#add-to-cart-popup');
-    // //     expect(msg.isDisplayed()).true;
-    // //     expect(productsAll).to.have.lengthOf(+productQuantityExpected);
-    // //     expect(numberOfProducts).eq(3);
-    // // });
+
+    it('should verify the 24 products are presented on the page and add the last one to the cart', () => {
+        const showProductsQuantity = $$('[aria-label="Display Number of Items"] option');
+        const productQuantityExpected = Number(showProductsQuantity[0].getAttribute('value'));
+        const productsAll = $$('.products.clearfix .product-cell-container .absolute-link-wrapper');
+        productsAll[productsAll.length - 1].moveTo();
+        const addToCartBtn = $('[data-ga-event-action="addToCart"]');
+        browser.waitUntil(() => addToCartBtn.isDisplayed() === true, {
+            timeout: 1000,
+            timeoutMsg: 'No button is displayed',
+        });
+        addToCartBtn.click();
+        numberOfProducts++;
+        console.log(numberOfProducts, '/////////////////');
+        browser.pause(3000);
+        const msg = $('#add-to-cart-popup');
+        expect(msg.isDisplayed()).true;
+        expect(productsAll).to.have.lengthOf(productQuantityExpected);
+        expect(numberOfProducts).eq(3);
+    });
 });
