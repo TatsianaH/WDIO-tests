@@ -135,8 +135,6 @@ describe('Add some Best Sellers to Cart', () => {
     });
 
     it('should verify the `Shipping Saver` is checked', () => {
-        // browser.setWindowSize(1400, 900);
-        // browser.url('https://www.iherb.com/specials');
         const selector = $('#list-page-banner-layout');
         selector.scrollIntoView();
         const filterList = $$('#flag-filtering ul > li');
