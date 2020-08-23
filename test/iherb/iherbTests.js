@@ -153,13 +153,14 @@ describe('Add some Best Sellers to Cart', () => {
         const showProductsQuantity = $$('[aria-label="Display Number of Items"] option');
         const productQuantityExpected = Number(showProductsQuantity[0].getAttribute('value'));
         const productsAll = $$('.products.clearfix .product-cell-container .absolute-link-wrapper');
+        productsAll[productsAll.length - 1].scrollIntoView();
         productsAll[productsAll.length - 1].moveTo();
-        const addToCartBtn = $('[data-ga-event-action="addToCart"]');
-        browser.waitUntil(() => addToCartBtn.isDisplayed() === true, {
+        const addToCartBtn = $$('[data-ga-event-action="addToCart"]');
+        browser.waitUntil(() => addToCartBtn[addToCartBtn.length - 1].isDisplayed() === true, {
             timeout: 1000,
             timeoutMsg: 'No button is displayed',
         });
-        addToCartBtn.click();
+        addToCartBtn[addToCartBtn.length - 1].click();
         numberOfProducts++;
         console.log(numberOfProducts, '/////////////////');
         browser.pause(3000);
