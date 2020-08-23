@@ -139,34 +139,33 @@ describe('Add some Best Sellers to Cart', () => {
         selector.scrollIntoView();
         const filterList = $$('#flag-filtering ul > li');
         filterList[0].click();
-        // browser.pause(500);
-        // filterList[1].click();
         const checkbox = $('#Filtersssshippingsaver');
         const checkboxChecked = Boolean(checkbox.getAttribute('checked'));
-        // const checkbox2 = $('#Filtersititested');
-        // const checkboxChecked2 = Boolean(checkbox2.getAttribute('checked'));
         expect(checkboxChecked).true;
-        //expect(checkboxChecked2).true;
     });
 
     it('should verify the 24 products are presented on the page and add the last one to the cart', () => {
+        const bannerClose = $('.icon.welcome-mat-module-close');
+        bannerClose.click();
         const showProductsQuantity = $$('[aria-label="Display Number of Items"] option');
         const productQuantityExpected = Number(showProductsQuantity[0].getAttribute('value'));
         const productsAll = $$('.products.clearfix .product-cell-container .absolute-link-wrapper');
-        productsAll[productsAll.length - 1].scrollIntoView();
+        console.log(productsAll.length, '////////////////');
+        const sel = $$('.product.ga-product');
+        sel[sel.length - 5].scrollIntoView();
         productsAll[productsAll.length - 1].moveTo();
         const addToCartBtn = $$('[data-ga-event-action="addToCart"]');
-        browser.waitUntil(() => addToCartBtn[addToCartBtn.length - 1].isDisplayed() === true, {
-            timeout: 1000,
+        browser.waitUntil(() => addToCartBtn[addToCartBtn.length - 1].isDisplayedInViewport() === true, {
+            timeout: 2000,
             timeoutMsg: 'No button is displayed',
         });
         addToCartBtn[addToCartBtn.length - 1].click();
         numberOfProducts++;
-        console.log(numberOfProducts, '/////////////////');
         browser.pause(3000);
         const msg = $('#add-to-cart-popup');
         expect(msg.isDisplayed()).true;
         expect(productsAll).to.have.lengthOf(productQuantityExpected);
         expect(numberOfProducts).eq(3);
     });
+
 });
