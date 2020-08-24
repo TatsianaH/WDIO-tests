@@ -144,15 +144,24 @@ describe('Add some Best Sellers to Cart', () => {
         expect(checkboxChecked).true;
     });
 
+    it('should close tha advertisement at the bottom of the page', () => {
+        const banner = $('hp-welcome-mat-module');
+        const bannerIsDisplayedBefore = banner.isDisplayedInViewport();
+        if(bannerIsDisplayedBefore){
+            const bannerClose = $('.icon.welcome-mat-module-close');
+            bannerClose.click();
+        }
+        const bannerIsDisplayed = banner.isDisplayedInViewport();
+        expect(bannerIsDisplayed).false;
+    });
+
     it('should verify the 24 products are presented on the page and add the last one to the cart', () => {
-        const bannerClose = $('.icon.welcome-mat-module-close');
-        bannerClose.click();
         const showProductsQuantity = $$('[aria-label="Display Number of Items"] option');
         const productQuantityExpected = Number(showProductsQuantity[0].getAttribute('value'));
         const productsAll = $$('.products.clearfix .product-cell-container .absolute-link-wrapper');
-        console.log(productsAll.length, '////////////////');
-        const sel = $$('.product.ga-product');
-        sel[sel.length - 5].scrollIntoView();
+        //const sel = $$('.product.ga-product');
+        //sel[sel.length - 5].scrollIntoView();
+        productsAll[productsAll.length - 5].scrollIntoView();
         productsAll[productsAll.length - 1].moveTo();
         const addToCartBtn = $$('[data-ga-event-action="addToCart"]');
         browser.waitUntil(() => addToCartBtn[addToCartBtn.length - 1].isDisplayedInViewport() === true, {
