@@ -155,7 +155,7 @@ describe('Add some Best Sellers to Cart', () => {
         expect(bannerIsDisplayed).false;
     });
 
-    it('should verify the 24 products are presented on the page and add the last one to the cart', () => {
+    it('should verify the 24 products are presented on the page', () => {
         const showProductsQuantity = $$('[aria-label="Display Number of Items"] option');
         const productQuantityExpected = Number(showProductsQuantity[0].getAttribute('value'));
         const productsAll = $$('.products.clearfix .product-cell-container .absolute-link-wrapper');
@@ -163,6 +163,10 @@ describe('Add some Best Sellers to Cart', () => {
         //sel[sel.length - 5].scrollIntoView();
         productsAll[productsAll.length - 5].scrollIntoView();
         productsAll[productsAll.length - 1].moveTo();
+        expect(productsAll).to.have.lengthOf(productQuantityExpected);
+    });
+
+    it('should add the last product on the first page to the cart', () => {
         const addToCartBtn = $$('[data-ga-event-action="addToCart"]');
         browser.waitUntil(() => addToCartBtn[addToCartBtn.length - 1].isDisplayedInViewport() === true, {
             timeout: 2000,
@@ -173,7 +177,6 @@ describe('Add some Best Sellers to Cart', () => {
         browser.pause(3000);
         const msg = $('#add-to-cart-popup');
         expect(msg.isDisplayed()).true;
-        expect(productsAll).to.have.lengthOf(productQuantityExpected);
         expect(numberOfProducts).eq(3);
     });
 
