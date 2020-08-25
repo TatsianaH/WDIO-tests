@@ -150,6 +150,7 @@ describe('Iherb website', () => {
         if (bannerIsDisplayedBefore) {
             const bannerClose = $('.icon.welcome-mat-module-close');
             bannerClose.click();
+            browser.pause(1000);
         }
         const bannerIsDisplayed = banner.isDisplayedInViewport();
         expect(bannerIsDisplayed).false;
@@ -191,11 +192,11 @@ describe('Iherb website', () => {
 
         let i = 1;
         while (i < 10) {
-            nextPage.scrollIntoView();
+            $('.product.ga-product .product-flag-container').scrollIntoView();
             nextPage.click();
-            const urlActual = browser.getUrl();
-            browser.waitUntil(() => urlActual === `https://www.iherb.com/specials?sss=true&p=${i + 1}`, {
-                timeout: 3000,
+
+            browser.waitUntil(() => browser.getUrl() === `https://www.iherb.com/specials?sss=true&p=${i + 1}`, {
+                timeout: 4000,
                 timeoutMsg: 'Something went wrong',
             });
             i++;
