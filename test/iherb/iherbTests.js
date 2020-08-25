@@ -4,7 +4,7 @@ let bathPrice = 0;
 let bathDescription = '';
 let numberOfProducts = 0;
 
-describe('Add some Best Sellers to Cart', () => {
+describe('Iherb website', () => {
     before(() => {
         browser.deleteAllCookies();
         browser.setWindowSize(1400, 900);
@@ -49,7 +49,7 @@ describe('Add some Best Sellers to Cart', () => {
         const currency = $('.select-currency ');
         currency.click();
         const allCurrencies = $$('.select-currency .item');
-        allCurrencies .forEach(currency => {
+        allCurrencies.forEach(currency => {
             if (currency.getAttribute('data-val') === 'USD') currency.click();
         });
         const currencySelected = $('.select-currency .dropdown-text.text bdi label');
@@ -134,7 +134,7 @@ describe('Add some Best Sellers to Cart', () => {
         });
     });
 
-    it('should verify the `Shipping Saver` is checked', () => {
+    it('should verify the `Shipping Saver` is checked as filter', () => {
         const selector = $('#list-page-banner-layout');
         selector.scrollIntoView();
         const filterList = $$('#flag-filtering ul > li');
@@ -145,9 +145,9 @@ describe('Add some Best Sellers to Cart', () => {
     });
 
     it('should close tha advertisement at the bottom of the page', () => {
-        const banner = $('hp-welcome-mat-module');
+        const banner = $('.hp-welcome-mat-module');
         const bannerIsDisplayedBefore = banner.isDisplayedInViewport();
-        if(bannerIsDisplayedBefore){
+        if (bannerIsDisplayedBefore) {
             const bannerClose = $('.icon.welcome-mat-module-close');
             bannerClose.click();
         }
@@ -169,7 +169,7 @@ describe('Add some Best Sellers to Cart', () => {
     it('should add the last product on the first page to the cart', () => {
         const addToCartBtn = $$('[data-ga-event-action="addToCart"]');
         browser.waitUntil(() => addToCartBtn[addToCartBtn.length - 1].isDisplayedInViewport() === true, {
-            timeout: 2000,
+            timeout: 3000,
             timeoutMsg: 'No button is displayed',
         });
         addToCartBtn[addToCartBtn.length - 1].click();
@@ -180,4 +180,25 @@ describe('Add some Best Sellers to Cart', () => {
         expect(numberOfProducts).eq(3);
     });
 
+    it('should verify the user is on the first page in Super Deals section', () => {
+        const page = $$('.pagination-selected span');
+        const page1 = page[1].getText();
+        expect(page1).eq('1');
+    });
+
+    it('should redirect user to the page number 10 in Super Deals section', () => {
+        const nextPage = $('.pagination-next');
+
+        let i = 1;
+        while (i < 10) {
+            nextPage.scrollIntoView();
+            nextPage.click();
+            const urlActual = browser.getUrl();
+            browser.waitUntil(() => urlActual === `https://www.iherb.com/specials?sss=true&p=${i + 1}`, {
+                timeout: 3000,
+                timeoutMsg: 'Something went wrong',
+            });
+            i++;
+        }
+    });
 });
