@@ -5,6 +5,8 @@ let bathDescription = undefined;
 let numberOfProducts = 0;
 let lastProductOnPage1 = undefined;
 let priceLastProductOnPage1 = 0;
+let productOnPage10 = undefined;
+let priceProductOnPage10 = 0;
 
 describe('Iherb website', () => {
     before(() => {
@@ -207,4 +209,25 @@ describe('Iherb website', () => {
         }
     });
 
+    it('should find max discount on the page #10 and add related to it product to the cart', () => {
+        let discounts = $$('.product-price-top .percentage-off bdi');
+        discounts = discounts.map(el => parseInt(el.getText()));
+
+        const maxDiscount = Math.max(...discounts);
+        const maxDiscountIndex = discounts.findIndex(el => el === maxDiscount);
+        console.log(maxDiscount, maxDiscountIndex, ']]]]]]]]]]]]]]]]]]]]]]]]]]]]]');
+        const productsAll = $$('.products.clearfix .product-cell-container .absolute-link-wrapper');
+        const pricesAll = $$('.product-price-top .price.discount-red bdi');
+        productsAll[maxDiscountIndex].scrollIntoView();
+        productsAll[maxDiscountIndex].moveTo();
+        productOnPage10 = productsAll[maxDiscountIndex].getText();
+        priceProductOnPage10 = pricesAll[maxDiscountIndex].getText();
+        console.log(productOnPage10, priceProductOnPage10, 'PRICEPRICE------PRICE---------');
+        const addToCartBtn = $$('[data-ga-event-action="addToCart"]');
+        addToCartBtn[maxDiscountIndex].click();
+        numberOfProducts++;
+        const msg = $('#add-to-cart-popup');
+        expect(msg.isDisplayed()).true;
+        expect(numberOfProducts).eq(4);
+    });
 });
