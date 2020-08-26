@@ -1,8 +1,10 @@
 import { expect } from 'chai';
 
 let bathPrice = 0;
-let bathDescription = '';
+let bathDescription = undefined;
 let numberOfProducts = 0;
+let lastProductOnPage1 = undefined;
+let priceLastProductOnPage1 = 0;
 
 describe('Iherb website', () => {
     before(() => {
@@ -160,10 +162,13 @@ describe('Iherb website', () => {
         const showProductsQuantity = $$('[aria-label="Display Number of Items"] option');
         const productQuantityExpected = Number(showProductsQuantity[0].getAttribute('value'));
         const productsAll = $$('.products.clearfix .product-cell-container .absolute-link-wrapper');
+        const pricesAll = $$('.product-price-top .price.discount-red bdi');
         //const sel = $$('.product.ga-product');
         //sel[sel.length - 5].scrollIntoView();
         productsAll[productsAll.length - 5].scrollIntoView();
         productsAll[productsAll.length - 1].moveTo();
+        lastProductOnPage1 = productsAll[productsAll.length - 1].getText();
+        priceLastProductOnPage1 = pricesAll[pricesAll.length - 1].getText();
         expect(productsAll).to.have.lengthOf(productQuantityExpected);
     });
 
@@ -196,10 +201,11 @@ describe('Iherb website', () => {
             nextPage.click();
 
             browser.waitUntil(() => browser.getUrl() === `https://www.iherb.com/specials?sss=true&p=${i + 1}`, {
-                timeout: 4000,
+                timeout: 3000,
                 timeoutMsg: 'Something went wrong',
             });
             i++;
         }
     });
+
 });
