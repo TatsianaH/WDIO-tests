@@ -194,7 +194,6 @@ describe('Iherb website', () => {
 
     it('should redirect user to the page number 10 in Super Deals section', () => {
         const nextPage = $('.pagination-next');
-
         let i = 1;
         while (i < 10) {
             $('.product.ga-product .product-flag-container').scrollIntoView();
