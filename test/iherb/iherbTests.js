@@ -200,20 +200,19 @@ describe('Iherb website', () => {
         while (i < 10) {
             $('.product.ga-product .product-flag-container').scrollIntoView();
             nextPage.click();
-
             browser.waitUntil(() => browser.getUrl() === `https://www.iherb.com/specials?sss=true&p=${i + 1}`, {
                 timeout: 3000,
                 timeoutMsg: 'Something went wrong',
             });
             i++;
         }
-        expect(browser.getUrl()).to.be.include(10);
+        const page10 = browser.getUrl().slice(-2);
+        expect(page10).eq('10');
     });
 
     it('should find max discount on the page #10 and add related to it product to the cart', () => {
         let discounts = $$('.product-price-top .percentage-off bdi');
         discounts = discounts.map(el => parseInt(el.getText()));
-
         const maxDiscount = Math.max(...discounts);
         const maxDiscountIndex = discounts.findIndex(el => el === maxDiscount);
         const productsAll = $$('.products.clearfix .product-cell-container .absolute-link-wrapper');
