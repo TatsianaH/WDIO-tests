@@ -216,7 +216,6 @@ describe('Iherb website', () => {
 
         const maxDiscount = Math.max(...discounts);
         const maxDiscountIndex = discounts.findIndex(el => el === maxDiscount);
-        console.log(maxDiscount, maxDiscountIndex, ']]]]]]]]]]]]]]]]]]]]]]]]]]]]]');
         const productsAll = $$('.products.clearfix .product-cell-container .absolute-link-wrapper');
         const pricesAll = $$('.product-price-top .price.discount-red bdi');
         productsAll[maxDiscountIndex].scrollIntoView();
