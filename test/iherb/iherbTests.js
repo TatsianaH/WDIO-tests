@@ -207,6 +207,7 @@ describe('Iherb website', () => {
             });
             i++;
         }
+        expect(browser.getUrl()).to.be.include(10);
     });
 
     it('should find max discount on the page #10 and add related to it product to the cart', () => {
@@ -222,12 +223,12 @@ describe('Iherb website', () => {
         productsAll[maxDiscountIndex].moveTo();
         productOnPage10 = productsAll[maxDiscountIndex].getText();
         priceProductOnPage10 = pricesAll[maxDiscountIndex].getText();
-        console.log(productOnPage10, priceProductOnPage10, 'PRICEPRICE------PRICE---------');
         const addToCartBtn = $$('[data-ga-event-action="addToCart"]');
         addToCartBtn[maxDiscountIndex].click();
         numberOfProducts++;
         const msg = $('#add-to-cart-popup');
-        expect(msg.isDisplayed()).true;
+        browser.pause(500);
+        expect(msg.isDisplayedInViewport()).true;
         expect(numberOfProducts).eq(4);
     });
 });
