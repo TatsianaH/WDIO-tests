@@ -247,5 +247,12 @@ describe('Iherb website', () => {
         expect(num).eq(numberOfProducts);
     });
 
-
+    it('should verify the name of the product in the cart', () => {
+        let products = $$('.ltr-1t0rg9b');
+        products = products.map(product => product.getText()).map(product => product.replace(/,/g, ''));
+        //console.log(products, bathDescription.replace(/,/g, ''), lastProductOnPage1.replace(/,/g, ''), productOnPage10.replace(/,/g, ''), '//////////////////');
+        expect(products).to.include(bathDescription.replace(/,/g, ''));
+        expect(products).to.include(lastProductOnPage1.replace(/,/g, ''));
+        expect(products).to.include(productOnPage10.replace(/,/g, ''));
+    });
 });
