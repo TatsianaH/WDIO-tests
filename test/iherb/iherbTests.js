@@ -229,4 +229,16 @@ describe('Iherb website', () => {
         expect(msg.isDisplayedInViewport()).true;
         expect(numberOfProducts).eq(4);
     });
+
+    it('should redirect user to Cart page after its link was clicked', () => {
+        const link = $('a[href="https://checkout.iherb.com/cart"]');
+        link.click();
+        browser.waitUntil(() => browser.getUrl() === 'https://checkout.iherb.com/cart', {
+            timeout: 3000,
+            timeoutMsg: 'No Cart page is displayed',
+        });
+        const url = browser.getUrl();
+        expect(url).eq('https://checkout.iherb.com/cart');
+    });
+
 });
