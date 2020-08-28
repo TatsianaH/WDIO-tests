@@ -1,6 +1,7 @@
 import { expect } from 'chai';
 
 let bathPrice = 0;
+let bathPrice2Items = 0;
 let bathDescription = undefined;
 let numberOfProducts = 0;
 let lastProductOnPage1 = undefined;
@@ -123,6 +124,7 @@ describe('Iherb website', () => {
         numberOfProducts += Number(quantityValue[1].getAttribute('value'));
         quantity.selectByIndex(1);
         btn.click();
+        bathPrice2Items = numberOfProducts * bathPrice;
         browser.pause(3000);
         const msg = $('#add-to-cart-popup');
         expect(msg.isDisplayed()).true;
@@ -254,5 +256,15 @@ describe('Iherb website', () => {
         expect(products).to.include(bathDescription.replace(/,/g, ''));
         expect(products).to.include(lastProductOnPage1.replace(/,/g, ''));
         expect(products).to.include(productOnPage10.replace(/,/g, ''));
+    });
+
+    it('should verify the price of each the product in the cart', () => {
+        let pricesNoDiscount = $$('[data-qa-element="line-item"] .ltr-s3gz7q');
+        let prices = $$('[data-qa-element="line-item"] .ltr-17rm9tq');
+        prices = prices.map(product => product.getText()).map(product => product.replace(/$/g, ''));
+        //console.log(products, bathDescription.replace(/,/g, ''), lastProductOnPage1.replace(/,/g, ''), productOnPage10.replace(/,/g, ''), '//////////////////');
+        expect(prices).to.include(bathPrice.replace(/$/g, ''));
+        expect(prices).to.include(priceLastProductOnPage1.replace(/$/g, ''));
+        expect(prices).to.include(priceProductOnPage10.replace(/$/g, ''));
     });
 });
