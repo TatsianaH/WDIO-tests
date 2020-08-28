@@ -241,4 +241,11 @@ describe('Iherb website', () => {
         expect(url).eq('https://checkout.iherb.com/cart');
     });
 
+    it('should verify the number if products in the cart', () => {
+        const selector = $('#undefined');
+        const num = +selector.getText();
+        expect(num).eq(numberOfProducts);
+    });
+
+
 });
