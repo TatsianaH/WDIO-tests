@@ -262,10 +262,9 @@ describe('Iherb website', () => {
         let pricesNoDiscount = $$('[data-qa-element="line-item"] .ltr-s3gz7q');
         let prices = $$('[data-qa-element="line-item"] .ltr-17rm9tq');
         prices = prices.map(product => product.getText()).map(product => parseFloat(product.replace('$', '')));
-        console.log(prices, bathPrice2Items, priceLastProductOnPage1,priceProductOnPage10, '///////////////////');
-        //console.log(products, bathDescription.replace(/,/g, ''), lastProductOnPage1.replace(/,/g, ''), productOnPage10.replace(/,/g, ''), '//////////////////');
+        //console.log(prices, bathPrice2Items, priceLastProductOnPage1,priceProductOnPage10, '///////////////////');
         expect(prices).to.include(bathPrice2Items);
-        expect(prices).to.include(+priceLastProductOnPage1.replace('$', ''));
-        expect(prices).to.include(+priceProductOnPage10.replace('$', ''));
+        expect(prices).to.include(parseFloat(priceLastProductOnPage1.replace('$', '')));
+        expect(prices).to.include(parseFloat(priceProductOnPage10.replace('$', '')));
     });
 });
