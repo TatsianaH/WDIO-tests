@@ -258,6 +258,7 @@ describe('Iherb website', () => {
     it('should verify the price of each the product in the cart', () => {
         let prices = $$('[data-qa-element="line-item"] .ltr-17rm9tq');
         prices = prices.map(product => product.getText()).map(product => parseFloat(product.replace('$', '')));
+        console.log(prices, bathPrice2Items, parseFloat(priceLastProductOnPage1.replace('$', '')),parseFloat(priceProductOnPage10.replace('$', '')), '//////////////////' );
         expect(prices).to.include(bathPrice2Items);
         expect(prices).to.include(parseFloat(priceLastProductOnPage1.replace('$', '')));
         expect(prices).to.include(parseFloat(priceProductOnPage10.replace('$', '')));
@@ -265,7 +266,10 @@ describe('Iherb website', () => {
 
     it('should verify prices in the cart with discount and final price', () => {
         let prices = $$('[data-qa-element="line-item"] .ltr-17rm9tq');
-        prices = prices.map(product => product.getText()).map(product => parseFloat(product.replace('$', ''))).reduce((acc, curr) => acc + curr, );
+        prices = prices
+            .map(product => product.getText())
+            .map(product => parseFloat(product.replace('$', '')))
+            .reduce((acc, curr) => acc + curr);
         const totalPrice = $$('.ltr-7v2edd');
         expect(parseFloat(totalPrice[1].getText().replace('$', ''))).eq(prices);
     });
@@ -275,5 +279,27 @@ describe('Iherb website', () => {
         const value = '33019';
         input.addValue(value);
         expect(input.getValue()).eq(value);
+    });
+
+    it('should ', () => {
+        const button = $('[value="Calculate"]');
+        button.click();
+        $('.ltr-4u6dli').waitForDisplayed();
+        expect($('.ltr-4u6dli').isDisplayedInViewport()).true;
+    });
+
+    it('should select PO box or APO Address', () => {
+        const radioBtns = $$('.ltr-oi5f3g');
+        radioBtns[1].click();
+    });
+
+    it('should redirect user to Login Page after `Proceed to Checkout` button was clicked', () => {
+        const button = $('=Proceed to Checkout');
+        button.waitForClickable();
+        button.click();
+        browser.waitUntil(() => browser.getTitle() === 'Login Pages', {
+            timeout: 2000,
+            timeoutMsg: 'No Login Page is displayed',
+        });
     });
 });
