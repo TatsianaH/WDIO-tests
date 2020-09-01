@@ -267,4 +267,18 @@ describe('Iherb website', () => {
         expect(prices).to.include(parseFloat(priceLastProductOnPage1.replace('$', '')));
         expect(prices).to.include(parseFloat(priceProductOnPage10.replace('$', '')));
     });
+
+    it('should verify prices in the cart with discount and no discount', () => {
+        let pricesNoDiscount = $$('[data-qa-element="line-item"] .ltr-s3gz7q');
+        let prices = $$('[data-qa-element="line-item"] .ltr-17rm9tq');
+        prices = prices.map(product => product.getText()).map(product => parseFloat(product.replace('$', ''))).reduce((acc, curr) => acc + curr, );
+        pricesNoDiscount = pricesNoDiscount.map(product => product.getText()).map(product => parseFloat(product.replace('$', ''))).reduce((acc, curr) => acc + curr, );
+        console.log(prices , pricesNoDiscount, '////////////////////');
+        const totalPriceNoDiscount = $$('.ltr-k9qnkv');
+        const totalPrice = $$('.ltr-7v2edd');
+        console.log(parseFloat(totalPriceNoDiscount[0].getText().replace('$', '')),pricesNoDiscount,parseFloat(totalPrice[1].getText().replace('$', '')), prices);
+        expect(parseFloat(totalPriceNoDiscount[0].getText().replace('$', ''))).eq(pricesNoDiscount);
+        expect(parseFloat(totalPrice[1].getText().replace('$', ''))).eq(prices);
+    });
+
 });
