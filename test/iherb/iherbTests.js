@@ -280,5 +280,4 @@ describe('Iherb website', () => {
         expect(parseFloat(totalPriceNoDiscount[0].getText().replace('$', ''))).eq(pricesNoDiscount);
         expect(parseFloat(totalPrice[1].getText().replace('$', ''))).eq(prices);
     });
-
 });
