@@ -167,8 +167,6 @@ describe('Iherb website', () => {
         const productQuantityExpected = Number(showProductsQuantity[0].getAttribute('value'));
         const productsAll = $$('.products.clearfix .product-cell-container .absolute-link-wrapper');
         const pricesAll = $$('.product-price-top .price.discount-red bdi');
-        //const sel = $$('.product.ga-product');
-        //sel[sel.length - 5].scrollIntoView();
         productsAll[productsAll.length - 5].scrollIntoView();
         productsAll[productsAll.length - 1].moveTo();
         lastProductOnPage1 = productsAll[productsAll.length - 1].getText();
@@ -252,7 +250,6 @@ describe('Iherb website', () => {
     it('should verify the name of the product in the cart', () => {
         let products = $$('.ltr-1t0rg9b');
         products = products.map(product => product.getText()).map(product => product.replace(/,/g, ''));
-        //console.log(products, bathDescription.replace(/,/g, ''), lastProductOnPage1.replace(/,/g, ''), productOnPage10.replace(/,/g, ''), '//////////////////');
         expect(products).to.include(bathDescription.replace(/,/g, ''));
         expect(products).to.include(lastProductOnPage1.replace(/,/g, ''));
         expect(products).to.include(productOnPage10.replace(/,/g, ''));
