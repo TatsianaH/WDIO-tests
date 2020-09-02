@@ -1,6 +1,6 @@
 import { expect } from 'chai';
 
-describe('Book a flight ticket_ Aviasales', () => {
+describe.skip('Book a flight ticket_ Aviasales', () => {
     before('open home page Aviasales.com', () => {
         browser.setWindowSize(1400, 1024);
         browser.deleteAllCookies();
@@ -80,15 +80,15 @@ describe('Book a flight ticket_ Aviasales', () => {
     });
 
     it('should fill Departure date', () => {
-        $('[aria-label="Tue Aug 18 2020"]').click();
+        $('[aria-label="Tue Sep 08 2020"]').click();
         const actual = $('.trip-duration__input-wrapper.--departure input').getValue();
-        expect(actual).eq('18.08.2020');
+        expect(actual).eq('08.09.2020');
     });
 
     it('should fill Return date', () => {
-        $('[aria-label="Sun Aug 30 2020"]').click();
+        $('[aria-label="Sun Oct 04 2020"]').click();
         const actual = $('.trip-duration__input-wrapper.--return input').getValue();
-        expect(actual).eq('30 august, sun');
+        expect(actual).eq('04 october, sun');
     });
 
     it('should choose 3 adults and 1 child in passenger`s row', () => {

@@ -12,7 +12,7 @@ let priceProductOnPage10 = 0;
 describe('Iherb website', () => {
     before(() => {
         browser.deleteAllCookies();
-        browser.setWindowSize(1400, 900);
+        browser.setWindowSize(1440, 900);
         browser.url('https://www.iherb.com/');
     });
 

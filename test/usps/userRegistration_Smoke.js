@@ -4,16 +4,25 @@ import { homePageUrl, registerPageE, signInPageE } from './data/expected.json';
 
 describe('User Registration', () => {
     before('open home page usps', () => {
+        browser.deleteAllCookies();
+        browser.setWindowSize(1440, 900);
         browser.url(homePageUrl);
     });
 
+    it('verify the `Register/SignIn` button is displayed', () => {
+        const linkIsDisplayed = $(homePage.registerSignInLink).isDisplayed();
+        expect(linkIsDisplayed).true;
+    });
+
     it('user should be redirected to `SignIn` page after `Register/SignIn` button was clicked', () => {
+        $(homePage.registerSignInLink).waitForClickable();
         $(homePage.registerSignInLink).click();
         const actual = $(signInPage.header).getText();
         expect(actual).eq(signInPageE.header);
     });
 
     it('user should be redirected to `Register` page after `Register` button was clicked', () => {
+        $(signInPage.registerLink).waitForClickable();
         $(signInPage.registerLink).click();
         const actual = $(registerPage.header).getText();
         expect(actual).eq(registerPageE.header);
@@ -51,7 +60,7 @@ describe('User Registration', () => {
             browser.waitUntil(
                 () => $(registerPage.availableMsg).getText() === registerPageE.userNameAvailableMsg,
                 {
-                    timeout: 2000, 
+                    timeout: 2000,
                     timeoutMsg: 'No text displayed'
                 },
             );
@@ -60,7 +69,7 @@ describe('User Registration', () => {
             expect(errorMsgText).eq(registerPageE.userNameInUseErrorMsg);
         } else {
             const actual = $(registerPage.userNameInput).getValue();
-            expect(actual).eq(registerPageE.userName);   
+            expect(actual).eq(registerPageE.userName);
         }
     });
 
@@ -141,7 +150,7 @@ describe('User Registration', () => {
         expect(actualBtn).true;
         expect(actualRadioBtn).true;
     });
-    
+
     it('should select `Mr` title', () => {
         $(registerPage.titleSelectForm).selectByIndex(1);
         browser.keys('Tab');
