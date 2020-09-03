@@ -13,6 +13,7 @@ const months = {
     'Nov': '11',
     'Dec': '12',
 };
+const today = Date.now();
 
 describe('Book a flight ticket_ Aviasales', () => {
     before('open home page Aviasales.com', () => {
@@ -94,22 +95,41 @@ describe('Book a flight ticket_ Aviasales', () => {
     });
 
     it('should fill Departure date', () => {
-        const today = Date.now();
         const tomorrowMilliseconds = today + 86400000;
         const  tomorrowDate = new Date(tomorrowMilliseconds);
         const dateDeparture = tomorrowDate.toDateString();
         let arrayDate = dateDeparture.split(' ').slice(1);
         [arrayDate[0], arrayDate[1]] = [arrayDate[1], months[arrayDate[0]]];
-        const expected = arrayDate.join('.');;
+        const expected = arrayDate.join('.');
         $(`[aria-label="${dateDeparture}"]`).click();
         const actual = $('.trip-duration__input-wrapper.--departure input').getValue();
         expect(actual).eq(expected);
     });
 
     it('should fill Return date', () => {
-        $('[aria-label="Sun Oct 04 2020"]').click();
+        const month = {
+            'Jan': 'january',
+            'Feb': 'february',
+            'Mar': 'march',
+            'Apr': 'april',
+            'May': 'may',
+            'Jun': 'june',
+            'Jul': 'july',
+            'Aug': 'august',
+            'Sep': 'september',
+            'Oct': 'october',
+            'Nov': 'november',
+            'Dec': 'december',
+        };
+        const days10Milliseconds = today + 864000000;
+        const  days10Date = new Date(days10Milliseconds);
+        const dateReturn = days10Date.toDateString();
+        let arrayDate = dateReturn.split(' ').slice(0, -1);
+        [arrayDate[0], arrayDate[1], arrayDate[2]] = [parseInt(arrayDate[2]), month[arrayDate[1]], arrayDate[0].toLowerCase()];
+        const expected = arrayDate[0] + ' ' + arrayDate[1] + ', ' + arrayDate[2];
+        $(`[aria-label="${dateReturn}"]`).click();
         const actual = $('.trip-duration__input-wrapper.--return input').getValue();
-        expect(actual).eq('4 october, sun');
+        expect(actual).eq(expected);
     });
 
     it('should choose 3 adults and 1 child in passenger`s row', () => {
