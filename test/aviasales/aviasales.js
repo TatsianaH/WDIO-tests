@@ -1,9 +1,23 @@
 import { expect } from 'chai';
+const months = {
+    'Jan': '01',
+    'Feb': '02',
+    'Mar': '03',
+    'Apr': '04',
+    'May': '05',
+    'Jun': '06',
+    'Jul': '07',
+    'Aug': '08',
+    'Sep': '09',
+    'Oct': '10',
+    'Nov': '11',
+    'Dec': '12',
+};
 
-describe.skip('Book a flight ticket_ Aviasales', () => {
+describe('Book a flight ticket_ Aviasales', () => {
     before('open home page Aviasales.com', () => {
-        browser.setWindowSize(1400, 1024);
         browser.deleteAllCookies();
+        browser.setWindowSize(1440, 900);
         browser.url('https://www.aviasales.com/');
         const from = $('#origin');
         from.clearValue();
@@ -80,15 +94,22 @@ describe.skip('Book a flight ticket_ Aviasales', () => {
     });
 
     it('should fill Departure date', () => {
-        $('[aria-label="Tue Sep 08 2020"]').click();
+        const today = Date.now();
+        const tomorrowMilliseconds = today + 86400000;
+        const  tomorrowDate = new Date(tomorrowMilliseconds);
+        const dateDeparture = tomorrowDate.toDateString();
+        let arrayDate = dateDeparture.split(' ').slice(1);
+        [arrayDate[0], arrayDate[1]] = [arrayDate[1], months[arrayDate[0]]];
+        const expected = arrayDate.join('.');;
+        $(`[aria-label="${dateDeparture}"]`).click();
         const actual = $('.trip-duration__input-wrapper.--departure input').getValue();
-        expect(actual).eq('08.09.2020');
+        expect(actual).eq(expected);
     });
 
     it('should fill Return date', () => {
         $('[aria-label="Sun Oct 04 2020"]').click();
         const actual = $('.trip-duration__input-wrapper.--return input').getValue();
-        expect(actual).eq('04 october, sun');
+        expect(actual).eq('4 october, sun');
     });
 
     it('should choose 3 adults and 1 child in passenger`s row', () => {
@@ -136,13 +157,23 @@ describe.skip('Book a flight ticket_ Aviasales', () => {
     //     });
     //     expect(selector.getText()).eq('No flights found');
     // });
-    // .product-list__item.fade-enter-done
 
     it('should click `Search flights` button and open list with suggested flights', () => {
         $('.--on-home').click();
-        $('.popular-filters__title').waitForDisplayed();
+        browser.waitUntil(()=>
+            //$('.prediction-advice__title').isDisplayedInViewport() === true,
+            $('.countdown__timer').isDisplayedInViewport() === false, {timeout: 30000, timeoutMsg: 'Prices are still loading'}
+        );
+        // browser.pause(1000);
+        // browser.waitUntil(() =>
+        //     $('.popular-filters__title').isDisplayed() === true,{timeout: 10000, timeoutMsg: 'No correct title is displayed'}
+        // );
+        browser.pause(7000);
+        //$('.popular-filters__title').waitForDisplayed();
+        const actualFilter = $('.sorting__tab.is-active .sorting__title-wrap').getText();
         const flightsList = $$('.product-list__item.fade-enter-done');
-        expect(flightsList).to.have.lengthOf.to.be.greaterThan(0);
+        expect(actualFilter).eq('CHEAPEST');
+        expect(flightsList).to.have.lengthOf.to.be.greaterThan(0);//.and.to.be.lessThan(11);
     });
 
     it('should click `Quickest` sorting', () => {
