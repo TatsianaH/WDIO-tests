@@ -178,67 +178,81 @@ describe('Book a flight ticket_ Aviasales', () => {
     //     expect(selector.getText()).eq('No flights found');
     // });
 
-    it('should click `Search flights` button and open list with suggested flights', () => {
+    it('should click `Search flights` button', () => {
         $('.--on-home').click();
-        browser.waitUntil(()=>
-            //$('.prediction-advice__title').isDisplayedInViewport() === true,
-            $('.countdown__timer').isDisplayedInViewport() === false, {timeout: 30000, timeoutMsg: 'Prices are still loading'}
-        );
+        const multiSearch = $('.avia-form__change-form');
+        multiSearch.waitForDisplayed();
+        const actual = multiSearch.isDisplayed();
+        expect(actual).true;
+    });
+
+    it('should click `Search flights` button and open list with suggested flights', () => {
+        browser.pause(15000);
+        // //$('.--on-home').click();
+        // browser.waitUntil(()=>
+        // //     //$('.prediction-advice__title').isDisplayedInViewport() === true,
+        //     $('.countdown__timer').isDisplayed() === false, {timeout: 10000, timeoutMsg: 'Prices are still loading'});
+        // $('.popular-filters').waitForDisplayed({timeout: 20000});
         // browser.pause(1000);
         // browser.waitUntil(() =>
         //     $('.popular-filters__title').isDisplayed() === true,{timeout: 10000, timeoutMsg: 'No correct title is displayed'}
         // );
-        browser.pause(7000);
+        //browser.pause(1000);
         //$('.popular-filters__title').waitForDisplayed();
-        const actualFilter = $('.sorting__tab.is-active .sorting__title-wrap').getText();
+        //$('.minimized-calendar-matrix').waitForDisplayed();
+        // const actualFilter = $('.sorting__tab.is-active .sorting__title-wrap');
+        // //actualFilter.waitForDisplayed();
+        // const actualFilterText = actualFilter.getText();
         const flightsList = $$('.product-list__item.fade-enter-done');
-        expect(actualFilter).eq('CHEAPEST');
-        expect(flightsList).to.have.lengthOf.to.be.greaterThan(0);//.and.to.be.lessThan(11);
+        //flightsList[0].waitForDisplayed({timeout: 15000});
+       // expect(actualFilterText).eq('CHEAPEST');
+        expect(flightsList).to.have.lengthOf(10);
+        //expect(flightsList).to.have.lengthOf.to.be.greaterThan(0);//.and.to.be.lessThan(11);
     });
 
-    it('should click `Quickest` sorting', () => {
-        const selector = $('ul.sorting__tabs li.sorting__tab:nth-child(2)');
-        expect(selector.isClickable()).true;
-        selector.click();
-    });
-
-    it('should verify the `Quickest` is selected', () => {
-        const selector1 = $('ul.sorting__tabs li.sorting__tab.is-active:nth-child(1)');
-        const selector2 = $('ul.sorting__tabs li.sorting__tab.is-active:nth-child(2)');
-        expect(selector2.isDisplayed()).true;
-        expect(selector1.isDisplayed()).false;
-    });
-
-    it('should check that all stops are selected', () => {
-        const allStopsCheckBoxes = $$('.checkboxes-list__label span input');
-        allStopsCheckBoxes.forEach(checkBox => {
-            expect(checkBox.getProperty('checked')).true;
-        });
-    });
-
-    it('should select only `1 stop` option', () => {
-        const allStopsCheckBox = $('#stops_all');
-        const stop1CheckBox = $('#stops_1');
-        const stop2CheckBox = $('#stops_2');
-        const allStopsCheckBoxes = $$('.checkboxes-list__label');
-        allStopsCheckBoxes.forEach(checkBox => {
-            if (checkBox.getText() === '2 stops') checkBox.click();
-        });
-        expect(allStopsCheckBox.getProperty('checked')).false;
-        expect(stop1CheckBox.getProperty('checked')).true;
-        expect(stop2CheckBox.getProperty('checked')).false;
-    });
-
-    it('should verify the origin departure city is FLL', () => {
-        const departureCities = $$('.filter__sub-title span.filter__route-origin');
-        const destinationCities = $$('.filter__sub-title span.filter__route-destination');
-        departureCities.forEach((city, i) => {
-            const value = destinationCities[i].getText();
-            if (city.getText().includes('Fort Lauderdale')) {
-                expect(value).eq('Las Vegas');
-            } else {
-                expect(value).to.include('Fort Lauderdale');
-            }
-        });
-    });
+    // it('should click `Quickest` sorting', () => {
+    //     const selector = $('ul.sorting__tabs li.sorting__tab:nth-child(2)');
+    //     expect(selector.isClickable()).true;
+    //     selector.click();
+    // });
+    //
+    // it('should verify the `Quickest` is selected', () => {
+    //     const selector1 = $('ul.sorting__tabs li.sorting__tab.is-active:nth-child(1)');
+    //     const selector2 = $('ul.sorting__tabs li.sorting__tab.is-active:nth-child(2)');
+    //     expect(selector2.isDisplayed()).true;
+    //     expect(selector1.isDisplayed()).false;
+    // });
+    //
+    // it('should check that all stops are selected', () => {
+    //     const allStopsCheckBoxes = $$('.checkboxes-list__label span input');
+    //     allStopsCheckBoxes.forEach(checkBox => {
+    //         expect(checkBox.getProperty('checked')).true;
+    //     });
+    // });
+    //
+    // it('should select only `1 stop` option', () => {
+    //     const allStopsCheckBox = $('#stops_all');
+    //     const stop1CheckBox = $('#stops_1');
+    //     const stop2CheckBox = $('#stops_2');
+    //     const allStopsCheckBoxes = $$('.checkboxes-list__label');
+    //     allStopsCheckBoxes.forEach(checkBox => {
+    //         if (checkBox.getText() === '2 stops') checkBox.click();
+    //     });
+    //     expect(allStopsCheckBox.getProperty('checked')).false;
+    //     expect(stop1CheckBox.getProperty('checked')).true;
+    //     expect(stop2CheckBox.getProperty('checked')).false;
+    // });
+    //
+    // it('should verify the origin departure city is FLL', () => {
+    //     const departureCities = $$('.filter__sub-title span.filter__route-origin');
+    //     const destinationCities = $$('.filter__sub-title span.filter__route-destination');
+    //     departureCities.forEach((city, i) => {
+    //         const value = destinationCities[i].getText();
+    //         if (city.getText().includes('Fort Lauderdale')) {
+    //             expect(value).eq('Las Vegas');
+    //         } else {
+    //             expect(value).to.include('Fort Lauderdale');
+    //         }
+    //     });
+    // });
 });

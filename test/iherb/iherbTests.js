@@ -151,6 +151,7 @@ describe('Iherb website', () => {
     });
 
     it('should close the banner at the bottom of the page', () => {
+        $('.applied-filter').waitForDisplayed();
         const banner = $('.hp-welcome-mat-module');
         const bannerIsDisplayedBefore = banner.isDisplayedInViewport();
         if (bannerIsDisplayedBefore) {
@@ -158,7 +159,7 @@ describe('Iherb website', () => {
             bannerClose.click();
             browser.pause(1000);
         }
-        const bannerIsDisplayed = banner.isDisplayedInViewport();
+        const bannerIsDisplayed = banner.isDisplayed();
         expect(bannerIsDisplayed).false;
     });
 
@@ -260,7 +261,6 @@ describe('Iherb website', () => {
     it('should verify the price of each the product in the cart', () => {
         let prices = $$('[data-qa-element="line-item"] .ltr-17rm9tq');
         prices = prices.map(product => product.getText()).map(product => parseFloat(product.replace('$', '')));
-        console.log(prices, bathPrice2Items, parseFloat(priceLastProductOnPage1.replace('$', '')),parseFloat(priceProductOnPage10.replace('$', '')), '//////////////////' );
         expect(prices).to.include(bathPrice2Items);
         expect(prices).to.include(parseFloat(priceLastProductOnPage1.replace('$', '')));
         expect(prices).to.include(parseFloat(priceProductOnPage10.replace('$', '')));
@@ -284,7 +284,7 @@ describe('Iherb website', () => {
     });
 
     it('should show up the type of delivery after `Calculate` button was clicked', () => {
-        const button = $('[value="Calculate"]');
+        const button = $('[data-ga-event-label="Calculate"]');
         button.click();
         const deliveryOptions = $('.ltr-4u6dli');
         deliveryOptions.waitForDisplayed();
